@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dashboard</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial,sans-serif;
+    }
+
+    body{
+      background:#f5f7fb;
+      padding:20px;
+    }
+
+    /* GREETING */
+
+    .greeting{
+      font-size:24px;
+      font-weight:bold;
+      color:#333;
+      margin-bottom:20px;
+    }
+
+
+    /* TOTAL CARD */
+
+    .total-card{
+      width:100%;
+      background:#012b08;
+      border-radius:22px;
+      padding:25px;
+      color:white;
+      margin-bottom:18px;
+    }
+
+    .total-title{
+      font-size:16px;
+      margin-bottom:10px;
+      opacity:0.9;
+    }
+
+    .total-amount{
+      font-size:34px;
+      font-weight:bold;
+    }
+
+
+    /* BOX CONTAINER */
+
+    .box-container{
+      display:flex;
+      gap:15px;
+      margin-top:10px;
+    }
+
+
+    /* BOX */
+
+    .box{
+      flex:1;
+      background:#01752d;
+      border-radius:20px;
+      padding:20px;
+      color:white;
+    }
+
+    .box-title{
+      font-size:15px;
+      margin-bottom:10px;
+      opacity:0.9;
+    }
+
+    .box-amount{
+      font-size:24px;
+      font-weight:bold;
+    }
+
+  </style>
+</head>
+<body>
+
+
+
+  <!-- GREETING -->
+
+  <div class="greeting">
+    Hallo, <span id="namaToko">...</span> 👋
+  </div>
+
+
+
+  <!-- TOTAL CARD -->
+
+  <div class="total-card">
+
+    <div class="total-title">
+      Total Cash + Saldo Hari Ini
+    </div>
+
+    <div class="total-amount" id="totalSemua">
+      Rp 0
+    </div>
+
+  </div>
+
+
+
+  <!-- CASH & SALDO -->
+
+  <div class="box-container">
+
+
+    <!-- CASH -->
+
+    <div class="box">
+
+      <div class="box-title">
+        Cash
+      </div>
+
+      <div class="box-amount" id="cashAmount">
+        Rp 0
+      </div>
+
+    </div>
+
+
+
+    <!-- SALDO -->
+
+    <div class="box">
+
+      <div class="box-title">
+        Saldo
+      </div>
+
+      <div class="box-amount" id="saldoAmount">
+        Rp 0
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+
+
+<script type="module">
+
+/* IMPORT FIREBASE */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getFirestore,
+  doc,
+  getDoc
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyA0YHpAO0JyCNt-oJNwJdgKCOwLiagrfvg",
+  authDomain: "digital-report-3567d.firebaseapp.com",
+  projectId: "digital-report-3567d",
+  storageBucket: "digital-report-3567d.firebasestorage.app",
+  messagingSenderId: "509408276429",
+  appId: "1:509408276429:web:65323d54b3211644ecde84"
+};
+
+
+
+/* INIT FIREBASE */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+
+/* CEK USER LOGIN */
+
+onAuthStateChanged(auth, async (user) => {
+
+  if(user){
+
+    /* AMBIL DATA USER */
+
+    const docRef = doc(db, "users", user.uid);
+
+    const docSnap = await getDoc(docRef);
+
+
+    if(docSnap.exists()){
+
+      const data = docSnap.data();
+
+
+      /* TAMPILKAN NAMA TOKO */
+
+      document.getElementById("namaToko").innerText =
+      data.namaToko;
+
+    }
+
+
+
+    /* DATA SEMENTARA */
+
+    let cash = 500000;
+
+    let saldo = 250000;
+
+
+
+    /* TAMPILKAN CASH */
+
+    document.getElementById("cashAmount").innerText =
+    "Rp " + cash.toLocaleString("id-ID");
+
+
+
+    /* TAMPILKAN SALDO */
+
+    document.getElementById("saldoAmount").innerText =
+    "Rp " + saldo.toLocaleString("id-ID");
+
+
+
+    /* TOTAL */
+
+    const total = cash + saldo;
+
+
+
+    /* TAMPILKAN TOTAL */
+
+    document.getElementById("totalSemua").innerText =
+    "Rp " + total.toLocaleString("id-ID");
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
