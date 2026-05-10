@@ -16,41 +16,64 @@
     }
 
     body{
-      background:#f5f7fb;
-      padding:20px;
-    }
+  margin:0;
+
+  font-family:Arial,sans-serif;
+
+  background-image:url("bg-batik.png");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+
+  min-height:100vh;
+
+  display:flex;
+  justify-content:center;
+}
 
     /* GREETING */
 
     .greeting{
-      font-size:24px;
-      font-weight:bold;
-      color:#333;
-      margin-bottom:20px;
-    }
+  font-size:28px;
+  font-weight:bold;
+  color:white;
+
+  margin-bottom:25px;
+
+  text-shadow:0 4px 10px rgba(0,0,0,0.25);
+}
 
 
     /* TOTAL CARD */
 
     .total-card{
-      width:100%;
-      background:#012b08;
-      border-radius:22px;
-      padding:25px;
-      color:white;
-      margin-bottom:18px;
-    }
+  width:100%;
+
+  background:rgba(255,255,255,0.18);
+
+  backdrop-filter:blur(14px);
+
+  border-radius:28px;
+
+  padding:28px 24px;
+
+  color:white;
+
+  margin-bottom:18px;
+
+  box-shadow:0 8px 30px rgba(0,0,0,0.15);
+}
 
     .total-title{
-      font-size:16px;
-      margin-bottom:10px;
-      opacity:0.9;
-    }
+  font-size:15px;
+  margin-bottom:14px;
+  opacity:0.85;
+}
 
     .total-amount{
-      font-size:34px;
-      font-weight:bold;
-    }
+  font-size:42px;
+  font-weight:bold;
+}
 
 
     /* BOX CONTAINER */
@@ -65,29 +88,56 @@
     /* BOX */
 
     .box{
-      flex:1;
-      background:#01752d;
-      border-radius:20px;
-      padding:20px;
-      color:white;
-    }
+  flex:1;
+
+  background:rgba(255,255,255,0.16);
+
+  backdrop-filter:blur(14px);
+
+  border-radius:24px;
+
+  padding:22px;
+
+  color:white;
+
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
 
     .box-title{
-      font-size:15px;
-      margin-bottom:10px;
-      opacity:0.9;
-    }
+  font-size:14px;
+  margin-bottom:10px;
+  opacity:0.8;
+}
 
     .box-amount{
-      font-size:24px;
-      font-weight:bold;
-    }
+  font-size:28px;
+  font-weight:bold;
+}
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.10);
+  z-index:0;
+}
+.dashboard{
+  position:relative;
+  z-index:2;
 
+  width:100%;
+  max-width:430px;
+
+  min-height:100vh;
+
+  padding:20px;
+}
+    
   </style>
 </head>
 <body>
 
+  <div class="overlay"></div>
 
+<div class="dashboard">
 
   <!-- GREETING -->
 
@@ -266,5 +316,7 @@ onAuthStateChanged(auth, async (user) => {
 
 </script>
 
+</div>
+  
 </body>
 </html>
