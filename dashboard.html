@@ -20,15 +20,13 @@
 
   font-family:Arial,sans-serif;
 
-  background-image:url("batik.png");
+  background-image:url("ICON/batik.png");
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
+  background-attachment:fixed;
 
   min-height:100vh;
-
-  display:flex;
-  justify-content:center;
 }
 
     /* GREETING */
@@ -63,6 +61,8 @@
   margin-bottom:18px;
 
   box-shadow:0 8px 30px rgba(0,0,0,0.15);
+
+  border:1px solid rgba(255,255,255,0.18);
 }
 
     .total-title{
@@ -101,9 +101,8 @@
     /* BOX */
 
     .box{
-  flex:1;
-min-height:130px;
-      
+  min-height:130px;
+
   background:rgba(255,255,255,0.16);
 
   backdrop-filter:blur(14px);
@@ -115,6 +114,12 @@ min-height:130px;
   color:white;
 
   box-shadow:0 8px 20px rgba(0,0,0,0.12);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  border:1px solid rgba(255,255,255,0.12);
 }
 
     .box-title{
