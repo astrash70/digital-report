@@ -82,8 +82,15 @@
     .box-container{
   display:grid;
 
-  grid-template-columns:
-  repeat(auto-fit,minmax(180px,1fr));
+  .box-container{
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:15px;
+
+  margin-top:15px;
+}
 
   gap:15px;
 
@@ -138,6 +145,32 @@ min-height:130px;
   padding:20px;
 
   margin:auto;
+}
+
+    @media(max-width:600px){
+
+  .greeting{
+    font-size:24px;
+  }
+
+  .total-amount{
+    font-size:36px;
+  }
+
+  .box-amount{
+    font-size:24px;
+  }
+
+  .total-card{
+    padding:22px 18px;
+    min-height:160px;
+  }
+
+  .box{
+    padding:18px;
+    min-height:110px;
+  }
+
 }
     
   </style>
