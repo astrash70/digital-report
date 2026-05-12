@@ -105,29 +105,31 @@ overflow:hidden;
   opacity:0.85;
 }
 
-    .total-amount{
+   .total-amount{
 
   font-size:
   clamp(
-    24px,
-    6vw,
-    42px
+    28px,
+    5vw,
+    56px
   );
 
   font-weight:bold;
 
   line-height:1.1;
 
-  word-break:break-word;
+  white-space:nowrap;
 }
 
 
     /* BOX CONTAINER */
 
 .box-container{
+
   display:grid;
 
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:
+  repeat(2, minmax(0,1fr));
 
   gap:15px;
 
@@ -202,11 +204,20 @@ overflow:hidden;
 
     .box-amount{
 
-  font-size:18px;
+  font-size:
+  clamp(
+    16px,
+    2.5vw,
+    34px
+  );
 
   font-weight:bold;
 
   color:#0a6b2d;
+
+  line-height:1.1;
+
+  white-space:nowrap;
 }
 
 .dashboard{
@@ -244,23 +255,14 @@ overflow:hidden;
   .greeting{
     font-size:24px;
   }
-
-  .total-amount{
-    font-size:36px;
-  }
-
-  .box-amount{
-    font-size:24px;
-  }
-
   .total-card{
-    padding:22px 18px;
-    min-height:160px;
-  }
+    padding:22px 20px;
+    min-height:145px;
+}
 
   .box{
-  padding:14px;
-  min-height:75px;
+  padding:16px;
+  min-height:95px;
 }
 
 }
