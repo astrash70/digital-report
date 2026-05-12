@@ -20,11 +20,14 @@
 
   font-family:Arial,sans-serif;
 
-  background-image:url("bg-batik.png");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
-  background-attachment:fixed;
+  background:
+  linear-gradient(
+    to bottom,
+    #ffd400 0%,
+    #ffd400 38%,
+    #efefef 38%,
+    #efefef 100%
+  );
 
   min-height:100vh;
 }
@@ -266,25 +269,28 @@ overflow:hidden;
   position:relative;
 }
 
-    .card-wrapper::before{
+   .card-wrapper{
 
-  content:"";
-
-  position:absolute;
-
-  top:-55px;
-
-  left:0;
+  background:#f3f3f3;
 
   width:100%;
 
-  height:90px;
+  margin-top:30px;
 
-  background:#f7f7f7;
+  padding:36px;
 
-  border-radius:
-  0 0 50% 50%;
+  border-radius:42px;
 
+  box-shadow:
+  0 10px 30px rgba(0,0,0,0.10);
+
+  position:relative;
+}
+
+
+/* HAPUS INI TOTAL */
+.card-wrapper::before{
+  display:none;
 }
 
 @media(max-width:600px){
