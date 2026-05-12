@@ -173,6 +173,23 @@
   margin:auto;
 }
 
+    .card-wrapper{
+
+  background:rgba(255,255,255,0.18);
+
+  backdrop-filter:blur(12px);
+
+  border-radius:35px;
+
+  padding:28px;
+
+  box-shadow:
+  0 10px 35px rgba(0,0,0,0.18);
+
+  border:
+  1px solid rgba(255,255,255,0.18);
+}
+
 @media(max-width:600px){
 
   .greeting{
@@ -203,6 +220,7 @@
 <body>
 
 <div class="dashboard">
+<div class="card-wrapper">
 
   <!-- GREETING -->
 
@@ -381,5 +399,8 @@ onAuthStateChanged(auth, async (user) => {
 
 </script>
 </div>
+
+</div>
 </body>
+  
 </html>
