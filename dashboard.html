@@ -95,7 +95,7 @@
     transparent,
     rgba(255,255,255,0.05)
   );
-
+overflow:hidden;
   pointer-events:none;
 }
 
@@ -106,8 +106,19 @@
 }
 
     .total-amount{
-  font-size:42px;
+
+  font-size:
+  clamp(
+    24px,
+    6vw,
+    42px
+  );
+
   font-weight:bold;
+
+  line-height:1.1;
+
+  word-break:break-word;
 }
 
 
@@ -146,6 +157,7 @@
   justify-content:center;
 
   border:1px solid rgba(255,255,255,0.12);
+  overflow:hidden;
 }
 
     .box-title{
@@ -155,8 +167,19 @@
 }
 
     .box-amount{
-  font-size:28px;
+
+  font-size:
+  clamp(
+    14px,
+    4vw,
+    28px
+  );
+
   font-weight:bold;
+
+  line-height:1.1;
+
+  word-break:break-word;
 }
 
 .dashboard{
