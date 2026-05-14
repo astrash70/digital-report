@@ -36,9 +36,46 @@ body{
   overflow-x:hidden;
 }
 
-/* PANEL PUTIH BAWAH */
+/* POTONGAN CEKUNG */
 
 body::after{
+
+  content:"";
+
+  position:fixed;
+
+  top:150px;
+
+  left:0;
+
+  width:100%;
+  height:120px;
+
+  z-index:2;
+
+  pointer-events:none;
+
+  background:
+
+  radial-gradient(
+    circle at left top,
+    transparent 70px,
+    #ffffff 72px
+  ),
+
+  radial-gradient(
+    circle at right top,
+    transparent 70px,
+    #ffffff 72px
+  );
+
+  background-size:50% 100%;
+  background-repeat:no-repeat;
+}
+
+/* CEKUNG ATAS KIRI KANAN */
+
+body::before{
 
   content:"";
 
@@ -57,45 +94,13 @@ body::after{
     rgba(245,245,245,1)
   );
 
-  z-index:0;
-
-  box-shadow:
-  0 -10px 40px rgba(0,0,0,0.04);
-
-  pointer-events:none;
-}
-
-    /* EFEK CEKUNG ATAS KIRI KANAN */
-
-body::before{
-
-  content:"";
-
-  position:fixed;
-
-  left:0;
-  bottom:0;
-
-  width:100%;
-  height:78vh;
+  border-radius:
+  70px 70px 0 0;
 
   z-index:1;
 
   pointer-events:none;
-
-  background:
-
-  radial-gradient(
-    circle at top left,
-    transparent 58px,
-    rgba(245,245,245,1) 60px
-  ),
-
-  radial-gradient(
-    circle at top right,
-    transparent 58px,
-    rgba(245,245,245,1) 60px
-  );
+}
 
   background-size:50% 100%;
   background-repeat:no-repeat;
@@ -310,7 +315,7 @@ overflow:hidden;
 
   position:relative;
 
-  z-index:2;
+  z-index:10;
 
   width:100%;
 
