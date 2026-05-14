@@ -52,11 +52,16 @@ body::before{
 
   pointer-events:none;
 
-  border-radius:
-  120px 120px 0 0;
-
   box-shadow:
   0 -10px 40px rgba(0,0,0,0.05);
+
+  /* INI YANG BIKIN RESPONSIVE */
+
+  border-top-left-radius:
+  50% clamp(80px, 12vw, 180px);
+
+  border-top-right-radius:
+  50% clamp(80px, 12vw, 180px);
 }
     /* GREETING */
 
