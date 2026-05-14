@@ -28,8 +28,7 @@
 
   min-height:100vh;
 }
-
-body::before{
+    body::before{
 
   content:"";
 
@@ -55,26 +54,49 @@ body::before{
   box-shadow:
   0 -10px 40px rgba(0,0,0,0.05);
 
-  clip-path: polygon(
+  border-radius:
+  80px 80px 0 0;
+}
 
-    0 120px,
-    0 80px,
+body::after{
 
-    4% 80px,
-    7% 130px,
-    12% 130px,
-    15% 80px,
+  content:"";
 
-    85% 80px,
-    88% 130px,
-    93% 130px,
-    96% 80px,
+  position:fixed;
 
-    100% 80px,
-    100% 100%,
-    0 100%
+  top:22vh;
 
+  left:0;
+
+  width:100%;
+  height:120px;
+
+  pointer-events:none;
+
+  z-index:2;
+
+  background:
+
+  radial-gradient(
+    circle at left top,
+    transparent 0 60px,
+    #f5f5f5 61px
+  ),
+
+  radial-gradient(
+    circle at right top,
+    transparent 0 60px,
+    #f5f5f5 61px
   );
+
+  background-size:
+  120px 120px;
+
+  background-repeat:no-repeat;
+
+  background-position:
+  left top,
+  right top;
 }
     /* GREETING */
 
