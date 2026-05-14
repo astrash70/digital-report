@@ -41,36 +41,40 @@ body::before{
   width:100%;
   height:78vh;
 
-  background:#f7f7f7;
+  background:
+  linear-gradient(
+    180deg,
+    rgba(255,255,255,0.98),
+    rgba(245,245,245,1)
+  );
 
   z-index:1;
 
-  border-radius:
-  120px 120px 0 0;
-}
-
-/* CEKUNG KIRI */
-body::after{
-
-  content:"";
-
-  position:fixed;
-
-  top:22vh;
-  left:-40px;
-
-  width:120px;
-  height:120px;
-
-  background:
-  transparent;
-
-  border-radius:50%;
+  pointer-events:none;
 
   box-shadow:
-  60px 60px 0 #f7f7f7;
+  0 -10px 40px rgba(0,0,0,0.05);
 
-  z-index:2;
+  clip-path: polygon(
+
+    0 120px,
+    0 80px,
+
+    4% 80px,
+    7% 130px,
+    12% 130px,
+    15% 80px,
+
+    85% 80px,
+    88% 130px,
+    93% 130px,
+    96% 80px,
+
+    100% 80px,
+    100% 100%,
+    0 100%
+
+  );
 }
     /* GREETING */
 
