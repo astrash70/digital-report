@@ -29,7 +29,7 @@
   min-height:100vh;
 }
 
-/* PANEL PUTIH DENGAN COAKAN CEKUNG */
+/* PANEL PUTIH */
 
 body::before{
 
@@ -43,10 +43,6 @@ body::before{
   width:100%;
   height:78vh;
 
-  z-index:1;
-
-  pointer-events:none;
-
   background:
   linear-gradient(
     180deg,
@@ -54,43 +50,15 @@ body::before{
     rgba(245,245,245,1)
   );
 
+  z-index:1;
+
+  pointer-events:none;
+
+  border-radius:
+  70px 70px 0 0;
+
   box-shadow:
   0 -10px 40px rgba(0,0,0,0.05);
-
-  /* COAKAN CEKUNG */
-  -webkit-mask:
-
-    radial-gradient(
-      70px at left top,
-      transparent 98%,
-      black 100%
-    ),
-
-    radial-gradient(
-      70px at right top,
-      transparent 98%,
-      black 100%
-    ),
-
-    linear-gradient(black 0 0);
-
-  -webkit-mask-composite:
-    source-over;
-
-  mask-composite:add;
-
-  -webkit-mask-size:
-    140px 140px,
-    140px 140px,
-    100% 100%;
-
-  -webkit-mask-position:
-    left top,
-    right top,
-    center;
-
-  -webkit-mask-repeat:no-repeat;
-} rgba(0,0,0,0.05);
 }
     /* GREETING */
 
