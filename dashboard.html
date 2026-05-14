@@ -29,8 +29,6 @@
   min-height:100vh;
 }
 
-/* PANEL PUTIH */
-
 body::before{
 
   content:"";
@@ -54,11 +52,34 @@ body::before{
 
   pointer-events:none;
 
-  border-radius:
-  70px 70px 0 0;
-
   box-shadow:
   0 -10px 40px rgba(0,0,0,0.05);
+}
+
+    body::after{
+
+  content:"";
+
+  position:fixed;
+
+  top:150px;
+
+  left:-5%;
+
+  width:110%;
+
+  height:140px;
+
+  background:transparent;
+
+  border-radius:0 0 50% 50%;
+
+  box-shadow:
+  0 80px 0 0 rgba(245,245,245,1);
+
+  z-index:1;
+
+  pointer-events:none;
 }
     /* GREETING */
 
