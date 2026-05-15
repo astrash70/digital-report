@@ -359,8 +359,8 @@ border-radius:30px;
   justify-content:space-between;
 
   gap:16px;
-}
-
+}   
+    
 .menu-item{
 
   flex:1;
@@ -419,6 +419,45 @@ border-radius:30px;
 
   color:#0a6b2d;
 }
+
+    /* MENU VERTIKAL */
+
+.vertical-menu{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+
+  margin-top:16px;
+}
+
+.vertical-item{
+
+  width:100%;
+
+  flex-direction:row;
+
+  justify-content:flex-start;
+
+  padding:18px 22px;
+
+  gap:16px;
+}
+
+.vertical-item img{
+
+  width:34px;
+
+  height:34px;
+}
+
+.vertical-item span{
+
+  font-size:15px;
+}
+    
   </style>
 </head>
 <body>
@@ -501,6 +540,27 @@ border-radius:30px;
   <div class="menu-item">
     <img src="report.png">
     <span>Report</span>
+  </div>
+
+</div>
+
+  <!-- MENU VERTIKAL -->
+
+<div class="vertical-menu">
+
+  <div class="menu-item vertical-item">
+    <img src="ICON/transaction-volume.png" alt="Transaction Volume">
+    <span>Transaction Volume</span>
+  </div>
+
+  <div class="menu-item vertical-item">
+    <img src="ICON/admin.png" alt="Admin">
+    <span>Admin</span>
+  </div>
+
+  <div class="menu-item vertical-item">
+    <img src="ICON/charge.png" alt="Charge">
+    <span>Charge</span>
   </div>
 
 </div>
