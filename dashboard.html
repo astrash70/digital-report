@@ -295,7 +295,7 @@ overflow:hidden;
     rgba(245,245,245,0.95)
   );
 
-  border-radius:30px;
+  border-radius:0 0 30px 30px;
 
   padding:8px;
 
@@ -313,6 +313,15 @@ overflow:hidden;
   0 0 40px rgba(255,215,0,0.10),
   inset 0 1px 0 rgba(255,255,255,0.9);
 
+   clip-path:path(
+"M0,0
+ Q0,40 40,40
+ L96%,40
+ Q100%,40 100%,0
+ L100%,100%
+ L0,100%
+ Z"
+);
 }
     .card-wrapper::before{
 
