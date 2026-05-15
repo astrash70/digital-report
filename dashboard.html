@@ -457,6 +457,121 @@ border-radius:30px;
 
   font-size:15px;
 }
+
+/* TOP CUSTOMER */
+
+.top-customer-card{
+
+  margin-top:20px;
+
+  background:
+  linear-gradient(
+    180deg,
+    rgba(255,255,255,0.96),
+    rgba(245,245,245,0.92)
+  );
+
+  border-radius:28px;
+
+  padding:22px;
+
+  box-shadow:
+  0 10px 28px rgba(0,0,0,0.08);
+
+  border:
+  1px solid rgba(255,255,255,0.7);
+}
+
+.top-customer-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:20px;
+}
+
+.top-customer-header h2{
+
+  font-size:20px;
+
+  color:#0a6b2d;
+}
+
+.top-customer-header span{
+
+  font-size:13px;
+
+  color:#777;
+}
+
+.customer-list{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+}
+
+.customer-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  background:
+  rgba(255,255,255,0.7);
+
+  border-radius:18px;
+
+  padding:14px 16px;
+}
+
+.customer-rank{
+
+  width:42px;
+  height:42px;
+
+  border-radius:50%;
+
+  background:
+  linear-gradient(
+    135deg,
+    #0a6b2d,
+    #18a34a
+  );
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-weight:bold;
+}
+
+.customer-info h3{
+
+  font-size:15px;
+
+  color:#222;
+}
+
+.customer-info p{
+
+  font-size:13px;
+
+  color:#777;
+
+  margin-top:3px;
+}
     
   </style>
 </head>
@@ -565,6 +680,48 @@ border-radius:30px;
 
 </div>
 
+  <!-- TOP CUSTOMER -->
+
+<div class="top-customer-card">
+
+  <div class="top-customer-header">
+
+    <h2>Top 10 Pelanggan</h2>
+
+    <span>Transaksi Tersering</span>
+
+  </div>
+
+  <div class="customer-list">
+
+    <div class="customer-item">
+      <div class="customer-rank">1</div>
+      <div class="customer-info">
+        <h3>Astri Cell</h3>
+        <p>152 transaksi</p>
+      </div>
+    </div>
+
+    <div class="customer-item">
+      <div class="customer-rank">2</div>
+      <div class="customer-info">
+        <h3>Rizky Store</h3>
+        <p>134 transaksi</p>
+      </div>
+    </div>
+
+    <div class="customer-item">
+      <div class="customer-rank">3</div>
+      <div class="customer-info">
+        <h3>Putra Jaya</h3>
+        <p>121 transaksi</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+  
 <script type="module">
 
 /* IMPORT FIREBASE */
