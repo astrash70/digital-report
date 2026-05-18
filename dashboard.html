@@ -700,6 +700,122 @@ border-radius:30px;
   }
 
 }
+
+    /* HEADER */
+
+.top-customer-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:16px;
+
+  position:relative;
+}
+
+/* FILTER */
+
+.filter-box{
+  position:relative;
+}
+
+.filter-btn{
+
+  border:none;
+
+  background:
+  rgba(10,107,45,0.08);
+
+  color:#0a6b2d;
+
+  padding:8px 12px;
+
+  border-radius:12px;
+
+  font-size:12px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  transition:0.2s;
+}
+
+.filter-btn:hover{
+
+  background:
+  rgba(10,107,45,0.14);
+}
+
+/* DROPDOWN */
+
+.filter-dropdown{
+
+  position:absolute;
+
+  top:45px;
+
+  right:0;
+
+  width:120px;
+
+  background:white;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,0.12);
+
+  display:none;
+
+  z-index:100;
+}
+
+.filter-dropdown div{
+
+  padding:12px;
+
+  font-size:13px;
+
+  cursor:pointer;
+
+  transition:0.2s;
+}
+
+.filter-dropdown div:hover{
+
+  background:#f3f3f3;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  .filter-btn{
+
+    padding:7px 10px;
+
+    font-size:11px;
+  }
+
+  .filter-dropdown{
+
+    width:105px;
+  }
+
+  .filter-dropdown div{
+
+    font-size:12px;
+
+    padding:10px;
+  }
+
+}
     
   </style>
 </head>
@@ -809,40 +925,36 @@ border-radius:30px;
 
   <!-- TOP CUSTOMER -->
 
-<div class="top-customer-card">
+<div class="top-customer-header">
 
-  <div class="top-customer-header">
+  <h2 id="topTitle">
+    Top 10 Pelanggan
+  </h2>
 
-    <h2>Top 10 Pelanggan</h2>
+  <div class="filter-box">
 
-    <span>Transaksi Tersering</span>
+    <button class="filter-btn" onclick="toggleFilter()">
+      ☰ Filter
+    </button>
 
-  </div>
+    <div class="filter-dropdown" id="filterDropdown">
 
-  <div class="customer-list">
-
-    <div class="customer-item">
-      <div class="customer-rank">1</div>
-      <div class="customer-info">
-        <h3>Astri Cell</h3>
-        <p>152 transaksi</p>
+      <div onclick="setTop(5)">
+        Top 5
       </div>
-    </div>
 
-    <div class="customer-item">
-      <div class="customer-rank">2</div>
-      <div class="customer-info">
-        <h3>Rizky Store</h3>
-        <p>134 transaksi</p>
+      <div onclick="setTop(10)">
+        Top 10
       </div>
-    </div>
 
-    <div class="customer-item">
-      <div class="customer-rank">3</div>
-      <div class="customer-info">
-        <h3>Putra Jaya</h3>
-        <p>121 transaksi</p>
+      <div onclick="setTop(50)">
+        Top 50
       </div>
+
+      <div onclick="setTop(100)">
+        Top 100
+      </div>
+
     </div>
 
   </div>
@@ -957,6 +1069,39 @@ onAuthStateChanged(auth, async (user) => {
   }
 
 });
+
+  /* TOGGLE DROPDOWN */
+
+function toggleFilter(){
+
+  const dropdown =
+  document.getElementById("filterDropdown");
+
+  if(dropdown.style.display === "block"){
+
+    dropdown.style.display = "none";
+
+  }else{
+
+    dropdown.style.display = "block";
+  }
+
+}
+
+/* GANTI TOP */
+
+function setTop(number){
+
+  document.getElementById("topTitle")
+  .innerText =
+  `Top ${number} Pelanggan`;
+
+  document.getElementById("filterDropdown")
+  .style.display = "none";
+
+  console.log("Filter Top:", number);
+
+}
 
 </script>
 </div>
