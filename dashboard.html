@@ -923,36 +923,92 @@ border-radius:30px;
 
 </div>
 
-  <!-- TOP CUSTOMER -->
+ <!-- TOP CUSTOMER -->
 
-<div class="top-customer-header">
+<div class="top-customer-card">
 
-  <h2 id="topTitle">
-    Top 10 Pelanggan
-  </h2>
+  <div class="top-customer-header">
 
-  <div class="filter-box">
+    <h2 id="topTitle">
+      Top 10 Pelanggan
+    </h2>
 
-    <button class="filter-btn" onclick="toggleFilter()">
-      ☰ Filter
-    </button>
+    <div class="filter-box">
 
-    <div class="filter-dropdown" id="filterDropdown">
+      <button class="filter-btn" onclick="toggleFilter()">
+        ☰ Filter
+      </button>
 
-      <div onclick="setTop(5)">
-        Top 5
+      <div class="filter-dropdown" id="filterDropdown">
+
+        <div onclick="setTop(5)">
+          Top 5
+        </div>
+
+        <div onclick="setTop(10)">
+          Top 10
+        </div>
+
+        <div onclick="setTop(50)">
+          Top 50
+        </div>
+
+        <div onclick="setTop(100)">
+          Top 100
+        </div>
+
       </div>
 
-      <div onclick="setTop(10)">
-        Top 10
+    </div>
+
+  </div>
+
+  <div class="customer-list">
+
+    <div class="customer-item">
+
+      <div class="customer-rank">
+        1
       </div>
 
-      <div onclick="setTop(50)">
-        Top 50
+      <div class="customer-info">
+
+        <h3>Astri Cell</h3>
+
+        <p>152 transaksi</p>
+
       </div>
 
-      <div onclick="setTop(100)">
-        Top 100
+    </div>
+
+    <div class="customer-item">
+
+      <div class="customer-rank">
+        2
+      </div>
+
+      <div class="customer-info">
+
+        <h3>Rizky Store</h3>
+
+        <p>134 transaksi</p>
+
+      </div>
+
+    </div>
+
+    <div class="customer-item">
+
+      <div class="customer-rank">
+        3
+      </div>
+
+      <div class="customer-info">
+
+        <h3>Putra Jaya</h3>
+
+        <p>121 transaksi</p>
+
       </div>
 
     </div>
