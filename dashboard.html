@@ -21,9 +21,9 @@
 
   font-family:Arial,sans-serif;
 
-  position:relative;
-
   min-height:100vh;
+
+  position:relative;
 
   background-color:#f5f5f5;
 
@@ -39,29 +39,44 @@ body::before{
 
   position:absolute;
 
-  top:0;
-  left:0;
-
-  width:100%;
-  height:100%;
+  inset:0;
 
   background-image:url("bg-batik.png");
 
-  /* zoom manual */
-  background-size:120%;
-
-  /* geser manual */
-  background-position:50% 0%;
-
   background-repeat:no-repeat;
 
-  /* MIRROR */
+  /* ukuran desktop */
+  background-size:120%;
+
+  /* posisi desktop */
+  background-position:center top;
+
+  /* mirror */
   transform:scaleX(-1);
+
+  transform-origin:center;
 
   z-index:-1;
 
+  pointer-events:none;
 }
 
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  body::before{
+
+    /* ukuran hp */
+    background-size:240%;
+
+    /* posisi hp */
+    background-position:center top;
+
+  }
+
+}
     /* GREETING */
 
     .greeting{
