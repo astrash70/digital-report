@@ -25,13 +25,13 @@
 
   position:relative;
 
-  background-color:#f5f5f5;
+  background:#f5f5f5;
 
   overflow-x:hidden;
 }
 
 
-/* BACKGROUND */
+/* HEADER BACKGROUND */
 
 body::before{
 
@@ -39,22 +39,20 @@ body::before{
 
   position:absolute;
 
-  inset:0;
+  top:0;
+  left:0;
+
+  width:100%;
+
+  height:320px;
 
   background-image:url("bodi.png");
 
   background-repeat:no-repeat;
 
-  /* ukuran desktop */
-  background-size:100%;
+  background-size:cover;
 
-  /* posisi desktop */
   background-position:center top;
-
-  /* mirror */
-  transform:scaleX(-1);
-
-  transform-origin:center;
 
   z-index:-1;
 
@@ -68,15 +66,16 @@ body::before{
 
   body::before{
 
-    /* ukuran hp */
-    background-size:240%;
+    height:180px;
 
-    /* posisi hp */
+    background-size:cover;
+
     background-position:center top;
 
   }
 
 }
+
     /* GREETING */
 
     .greeting{
