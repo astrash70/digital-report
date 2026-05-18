@@ -1128,7 +1128,7 @@ onAuthStateChanged(auth, async (user) => {
 
   /* TOGGLE DROPDOWN */
 
-function toggleFilter(){
+window.toggleFilter = function(){
 
   const dropdown =
   document.getElementById("filterDropdown");
@@ -1146,7 +1146,7 @@ function toggleFilter(){
 
 /* GANTI TOP */
 
-function setTop(number){
+window.setTop = function(number){
 
   document.getElementById("topTitle")
   .innerText =
