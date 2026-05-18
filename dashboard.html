@@ -524,6 +524,18 @@ border-radius:30px;
 
   margin-right:5px;
 }
+
+.vertical-item b{
+
+  margin-left:auto;
+
+  font-size:clamp(12px,1.5vw,18px);
+
+  color:#0a6b2d;
+
+  font-weight:700;
+}
+    
 /* TOP CUSTOMER */
 
 .top-customer-card{
@@ -913,21 +925,40 @@ border-radius:30px;
 
 <div class="vertical-menu">
 
-  <div class="menu-item vertical-item">
-    <img src="transaction volume.png">
-    <span>Transaction Volume</span>
-  </div>
+ <div class="menu-item vertical-item">
+  <img src="transaction volume.png">
 
-  <div class="menu-item vertical-item">
-    <img src="admin.png">
-    <span>Admin</span>
-  </div>
+  <span>
+    Transaction Volume
+  </span>
 
-  <div class="menu-item vertical-item">
-    <img src="charge.png">
-    <span>Charge</span>
-  </div>
+  <b id="totalTransaksi">
+    Rp 0
+  </b>
+</div>
 
+<div class="menu-item vertical-item">
+  <img src="admin.png">
+
+  <span>
+    Admin
+  </span>
+
+  <b id="totalAdmin">
+    Rp 0
+  </b>
+</div>
+
+<div class="menu-item vertical-item">
+  <img src="charge.png">
+
+  <span>
+    Charge
+  </span>
+
+  <b id="totalCharge">
+    Rp 0
+  </b>
 </div>
 
  <!-- TOP CUSTOMER -->
@@ -1164,7 +1195,7 @@ window.setTop = function(number){
 
   console.log("Filter Top:", number);
 
-}
+}  
 
 </script>
 </div>
