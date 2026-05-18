@@ -462,45 +462,55 @@ border-radius:30px;
 
   flex-direction:column;
 
-  gap:14px;
+  gap:clamp(14px, 2vw, 24px);
 
-  margin-top:16px;
+  margin-top:20px;
 }
 
 .vertical-item{
 
   width:100%;
 
-  flex-direction:row;
-
-  justify-content:flex-start;
+  display:flex;
 
   align-items:center;
 
-  padding:18px 22px;
+  gap:clamp(12px, 2vw, 22px);
 
-  gap:16px;
+  padding:
+  clamp(14px, 2vw, 22px);
+
+  border-radius:clamp(18px, 2vw, 28px);
 
   background:white;
 
-  border-radius:22px;
-
   box-shadow:
-  0 6px 18px rgba(0,0,0,0.08);
-}
+  0 6px 18px rgba(0,0,0,0.06);
 
+  transition:0.25s ease;
+}
 .vertical-item img{
 
-  width:34px;
+  width:clamp(38px, 5vw, 62px);
 
-  height:34px;
+  height:clamp(38px, 5vw, 62px);
+
+  object-fit:contain;
+
+  flex-shrink:0;
+}
 }
 
-.vertical-item span{
+..vertical-item span{
 
-  font-size:15px;
+  font-size:clamp(15px, 2vw, 26px);
+
+  font-weight:700;
+
+  color:#0a6b2d;
+
+  line-height:1.2;
 }
-
 /* TOP CUSTOMER */
 
 .top-customer-card{
