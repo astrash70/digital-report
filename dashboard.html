@@ -842,11 +842,54 @@ border-radius:30px;
   }
 
 }
+
+    /* HEADER TOP */
+
+.top-bg{
+
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:100%;
+
+  height:180px;
+
+  background-image:url("bg-batik.png");
+
+  background-repeat:no-repeat;
+
+  background-size:100% 100%;
+
+  background-position:center top;
+
+  border-bottom-left-radius:40px;
+  border-bottom-right-radius:40px;
+
+  z-index:1;
+
+  pointer-events:none;
+}
+
+
+/* BIKIN CONTENT TURUN */
+
+.dashboard{
+
+  position:relative;
+
+  z-index:10;
+
+  padding-top:30px;
+}
     
   </style>
 </head>
 <body>
 
+<div class="top-bg"></div>
+  
 <div class="dashboard">
 
 <!-- GREETING -->
