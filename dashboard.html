@@ -521,7 +521,7 @@ border-radius:30px;
 
 .top-customer-card{
 
-  margin-top:20px;
+  margin-top:18px;
 
   background:
   linear-gradient(
@@ -530,12 +530,13 @@ border-radius:30px;
     rgba(245,245,245,0.92)
   );
 
-  border-radius:28px;
+  border-radius:26px;
 
-  padding:22px;
+  padding:
+  clamp(14px, 2vw, 22px);
 
   box-shadow:
-  0 10px 28px rgba(0,0,0,0.08);
+  0 8px 24px rgba(0,0,0,0.07);
 
   border:
   1px solid rgba(255,255,255,0.7);
@@ -549,21 +550,29 @@ border-radius:30px;
 
   align-items:center;
 
-  margin-bottom:20px;
+  gap:10px;
+
+  margin-bottom:16px;
 }
 
 .top-customer-header h2{
 
-  font-size:20px;
+  font-size:
+  clamp(16px, 2vw, 24px);
 
   color:#0a6b2d;
+
+  font-weight:700;
 }
 
 .top-customer-header span{
 
-  font-size:13px;
+  font-size:
+  clamp(10px, 1.5vw, 14px);
 
   color:#777;
+
+  white-space:nowrap;
 }
 
 .customer-list{
@@ -572,7 +581,7 @@ border-radius:30px;
 
   flex-direction:column;
 
-  gap:14px;
+  gap:10px;
 }
 
 .customer-item{
@@ -581,20 +590,26 @@ border-radius:30px;
 
   align-items:center;
 
-  gap:14px;
+  gap:12px;
 
   background:
-  rgba(255,255,255,0.7);
+  rgba(255,255,255,0.72);
 
   border-radius:18px;
 
-  padding:14px 16px;
+  padding:
+  clamp(10px, 1.5vw, 16px);
+
+  transition:0.25s ease;
 }
 
 .customer-rank{
 
-  width:42px;
-  height:42px;
+  width:
+  clamp(42px, 5vw, 54px);
+
+  height:
+  clamp(42px, 5vw, 54px);
 
   border-radius:50%;
 
@@ -613,23 +628,77 @@ border-radius:30px;
 
   justify-content:center;
 
+  font-size:
+  clamp(18px, 2vw, 22px);
+
   font-weight:bold;
+
+  flex-shrink:0;
 }
 
 .customer-info h3{
 
-  font-size:15px;
+  font-size:
+  clamp(14px, 2vw, 20px);
 
   color:#222;
+
+  line-height:1.1;
 }
 
 .customer-info p{
 
-  font-size:13px;
+  font-size:
+  clamp(11px, 1.6vw, 14px);
 
   color:#777;
 
   margin-top:3px;
+}
+
+/* KHUSUS HP */
+
+@media(max-width:600px){
+
+  .top-customer-card{
+
+    border-radius:22px;
+
+    padding:14px;
+  }
+
+  .top-customer-header{
+
+    margin-bottom:12px;
+  }
+
+  .customer-item{
+
+    padding:10px 12px;
+
+    border-radius:16px;
+
+    gap:10px;
+  }
+
+  .customer-rank{
+
+    width:34px;
+    height:34px;
+
+    font-size:16px;
+  }
+
+  .customer-info h3{
+
+    font-size:13px;
+  }
+
+  .customer-info p{
+
+    font-size:11px;
+  }
+
 }
     
   </style>
