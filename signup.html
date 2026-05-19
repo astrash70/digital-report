@@ -104,9 +104,12 @@
     <input type="password" id="password" placeholder="Masukkan password">
   </div>
 
-  <button class="signup-btn" onclick="registerUser()">
-    Daftar
-  </button>
+  <button
+type="button"
+class="signup-btn"
+onclick="registerUser()">
+  Daftar
+</button>
 
   <div class="footer">
     BY.ASTRIASIH
@@ -161,24 +164,30 @@ window.registerUser = async function () {
   const password = document.getElementById("password").value;
 
 
-  try { 
-    const userCredential = await createUserWithEmailAndPassword( 
-      auth,
-      email,
-      password
-    ); 
-    const user = userCredential.user; 
-    await setDoc(doc(db, "users", user.uid), { 
-      namaToko: namaToko,
-      email: email,
-      createdAt: new Date() 
-    }); 
-    alert("Akun berhasil dibuat 🔥"); 
-    window.location.href = "index.html"; } 
-  catch (error) { 
-    console.log(error); 
-    alert(error.message);
-  }
+  try {
+
+  const userCredential =
+  await createUserWithEmailAndPassword(
+    auth,
+    email,
+    password
+  );
+
+  const user = userCredential.user;
+
+  await setDoc(doc(db, "users", user.uid), {
+
+    namaToko: namaToko,
+    email: email,
+    createdAt: new Date()
+
+  });
+
+  alert("Akun berhasil dibuat 🔥");
+
+  window.location.href = "index.html";
+
+}
   };
 
 </script>
