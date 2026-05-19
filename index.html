@@ -56,22 +56,22 @@ body{
   background:
 rgba(188, 201, 176, 0.18);
 
-  backdrop-filter:blur(22px);
+  backdrop-filter:blur(28px) saturate(180%);
 
   border:
 2px solid rgba(235,245,230,0.45);
 
   box-shadow:
 
-inset 0 0 40px rgba(255,255,255,0.18),
+inset 0 2px 8px rgba(255,255,255,0.45),
+
+inset -15px -15px 25px rgba(255,255,255,0.08),
+
+inset 15px 15px 25px rgba(0,60,30,0.08),
 
 0 0 45px rgba(255,255,255,0.45),
 
-0 0 90px rgba(120,255,170,0.18),
-
-0 0 120px rgba(255,255,255,0.55),
-
-0 0 180px rgba(120,255,170,0.22);
+0 0 120px rgba(120,255,170,0.22);
 
   overflow:hidden;
 
@@ -111,20 +111,32 @@ inset 0 0 40px rgba(255,255,255,0.18),
 
   position:absolute;
 
-  width:180px;
-  height:80px;
+  width:320px;
+  height:180px;
+
+  top:55px;
+  left:70px;
+
+  border-radius:50%;
 
   background:
-  rgba(255,255,255,0.22);
+  radial-gradient(
 
-border-radius:
-55% 45% 52% 48% /
-48% 55% 45% 52%;
-      
-  top:90px;
-  left:120px;
+    circle at top left,
 
-  filter:blur(12px);
+    rgba(255,255,255,0.85) 0%,
+
+    rgba(255,255,255,0.35) 30%,
+
+    rgba(255,255,255,0.08) 55%,
+
+    transparent 75%
+
+  );
+
+  filter:blur(10px);
+
+  opacity:0.9;
 
   transform:rotate(-12deg);
 
