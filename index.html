@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login Dashboard</title>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
   <style>
    *{
@@ -107,7 +109,26 @@ inset 0 0 40px rgba(255,255,255,0.18),
     .input-group{
       margin-bottom:19px;
       text-align:left;
+      position:relative;
     }
+
+    .input-group i{
+
+  position:absolute;
+
+  right:20px;
+
+  top:50%;
+
+  transform:translateY(-50%);
+
+  font-size:30px;
+
+  color:#04552b;
+
+  cursor:pointer;
+
+}
 
     .input-group label{
       font-size:14px;
@@ -122,7 +143,7 @@ inset 0 0 40px rgba(255,255,255,0.18),
   height:58px;
 
   border-radius:18px;
-  padding:0 18px;
+  padding:0 65px 0 18px;
 
   background:rgba(255,255,255,0.16);
 
@@ -169,7 +190,7 @@ inset 0 0 40px rgba(255,255,255,0.18),
   cursor:pointer;
 }
     .login-btn:hover{
-  transform:translateY(-2px);
+  transform:translateY(18px);
   opacity:0.95;
 }
 
@@ -216,12 +237,29 @@ inset 0 0 40px rgba(255,255,255,0.18),
     <!-- LOGIN FORM -->
     <form>
 <div class="input-group">
-    <input type="email" id="email" placeholder="Masukkan email">
-  </div>
 
-  <div class="input-group">
-    <input type="password" id="password" placeholder="Masukkan password">
-  </div>
+  <input
+  type="email"
+  id="email"
+  placeholder="Masukkan email">
+
+  <i class="fa-solid fa-user"></i>
+
+</div>
+
+
+<div class="input-group">
+
+  <input
+  type="password"
+  id="password"
+  placeholder="Masukkan password">
+
+  <i
+  class="fa-solid fa-lock lock-icon"
+  id="togglePassword"></i>
+
+</div>
       
       <button type="button" class="login-btn" onclick="loginUser()">
   Login
@@ -302,6 +340,37 @@ window.loginUser = async function () {
   }
 
 };
+
+const togglePassword =
+document.getElementById("togglePassword");
+
+const password =
+document.getElementById("password");
+
+
+togglePassword.addEventListener("click", ()=>{
+
+    if(password.type === "password"){
+
+        password.type = "text";
+
+        togglePassword.classList.remove("fa-lock");
+
+        togglePassword.classList.add("fa-lock-open");
+
+    }
+
+    else{
+
+        password.type = "password";
+
+        togglePassword.classList.remove("fa-lock-open");
+
+        togglePassword.classList.add("fa-lock");
+
+    }
+
+});
 
 </script>
 
