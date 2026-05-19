@@ -25,17 +25,28 @@ body{
 
   overflow:hidden;
 
+  position:relative;
+
   background:
+  radial-gradient(
+    circle at top left,
+    rgba(255,255,255,0.9),
+    transparent 40%
+  ),
+
+  radial-gradient(
+    circle at bottom right,
+    rgba(110,255,140,0.18),
+    transparent 35%
+  ),
+
   linear-gradient(
     135deg,
-    #dbe4d3 0%,
-    #cdd9c5 45%,
-    #b8c8b0 100%
+    #e8eee0 0%,
+    #cfdcc8 45%,
+    #b7c9af 100%
   );
-
-  position:relative;
 }
-
 
 /* CONTAINER */
 
@@ -43,37 +54,38 @@ body{
 
   position:relative;
 
-  z-index:10;
-
   width:760px;
-
   height:760px;
 
   border-radius:50%;
 
   display:flex;
-
   flex-direction:column;
-
   justify-content:center;
-
   align-items:center;
 
   background:
-  rgba(255,255,255,0.08);
+  rgba(255,255,255,0.06);
 
-  backdrop-filter:blur(18px);
+  backdrop-filter:blur(22px);
 
   border:
-  2px solid rgba(255,255,255,0.45);
+  2px solid rgba(255,255,255,0.55);
 
   box-shadow:
-  inset 0 0 40px rgba(255,255,255,0.18),
-  0 0 40px rgba(255,255,255,0.35);
+
+inset 0 0 40px rgba(255,255,255,0.18),
+
+0 0 45px rgba(255,255,255,0.45),
+
+0 0 90px rgba(120,255,170,0.18),
+
+0 0 120px rgba(255,255,255,0.55),
+
+0 0 180px rgba(120,255,170,0.22);
 
   overflow:hidden;
 }
-
 /* GLOW DALAM */
 
 .container::before{
@@ -82,21 +94,21 @@ body{
 
   position:absolute;
 
-  width:320px;
-  height:320px;
+  width:420px;
+  height:420px;
 
   border-radius:50%;
 
   background:
   radial-gradient(
     circle,
-    rgba(72,255,123,0.28),
-    transparent 72%
+    rgba(120,255,150,0.20),
+    transparent 70%
   );
 
-  filter:blur(45px);
+  filter:blur(55px);
 
-  right:120px;
+  right:80px;
   top:120px;
 }
    .logo{
@@ -124,7 +136,7 @@ body{
   height:78px;
 
   border-radius:28px;
-
+  padding:0 28px;
   background:
   rgba(255,255,255,0.16);
 
@@ -132,6 +144,10 @@ body{
   1px solid rgba(255,255,255,0.4);
 
   font-size:20px;
+
+     box-shadow:
+inset 0 0 12px rgba(255,255,255,0.35),
+0 0 18px rgba(255,255,255,0.18);
 }
 
   .login-btn{
@@ -145,6 +161,22 @@ body{
   font-size:28px;
 
   letter-spacing:2px;
+  background:
+linear-gradient(
+  135deg,
+  #0f7a38,
+  #032f1b
+);
+
+color:white;
+
+border:none;
+
+box-shadow:
+0 10px 30px rgba(0,80,35,0.45),
+inset 0 0 12px rgba(255,255,255,0.15);
+
+cursor:pointer;
 }
     .login-btn:hover{
   transform:translateY(-2px);
@@ -173,6 +205,109 @@ body{
   overflow-x:hidden;
 }
 
+/* WAVE */
+ .wave{
+
+  position:absolute;
+
+  width:900px;
+  height:500px;
+
+  opacity:0.75;
+
+  z-index:1;
+
+  pointer-events:none;
+}
+    .wave-left{
+
+  position:absolute;
+
+  left:-240px;
+  bottom:-140px;
+
+  width:650px;
+  height:420px;
+
+  opacity:0.95;
+
+  transform:rotate(-18deg);
+
+  background:
+  repeating-radial-gradient(
+
+    circle at center,
+
+transparent 0px,
+transparent 1px,
+
+rgba(0,70,35,0.18) 2px,
+rgba(0,70,35,0.18) 2.8px
+  );
+
+  filter:blur(0.2px);
+}
+    .wave-right{
+
+  position:absolute;
+
+  right:-220px;
+  top:-80px;
+
+  width:650px;
+  height:420px;
+
+  opacity:0.95;
+
+  transform:rotate(18deg);
+
+  background:
+  repeating-radial-gradient(
+
+    circle at center,
+
+transparent 0px,
+transparent 1px,
+
+rgba(0,70,35,0.18) 2px,
+rgba(0,70,35,0.18) 2.8px
+  );
+
+  filter:blur(0.2px);
+}
+    .wave::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  border-radius:45%;
+
+  background:
+
+  repeating-linear-gradient(
+
+    to bottom,
+
+    rgba(0,80,40,0) 0px,
+    rgba(0,80,40,0) 5px,
+
+    rgba(0,80,40,0.28) 6px,
+    rgba(0,80,40,0.28) 7px
+  );
+
+  transform:
+  perspective(900px)
+  rotateX(68deg)
+  skewY(-8deg);
+}
+    .wave{
+
+  filter:blur(0.3px);
+}
+    
     @media(max-width:768px){
 
   .container{
@@ -235,94 +370,7 @@ body{
 
   margin-top:28px;
 }
-    .wave{
-
-  position:absolute;
-
-  width:900px;
-  height:500px;
-
-  opacity:0.75;
-
-  z-index:1;
-
-  pointer-events:none;
-}
-    .wave-left{
-
-  left:-320px;
-
-  bottom:-180px;
-
-  background:
-  repeating-radial-gradient(
-
-    circle at center,
-
-    transparent 0px,
-    transparent 2px,
-
-    rgba(0,60,30,0.20) 3px,
-    rgba(0,60,30,0.20) 4px
-
-  );
-
-  transform:rotate(-18deg);
-}
-    .wave-right{
-
-  right:-320px;
-
-  top:-140px;
-
-  background:
-  repeating-radial-gradient(
-
-    circle at center,
-
-    transparent 0px,
-    transparent 2px,
-
-    rgba(0,60,30,0.20) 3px,
-    rgba(0,60,30,0.20) 4px
-
-  );
-
-  transform:rotate(22deg);
-}
-    .wave::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  background:
-  repeating-linear-gradient(
-    to bottom,
-
-    rgba(0,70,35,0.0) 0px,
-
-    rgba(0,70,35,0.0) 6px,
-
-    rgba(8,74,45,0.18) 7px,
-
-    rgba(8,74,45,0.18) 8px
-  );
-
-  border-radius:45%;
-
-  transform:
-  perspective(800px)
-  rotateX(70deg)
-  skewY(-8deg);
-
-}
-    .wave{
-
-  filter:blur(0.3px);
-}
+   
   </style>
 </head>
 <body>
