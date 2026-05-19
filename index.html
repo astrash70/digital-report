@@ -74,6 +74,8 @@ inset 0 0 40px rgba(255,255,255,0.18),
 0 0 180px rgba(120,255,170,0.22);
 
   overflow:hidden;
+
+  animation: liquid 8s ease-in-out infinite;
 }
 /* GLOW DALAM */
 
@@ -86,7 +88,9 @@ inset 0 0 40px rgba(255,255,255,0.18),
   width:420px;
   height:420px;
 
-  border-radius:50%;
+  border-radius:
+55% 45% 52% 48% /
+48% 55% 45% 52%;
 
   background:
   radial-gradient(
@@ -100,6 +104,32 @@ inset 0 0 40px rgba(255,255,255,0.18),
   right:80px;
   top:120px;
 }
+
+    .container::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:180px;
+  height:80px;
+
+  background:
+  rgba(255,255,255,0.22);
+
+border-radius:
+55% 45% 52% 48% /
+48% 55% 45% 52%;
+      
+  top:90px;
+  left:120px;
+
+  filter:blur(12px);
+
+  transform:rotate(-12deg);
+
+}
+    
    .logo{
   width:110px;
   margin-bottom:50px;
@@ -225,6 +255,29 @@ inset 0 0 40px rgba(255,255,255,0.18),
   }
 
 }
+
+@keyframes liquid{
+
+  0%{
+    border-radius:
+    55% 45% 52% 48% /
+    48% 55% 45% 52%;
+  }
+
+  50%{
+    border-radius:
+    48% 52% 45% 55% /
+    55% 45% 52% 48%;
+  }
+
+  100%{
+    border-radius:
+    55% 45% 52% 48% /
+    48% 55% 45% 52%;
+  }
+
+}
+    
   </style>
 </head>
 <body>
