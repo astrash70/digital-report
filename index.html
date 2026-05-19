@@ -25,120 +25,52 @@ body{
 
   overflow:hidden;
 
-  background:
-linear-gradient(
-135deg,
-#dce6d6,
-#cfdcc8
-);
-
   position:relative;
-}
-
-
-/* BLOB KIRI */
-
-body::before{
-
-  content:"";
-
-  position:absolute;
-
-  width:420px;
-  height:420px;
-
-  border-radius:50%;
 
   background:
   radial-gradient(
-    circle,
-    rgba(74,160,108,0.45)
-    rgba(29,255,94,0.08)
+    circle at top left,
+    #edf3e7,
+    #d7e2d0,
+    #c6d3bf
   );
-
-  filter:blur(90px);
-
-  left:-140px;
-
-  top:180px;
-
-  z-index:1;
 }
-
-
-/* BLOB KANAN */
-
-body::after{
-
-  content:"";
-
-  position:absolute;
-
-  width:430px;
-  height:430px;
-
-  border-radius:38%;
-
-  background:
-  radial-gradient(
-    circle,
-    rgba(145,255,0,0.95),
-    rgba(145,255,0,0.05)
-  );
-
-  filter:blur(45px);
-
-  right:-120px;
-
-  top:80px;
-
-  transform:rotate(-25deg);
-
-  z-index:1;
-}
-
 
 
 /* CONTAINER */
 
 .container{
 
-  position:relative;
+  width:720px;
 
-  z-index:10;
+  height:720px;
 
-  width:85%;
-
-  max-width:980px;
-
-  min-height:560px;
-
-  border-radius:48% 48% 46% 46%;
-
-  padding:70px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
-
-  align-items:center;
+  border-radius:50%;
 
   background:
-  rgba(255,255,255,0.10)
+  rgba(255,255,255,0.10);
 
   backdrop-filter:blur(25px);
 
   border:
-  border:
-  1.5px solid rgba(255,255,255,0.35);
+  2px solid rgba(255,255,255,0.35);
 
   box-shadow:
-  0 10px 50px rgba(255,255,255,0.35),
-  0 25px 80px rgba(0,0,0,0.05);
+  inset 0 0 40px rgba(255,255,255,0.08);
 
-  overflow:hidden;
+  z-index:10;
+  display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+position:relative;
+  box-shadow:
+inset 0 0 40px rgba(255,255,255,0.15),
+0 0 50px rgba(255,255,255,0.08);
 }
 
 
@@ -204,28 +136,6 @@ body::after{
   position:relative;
   z-index:5;
 }
-
-    .title{
-
-  font-size:36px;
-
-  font-weight:500;
-
-letter-spacing:1px;
-
-  text-align:center;
-
-  margin-bottom:40px;
-
-  color:#4d7070;
-
-  line-height:1.5;
-
-  position:relative;
-
-  z-index:5;
-}
-
     .input-group{
       margin-bottom:15px;
       text-align:left;
@@ -238,63 +148,64 @@ letter-spacing:1px;
       display:block;
     }
 
-    .input-group input{
+   .input-group input{
 
-  width:420px;
+  width:520px;
 
   max-width:100%;
 
-  padding:18px;
+  height:72px;
 
-  border:none;
+  padding:0 28px;
 
-  border-radius:30px;
+  border-radius:24px;
+
+  border:
+  1px solid rgba(255,255,255,0.45);
+
+  background:
+ rgba(255,255,255,0.10)
+
+  backdrop-filter:blur(10px);
 
   outline:none;
 
-  font-size:15px;
+  font-size:18px;
 
-  background:
-  rgba(255,255,255,0.55);
-
-  backdrop-filter:blur(10px);
+  color:#234434;
 }
 
   .login-btn{
 
-  width:420px;
+  width:260px;
 
-  max-width:100%;
-
-  padding:18px;
+  height:72px;
 
   border:none;
 
-  border-radius:18px;
+  border-radius:40px;
 
-background:
-linear-gradient(
-135deg,
-#0f2418,
-#1b4d35
-);
+  background:
+  linear-gradient(
+  135deg,
+  #0b2418,
+  #115433
+  );
 
-    box-shadow:
-0 8px 25px rgba(16,80,50,0.35);
-    
   color:white;
 
-  font-size:20px;
+  font-size:22px;
 
-  font-weight:bold;
+  font-weight:400;
 
-  margin-top:25px;
+  letter-spacing:2px;
 
   cursor:pointer;
 
-  transition:0.3s;
+  margin-top:40px;
 
-  position:relative;
+  box-shadow:
+  0 10px 30px rgba(0,80,40,0.35);
 
   z-index:5;
 }
@@ -329,62 +240,100 @@ linear-gradient(
 
   .container{
 
-    width:92%;
+    width:95vw;
 
-    min-height:auto;
+    height:95vw;
 
-    padding:45px 25px;
-
-    border-radius:30px;
+    min-height:unset;
   }
 
   .title{
 
-    font-size:24px;
+    font-size:38px;
   }
 
-  .input-group input,
+  .input-group input{
+
+    width:78vw;
+
+    height:62px;
+  }
+
   .login-btn{
 
-    width:100%;
+    width:220px;
+
+    height:62px;
   }
 
-  body::before{
+}
+    .wave{
 
-    width:260px;
-    height:260px;
+  position:absolute;
 
-    left:-120px;
+  width:900px;
+height:500px;
 
-    top:300px;
-  }
+  mix-blend-mode:multiply;
 
-  body::after{
+opacity:0.6;
 
-    width:260px;
-    height:260px;
+  filter:blur(0px);
 
-    right:-120px;
+  opacity:0.9;
 
-    top:60px;
-  }
+  z-index:1;
 
+  pointer-events:none;
+}
+    .wave-left{
+
+  left:-340px;
+
+  bottom:-250px;
+
+  background:
+  repeating-radial-gradient(
+    circle at center,
+    transparent 0px,
+    transparent 8px,
+    rgba(0,70,35,0.08) 9px,
+    rgba(0,70,35,0.08) 11px
+  );
+
+  transform:
+  rotate(-20deg);
+}
+    .wave-right{
+
+  right:-320px;
+
+  top:-160px;
+
+  background:
+  repeating-radial-gradient(
+    circle at center,
+    transparent 0px,
+    transparent 8px,
+    rgba(0,70,35,0.08) 9px,
+    rgba(0,70,35,0.08) 11px
+  );
+
+  transform:
+  rotate(25deg);
 }
     
   </style>
 </head>
 <body>
 
+  <div class="wave wave-left"></div>
+<div class="wave wave-right"></div>
   <div class="container">
 
     <!-- LOGO -->
 <img src="logo.png" alt="Logo" class="logo">
-    <!-- TITLE -->
-    <div class="title">
-      KKN - 7 STIES DARUL HUDA<br>
-      MESUJI KELOMPOK 9
-    </div>
-
+  
     <!-- LOGIN FORM -->
     <form>
 
