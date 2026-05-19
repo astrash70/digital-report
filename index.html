@@ -43,8 +43,8 @@ body{
 
   position:relative;
 
-  width:560px;
-  height:560px;
+  max-width:560px;
+  max-height:560px;
 
   border-radius:
 58% 42% 63% 37% /
@@ -91,10 +91,9 @@ inset -18px -18px 30px rgba(0,90,40,0.08),
 
 0 0 60px rgba(255,255,255,0.35);
 
-  overflow:hidden;
+  overflow:visible;
 
-  animation: liquid 8s ease-in-out infinite;
-}
+animation: liquid 14s ease-in-out infinite;}
 /* GLOW DALAM */
 
 .container::before{
@@ -280,6 +279,85 @@ inset -18px -18px 30px rgba(0,90,40,0.08),
 
     background-image:url("bg-mobile.png");
 
+    background-size:cover;
+
+    background-position:center;
+
+    padding:20px;
+
+  }
+
+
+  .container{
+
+    width:95vw;
+
+    height:95vw;
+
+    max-width:520px;
+
+    max-height:700px;
+
+  }
+
+
+  .logo{
+
+    width:95px;
+
+    margin-bottom:35px;
+
+  }
+
+
+  .input-group input{
+
+    width:82vw;
+
+    max-width:380px;
+
+    height:62px;
+
+    font-size:16px;
+
+  }
+
+
+  .input-group i{
+
+    font-size:28px;
+
+    right:18px;
+
+  }
+
+
+  .login-btn{
+
+    width:180px;
+
+    height:52px;
+
+    font-size:18px;
+
+    margin-top:25px;
+
+  }
+
+
+  .signin-text{
+
+    margin-top:28px;
+
+    font-size:14px;
+
+  }
+
+
+  .footer{
+
+    font-size:13px;
+
   }
 
 }
@@ -379,8 +457,14 @@ inset -18px -18px 30px rgba(0,90,40,0.08),
   border-radius:inherit;
 
   border:
-
   5px solid rgba(255,255,255,0.45);
+
+  background:
+  linear-gradient(
+    to bottom right,
+    rgba(255,255,255,0.18),
+    transparent 40%
+  );
 
   box-shadow:
 
