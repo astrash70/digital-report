@@ -13,20 +13,148 @@
       font-family:Arial, sans-serif;
     }
 
-    body{
+   body{
+
   min-height:100vh;
+
   display:flex;
+
   justify-content:center;
+
   align-items:center;
+
   padding:20px;
 
-  background-image:url("bg-batik.png");
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+  overflow:hidden;
 
   position:relative;
+
+  background:
+  linear-gradient(
+    135deg,
+    #f4f6f2 0%,
+    #edf2ee 100%
+  );
 }
+
+
+/* BLOB KIRI ATAS */
+
+body::before{
+
+  content:"";
+
+  position:absolute;
+
+  width:550px;
+  height:550px;
+
+  top:-220px;
+  left:-180px;
+
+  border-radius:50%;
+
+  background:
+  radial-gradient(
+    circle,
+    rgba(27,94,59,0.22),
+    transparent 70%
+  );
+
+  filter:blur(90px);
+
+  animation:float1 10s ease-in-out infinite;
+}
+
+
+/* BLOB KANAN BAWAH */
+
+body::after{
+
+  content:"";
+
+  position:absolute;
+
+  width:500px;
+  height:500px;
+
+  bottom:-200px;
+  right:-160px;
+
+  border-radius:50%;
+
+  background:
+  radial-gradient(
+    circle,
+    rgba(76,175,120,0.16),
+    transparent 70%
+  );
+
+  filter:blur(100px);
+
+  animation:float2 12s ease-in-out infinite;
+}
+
+
+/* GLASS LIGHT */
+
+.container::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+  linear-gradient(
+    135deg,
+    rgba(255,255,255,0.45),
+    rgba(255,255,255,0.08)
+  );
+
+  border-radius:20px;
+
+  pointer-events:none;
+}
+
+
+/* FLOAT */
+
+@keyframes float1{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(25px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+@keyframes float2{
+
+  0%{
+    transform:translateY(0px);
+  }
+
+  50%{
+    transform:translateY(-20px);
+  }
+
+  100%{
+    transform:translateY(0px);
+  }
+
+}
+
+
+    
     .container{
   width:100%;
   max-width:360px;
@@ -38,6 +166,18 @@
   text-align:center;
   position:relative;
   z-index:2;
+  position:relative;
+
+backdrop-filter:blur(12px);
+
+background:
+rgba(255,255,255,0.72);
+
+border:
+1px solid rgba(255,255,255,0.4);
+
+box-shadow:
+0 20px 50px rgba(0,0,0,0.08);
 }
 
     .logo{
