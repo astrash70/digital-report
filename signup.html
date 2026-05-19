@@ -161,27 +161,25 @@ window.registerUser = async function () {
   const password = document.getElementById("password").value;
 
 
-  try {
-
-    await signInWithEmailAndPassword(
+  try { 
+    const userCredential = await createUserWithEmailAndPassword( 
       auth,
       email,
       password
-    );
-
-    window.location.href = "dashboard.html";
-
-}
-
-catch (error) {
-
-    console.log(error);
-
+    ); 
+    const user = userCredential.user; 
+    await setDoc(doc(db, "users", user.uid), { 
+      namaToko: namaToko,
+      email: email,
+      createdAt: new Date() 
+    }); 
+    alert("Akun berhasil dibuat 🔥"); 
+    window.location.href = "index.html"; } 
+  catch (error) { 
+    console.log(error); 
     alert(error.message);
-
-}
-
-};
+  }
+  };
 
 </script>
 
