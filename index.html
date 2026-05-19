@@ -27,25 +27,13 @@ body{
 
   position:relative;
 
-  background:
-  radial-gradient(
-    circle at top left,
-    rgba(255,255,255,0.9),
-    transparent 40%
-  ),
+  background-image:url("bg-desktop.png");
 
-  radial-gradient(
-    circle at bottom right,
-    rgba(110,255,140,0.18),
-    transparent 35%
-  ),
+  background-size:cover;
 
-  linear-gradient(
-    135deg,
-    #e8eee0 0%,
-    #cfdcc8 45%,
-    #b7c9af 100%
-  );
+  background-position:center;
+
+  background-repeat:no-repeat;
 }
 
 /* CONTAINER */
@@ -204,179 +192,20 @@ cursor:pointer;
     html, body{
   overflow-x:hidden;
 }
-
-/* WAVE */
- .wave{
-
-  position:absolute;
-
-  width:900px;
-  height:500px;
-
-  opacity:0.75;
-
-  z-index:1;
-
-  pointer-events:none;
-}
-    .wave-left{
-
-  position:absolute;
-
-  left:-240px;
-  bottom:-140px;
-
-  width:650px;
-  height:420px;
-
-  opacity:0.95;
-
-  transform:rotate(-18deg);
-
-  background:
-  repeating-radial-gradient(
-
-    circle at center,
-
-transparent 0px,
-transparent 1px,
-
-rgba(0,70,35,0.18) 2px,
-rgba(0,70,35,0.18) 2.8px
-  );
-
-  filter:blur(0.2px);
-}
-    .wave-right{
-
-  position:absolute;
-
-  right:-220px;
-  top:-80px;
-
-  width:650px;
-  height:420px;
-
-  opacity:0.95;
-
-  transform:rotate(18deg);
-
-  background:
-  repeating-radial-gradient(
-
-    circle at center,
-
-transparent 0px,
-transparent 1px,
-
-rgba(0,70,35,0.18) 2px,
-rgba(0,70,35,0.18) 2.8px
-  );
-
-  filter:blur(0.2px);
-}
-    .wave::before{
-
-  content:"";
-
-  position:absolute;
-
-  inset:0;
-
-  border-radius:45%;
-
-  background:
-
-  repeating-linear-gradient(
-
-    to bottom,
-
-    rgba(0,80,40,0) 0px,
-    rgba(0,80,40,0) 5px,
-
-    rgba(0,80,40,0.28) 6px,
-    rgba(0,80,40,0.28) 7px
-  );
-
-  transform:
-  perspective(900px)
-  rotateX(68deg)
-  skewY(-8deg);
-}
-    .wave{
-
-  filter:blur(0.3px);
-}
     
     @media(max-width:768px){
 
-  .container{
+  body{
 
-    width:95vw;
+    background-image:url("bg-mobile.png");
 
-    height:95vw;
-
-    min-height:unset;
   }
 
-  .title{
-
-    font-size:38px;
-  }
-
-  .input-group input{
-
-  width:530px;
-
-  padding:24px;
-
-  border-radius:22px;
-
-  border:
-  2px solid rgba(255,255,255,0.45);
-
-  background:
-  rgba(255,255,255,0.18);
-
-  backdrop-filter:blur(10px);
-
-  font-size:22px;
 }
-  .login-btn{
-
-  width:290px;
-
-  padding:18px;
-
-  border:none;
-
-  border-radius:50px;
-
-  background:
-  linear-gradient(
-    135deg,
-    #0f7a38,
-    #032f1b
-  );
-
-  color:white;
-
-  font-size:22px;
-
-  letter-spacing:1px;
-
-  box-shadow:
-  0 8px 25px rgba(0,80,35,0.45);
-
-  margin-top:28px;
-}
-   
   </style>
 </head>
 <body>
 
-  <div class="wave wave-left"></div>
-<div class="wave wave-right"></div>
   <div class="container">
 
     <!-- LOGO -->
