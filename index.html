@@ -15,6 +15,8 @@
 
    body{
 
+  margin:0;
+
   min-height:100vh;
 
   display:flex;
@@ -23,19 +25,16 @@
 
   align-items:center;
 
-  padding:20px;
-
   overflow:hidden;
-
-  position:relative;
 
   background:
   linear-gradient(
     135deg,
-    #edf2ee 0%,
-    #e6ece7 50%,
-    #f4f6f2 100%
+    #edf5e8,
+    #e6f1df
   );
+
+  position:relative;
 }
 
 
@@ -47,27 +46,23 @@ body::before{
 
   position:absolute;
 
-  width:520px;
-  height:520px;
+  width:420px;
+  height:420px;
 
-  left:-180px;
-  top:50%;
-
-  transform:translateY(-50%);
-
-  border-radius:46% 54% 63% 37% / 41% 38% 62% 59%;
+  border-radius:50%;
 
   background:
   radial-gradient(
-    circle at 30% 30%,
-    rgba(46,158,91,0.16),
-    rgba(255,255,255,0.55) 65%,
-    transparent 100%
+    circle,
+    rgba(37,211,102,0.9),
+    rgba(37,211,102,0.05)
   );
 
-  filter:blur(18px);
+  filter:blur(25px);
 
-  opacity:0.9;
+  left:-120px;
+
+  top:180px;
 }
 
 
@@ -79,96 +74,43 @@ body::after{
 
   position:absolute;
 
-  width:520px;
-  height:520px;
-
-  right:-180px;
-  top:50%;
-
-  transform:translateY(-50%);
-
-  border-radius:58% 42% 37% 63% / 48% 64% 36% 52%;
-
-  background:
-  radial-gradient(
-    circle at 70% 40%,
-    rgba(20,120,85,0.18),
-    rgba(255,255,255,0.55) 65%,
-    transparent 100%
-  );
-
-  filter:blur(20px);
-
-  opacity:0.85;
-}
-
-
-/* LIGHT GLOW */
-
-body .light{
-
-  position:absolute;
-
   width:420px;
   height:420px;
 
-  border-radius:50%;
+  border-radius:45%;
 
   background:
   radial-gradient(
     circle,
-    rgba(255,255,255,0.65),
-    transparent 72%
+    rgba(88,255,120,0.85),
+    rgba(88,255,120,0.03)
   );
 
-  top:-180px;
-  left:50%;
+  filter:blur(35px);
 
-  transform:translateX(-50%);
+  right:-120px;
 
-  filter:blur(25px);
+  top:60px;
 
-  pointer-events:none;
-}
-
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-  body::before{
-
-    width:300px;
-    height:300px;
-
-    left:-120px;
-
-    filter:blur(14px);
-  }
-
-  body::after{
-
-    width:300px;
-    height:300px;
-
-    right:-120px;
-
-    filter:blur(14px);
-  }
-
+  transform:rotate(-25deg);
 }
     .container{
-  width:100%;
-  max-width:360px;
-  background:rgba(255,255,255,0.75);
-  backdrop-filter:blur(12px);
-  padding:35px 25px;
-  border-radius:28px;
-  box-shadow:0 8px 30px rgba(0,0,0,0.08);
-  text-align:center;
+
   position:relative;
+
   z-index:2;
-  position:relative;
+
+  background:
+  rgba(255,255,255,0.22);
+
+  backdrop-filter:blur(18px);
+
+  border:
+  1px solid rgba(255,255,255,0.35);
+
+  box-shadow:
+  0 20px 60px rgba(0,0,0,0.08);
+
 }
 
     .logo{
