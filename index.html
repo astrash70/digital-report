@@ -286,49 +286,66 @@ animation: liquid 14s ease-in-out infinite;}
 
     background-position:center;
 
-    padding:20px;
+    padding:0;
+
+    overflow:hidden;
 
   }
 
 
   .container{
 
-    width:95vw;
+    width:88vw;
 
-    height:95vw;
+    height:72vh;
 
-    max-width:520px;
+    max-width:none;
 
-    max-height:700px;
+    max-height:none;
+
+    border-radius:
+    50% 50% 45% 45% /
+    35% 35% 55% 55%;
 
   }
 
 
   .logo{
 
-    width:95px;
+    width:110px;
 
-    margin-bottom:35px;
+    margin-bottom:45px;
+
+    margin-top:-10px;
+
+  }
+
+
+  .input-group{
+
+    margin-bottom:16px;
 
   }
 
 
   .input-group input{
 
-    width:82vw;
+    width:78vw;
 
-    max-width:380px;
+    height:56px;
 
-    height:62px;
+    border-radius:22px;
 
-    font-size:16px;
+    font-size:15px;
+
+    padding:0 60px 0 22px;
 
   }
 
 
   .input-group i{
 
-    font-size:28px;
+    font-size:24px;
 
     right:18px;
 
@@ -337,29 +354,79 @@ animation: liquid 14s ease-in-out infinite;}
 
   .login-btn{
 
-    width:180px;
+    width:160px;
 
-    height:52px;
+    height:48px;
 
-    font-size:18px;
+    font-size:17px;
 
-    margin-top:25px;
+    margin-top:18px;
+
+    transform:none;
+
+  }
+
+
+  .login-btn:hover{
+
+    transform:none;
 
   }
 
 
   .signin-text{
 
-    margin-top:28px;
+    margin-top:20px;
 
-    font-size:14px;
+    font-size:12px;
 
   }
 
 
   .footer{
 
-    font-size:13px;
+    margin-top:6px;
+
+    font-size:11px;
+
+  }
+
+
+  .container::after{
+
+    width:260px;
+
+    height:120px;
+
+    top:20px;
+
+    left:50%;
+
+    transform:
+    translateX(-50%)
+    rotate(-8deg);
+
+  }
+
+
+  .bubble1{
+
+    width:14px;
+    height:14px;
+
+    left:20px;
+    bottom:80px;
+
+  }
+
+
+  .bubble2{
+
+    width:10px;
+    height:10px;
+
+    right:25px;
+    top:100px;
 
   }
 
