@@ -496,6 +496,70 @@ tbody tr:hover{
 
 }
 
+  /* ACTION */
+
+.action-box{
+
+  position:relative;
+}
+
+/* TITIK 3 */
+
+.action-btn{
+
+  border:none;
+
+  background:none;
+
+  font-size:22px;
+
+  cursor:pointer;
+
+  color:#666;
+}
+
+/* MENU */
+
+.action-menu{
+
+  position:absolute;
+
+  right:0;
+
+  top:30px;
+
+  background:white;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,0.12);
+
+  display:none;
+
+  min-width:120px;
+
+  z-index:100;
+}
+
+.action-menu div{
+
+  padding:12px;
+
+  cursor:pointer;
+
+  font-size:14px;
+
+  transition:0.2s;
+}
+
+.action-menu div:hover{
+
+  background:#f3f3f3;
+}
+
   
 </style>
 </head>
@@ -544,20 +608,22 @@ tbody tr:hover{
 
       <tr>
 
-        <th>Jenis Transaksi</th>
+  <th>Jenis Transaksi</th>
 
-        <th>Range Nominal</th>
+  <th>Range Nominal</th>
 
-        <th>Biaya Admin</th>
+  <th>Biaya Admin</th>
 
-        <th>Admin Bank</th>
+  <th>Admin Bank</th>
 
-        <th>Kategori</th>
+  <th>Kategori</th>
 
-        <th>Efek</th>
+  <th>Efek</th>
 
-      </tr>
+  <th>Aksi</th>
 
+</tr>
+      
     </thead>
 
     <!-- BODY -->
@@ -703,11 +769,83 @@ window.addEventListener("click", function(e){
 
 });
 
-  /* SIMPAN DATA */
+ /* LOAD DATA */
+
+let dataTransaksi =
+JSON.parse(localStorage.getItem("dataTransaksi"))
+|| [];
+
+let editIndex = null;
+
+/* RENDER TABLE */
+
+function renderTable(){
+
+  const table =
+  document.getElementById("tableBody");
+
+  table.innerHTML = "";
+
+  dataTransaksi.forEach((item,index)=>{
+
+    table.innerHTML +=
+    `
+    <tr>
+
+      <td>${item.jenis}</td>
+
+      <td>${item.range}</td>
+
+      <td>Rp ${Number(item.biaya).toLocaleString("id-ID")}</td>
+
+      <td>Rp ${Number(item.bank).toLocaleString("id-ID")}</td>
+
+      <td>${item.kategori}</td>
+
+      <td>${item.efek}</td>
+
+      <td>
+
+        <div class="action-box">
+
+          <button class="action-btn"
+                  onclick="toggleAction(${index})">
+
+            ⋮
+
+          </button>
+
+          <div class="action-menu"
+               id="actionMenu${index}">
+
+            <div onclick="editData(${index})">
+              ✏️ Edit
+            </div>
+
+            <div onclick="hapusData(${index})">
+              🗑️ Hapus
+            </div>
+
+          </div>
+
+        </div>
+
+      </td>
+
+    </tr>
+    `;
+  });
+
+  localStorage.setItem(
+    "dataTransaksi",
+    JSON.stringify(dataTransaksi)
+  );
+
+}
+
+/* SIMPAN */
 
 function simpanData(){
-
-  /* AMBIL VALUE */
 
   const jenis =
   document.getElementById("jenisTransaksi").value;
@@ -727,8 +865,6 @@ function simpanData(){
   const efek =
   document.getElementById("efekKategori").value;
 
-  /* VALIDASI */
-
   if(
     jenis === "" ||
     range === "" ||
@@ -741,33 +877,44 @@ function simpanData(){
     return;
   }
 
-  /* TAMBAH ROW */
+  const data = {
 
-  const table =
-  document.getElementById("tableBody");
+    jenis,
+    range,
+    biaya,
+    bank,
+    kategori,
+    efek
 
-  const row =
-  `
-  <tr>
+  };
 
-    <td>${jenis}</td>
+  /* EDIT */
 
-    <td>${range}</td>
+  if(editIndex !== null){
 
-    <td>Rp ${Number(biaya).toLocaleString("id-ID")}</td>
+    dataTransaksi[editIndex] = data;
 
-    <td>Rp ${Number(bank).toLocaleString("id-ID")}</td>
+    editIndex = null;
 
-    <td>${kategori}</td>
+  }else{
 
-    <td>${efek}</td>
+    /* TAMBAH */
 
-  </tr>
-  `;
+    dataTransaksi.push(data);
 
-  table.innerHTML += row;
+  }
 
-  /* RESET */
+  renderTable();
+
+  resetForm();
+
+  closePopup();
+
+}
+
+/* RESET */
+
+function resetForm(){
 
   document.getElementById("jenisTransaksi").value = "";
 
@@ -777,11 +924,79 @@ function simpanData(){
 
   document.getElementById("adminBank").value = "";
 
-  /* CLOSE POPUP */
+}
 
-  closePopup();
+/* HAPUS */
+
+function hapusData(index){
+
+  if(confirm("Hapus data ini?")){
+
+    dataTransaksi.splice(index,1);
+
+    renderTable();
+
+  }
 
 }
+
+/* EDIT */
+
+function editData(index){
+
+  const item =
+  dataTransaksi[index];
+
+  document.getElementById("jenisTransaksi").value =
+  item.jenis;
+
+  document.getElementById("rangeNominal").value =
+  item.range;
+
+  document.getElementById("biayaAdmin").value =
+  item.biaya;
+
+  document.getElementById("adminBank").value =
+  item.bank;
+
+  document.getElementById("kategori").value =
+  item.kategori;
+
+  document.getElementById("efekKategori").value =
+  item.efek;
+
+  editIndex = index;
+
+  openPopup();
+
+}
+
+/* TOGGLE MENU */
+
+function toggleAction(index){
+
+  const menu =
+  document.getElementById(`actionMenu${index}`);
+
+  const isOpen =
+  menu.style.display === "block";
+
+  document
+  .querySelectorAll(".action-menu")
+  .forEach(menu=>{
+
+    menu.style.display = "none";
+
+  });
+
+  menu.style.display =
+  isOpen ? "none" : "block";
+
+}
+
+/* FIRST LOAD */
+
+renderTable();
 
 
 </script>
