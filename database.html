@@ -637,6 +637,90 @@ tbody tr:hover{
   background:
   rgba(22,163,74,0.2);
 }
+
+/* SORT HEADER */
+
+.sort-header{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+}
+
+/* BOX */
+
+.sort-dropdown-box{
+
+  position:relative;
+}
+
+/* ICON */
+
+.sort-icon{
+
+  cursor:pointer;
+
+  font-size:15px;
+
+  color:#0a6b2d;
+
+  user-select:none;
+
+  transition:0.2s;
+}
+
+.sort-icon:hover{
+
+  opacity:0.7;
+}
+
+/* MENU */
+
+.sort-menu{
+
+  position:absolute;
+
+  top:24px;
+
+  left:0;
+
+  background:white;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,0.12);
+
+  display:none;
+
+  min-width:90px;
+
+  z-index:999;
+}
+
+/* ITEM */
+
+.sort-menu div{
+
+  padding:10px 14px;
+
+  font-size:13px;
+
+  color:#333;
+
+  cursor:pointer;
+
+  transition:0.2s;
+}
+
+.sort-menu div:hover{
+
+  background:#f3f3f3;
+}
   
 </style>
 </head>
@@ -676,18 +760,6 @@ tbody tr:hover{
 <!-- CONTENT -->
 <div class="content">
 
-  <div class="sort-box">
-
-  <button onclick="sortAZ()">
-    A-Z
-  </button>
-
-  <button onclick="sortZA()">
-    Z-A
-  </button>
-
-</div>
-  
   <div class="table-wrapper">
 
   <table>
@@ -698,7 +770,43 @@ tbody tr:hover{
 
       <tr>
 
-  <th>Jenis Transaksi</th>
+  <th>
+
+  <div class="sort-header">
+
+    Jenis Transaksi
+
+    <div class="sort-dropdown-box">
+
+      <!-- ICON -->
+
+      <span class="sort-icon"
+            onclick="toggleSortMenu()">
+
+        ⇅
+
+      </span>
+
+      <!-- MENU -->
+
+      <div class="sort-menu"
+           id="sortMenu">
+
+        <div onclick="sortAZ()">
+          A-Z
+        </div>
+
+        <div onclick="sortZA()">
+          Z-A
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</th>
 
   <th>Range Nominal</th>
 
@@ -1163,6 +1271,35 @@ function syncKategori(){
   }
 
 }
+
+  /* TOGGLE SORT MENU */
+
+function toggleSortMenu(){
+
+  const menu =
+  document.getElementById("sortMenu");
+
+  if(menu.style.display === "block"){
+
+    menu.style.display = "none";
+
+  }else{
+
+    menu.style.display = "block";
+
+  }
+
+}
+  window.addEventListener("click", function(e){
+
+  if(!e.target.closest(".sort-dropdown-box")){
+
+    document.getElementById("sortMenu")
+    .style.display = "none";
+
+  }
+
+});
 
 </script>
 
