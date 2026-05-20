@@ -155,32 +155,30 @@ background-position:center -12px;
 
 /* INI YANG KELUPA 😭🔥 */
 
-.total-card::before{
+.total-card{
 
-  content:"";
+  position:relative;
 
-  position:absolute;
+  z-index:2;
 
-  inset:0;
+  width:100%;
 
-  background:
-  linear-gradient(
-    120deg,
-    rgba(255,255,255,0.12),
-    transparent,
-    rgba(255,255,255,0.05)
-  );
+  min-height:120px;
 
-  overflow:hidden;
+  padding:
+  78px 0 0 24px;
 
-  pointer-events:none;
+  color:white;
+
 }
 
     .total-title{
 
   font-size:12px;
 
-  margin-bottom:28px;
+  margin-bottom:10px;
+
+  margin-left:2px;
 
   opacity:0.88;
 
@@ -203,8 +201,9 @@ background-position:center -12px;
   white-space:nowrap;
 
   letter-spacing:-1px;
-}
 
+  margin-top:2px;
+}
 
     /* BOX CONTAINER */
 
