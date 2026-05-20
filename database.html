@@ -404,6 +404,99 @@ body{
 
 }
 
+/* TABLE WRAPPER */
+
+.table-wrapper{
+
+  width:100%;
+
+  overflow-x:auto;
+
+  background:white;
+
+  border-radius:24px;
+
+  box-shadow:
+  0 5px 20px rgba(0,0,0,0.08);
+
+  overflow:hidden;
+}
+
+/* TABLE */
+
+table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+  min-width:900px;
+}
+
+/* HEAD */
+
+thead{
+
+  background:
+  rgba(22,163,74,0.12);
+}
+
+th{
+
+  padding:18px;
+
+  text-align:left;
+
+  color:#0a6b2d;
+
+  font-size:14px;
+
+  font-weight:700;
+
+  white-space:nowrap;
+}
+
+/* BODY */
+
+td{
+
+  padding:16px 18px;
+
+  font-size:14px;
+
+  color:#333;
+
+  border-top:
+  1px solid #f1f1f1;
+}
+
+/* ROW */
+
+tbody tr{
+
+  transition:0.2s;
+}
+
+tbody tr:hover{
+
+  background:#fafafa;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  th,
+  td{
+
+    padding:14px;
+
+    font-size:13px;
+  }
+
+}
+
+  
 </style>
 </head>
 
@@ -440,25 +533,42 @@ body{
   
 
 <!-- CONTENT -->
-
 <div class="content">
+  <div class="table-wrapper">
 
-  <div class="data-card">
+  <table>
 
-    <h3>Astri Cell</h3>
+    <!-- HEAD -->
 
-    <p>152 transaksi</p>
+    <thead>
 
-  </div>
+      <tr>
 
-  <div class="data-card">
+        <th>Jenis Transaksi</th>
 
-    <h3>Putra Jaya</h3>
+        <th>Range Nominal</th>
 
-    <p>121 transaksi</p>
+        <th>Biaya Admin</th>
 
-  </div>
+        <th>Admin Bank</th>
 
+        <th>Kategori</th>
+
+        <th>Efek</th>
+
+      </tr>
+
+    </thead>
+
+    <!-- BODY -->
+
+    <tbody id="tableBody">
+
+    </tbody>
+
+  </table>
+
+</div>
 </div>
 
 <!-- POPUP FORM -->
@@ -482,73 +592,82 @@ body{
 
     <!-- FORM -->
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>Jenis Transaksi</label>
+  <label>Jenis Transaksi</label>
 
-      <input type="text"
-             placeholder="Contoh: Transfer BCA">
-    </div>
+  <input type="text"
+         id="jenisTransaksi"
+         placeholder="Contoh: Transfer BCA">
 
-    <div class="form-group">
+</div>
 
-      <label>Range Nominal</label>
+<div class="form-group">
 
-      <input type="text"
-             placeholder="Contoh: 10.000 - 100.000">
-    </div>
+  <label>Range Nominal</label>
 
-    <div class="form-group">
+  <input type="text"
+         id="rangeNominal"
+         placeholder="Contoh: 10.000 - 100.000">
 
-      <label>Biaya Admin</label>
+</div>
 
-      <input type="number"
-             placeholder="Masukkan nominal">
-    </div>
+<div class="form-group">
 
-    <div class="form-group">
+  <label>Biaya Admin</label>
 
-      <label>Admin Bank</label>
+  <input type="number"
+         id="biayaAdmin"
+         placeholder="Masukkan nominal">
 
-      <input type="number"
-             placeholder="Masukkan nominal">
-    </div>
+</div>
 
-    <div class="form-group">
+<div class="form-group">
 
-      <label>Kategori</label>
+  <label>Admin Bank</label>
 
-      <select>
+  <input type="number"
+         id="adminBank"
+         placeholder="Masukkan nominal">
 
-        <option>Saldo In</option>
+</div>
 
-        <option>Saldo Out</option>
+<div class="form-group">
 
-      </select>
+  <label>Kategori</label>
 
-    </div>
+  <select id="kategori">
 
-    <div class="form-group">
+    <option>Saldo In</option>
 
-      <label>Efek Kategori</label>
+    <option>Saldo Out</option>
 
-      <select>
+  </select>
 
-        <option>Cash In</option>
+</div>
 
-        <option>Cash Out</option>
+<div class="form-group">
 
-      </select>
+  <label>Efek Kategori</label>
 
-    </div>
+  <select id="efekKategori">
 
+    <option>Cash In</option>
+
+    <option>Cash Out</option>
+
+  </select>
+
+</div>
+    
     <!-- BUTTON -->
 
-    <button class="save-btn">
-      Simpan Data
-    </button>
+   <button class="save-btn"
+        onclick="simpanData()">
 
-  </div>
+  Simpan Data
+
+</button>
 
 </div>
 
@@ -583,6 +702,86 @@ window.addEventListener("click", function(e){
   }
 
 });
+
+  /* SIMPAN DATA */
+
+function simpanData(){
+
+  /* AMBIL VALUE */
+
+  const jenis =
+  document.getElementById("jenisTransaksi").value;
+
+  const range =
+  document.getElementById("rangeNominal").value;
+
+  const biaya =
+  document.getElementById("biayaAdmin").value;
+
+  const bank =
+  document.getElementById("adminBank").value;
+
+  const kategori =
+  document.getElementById("kategori").value;
+
+  const efek =
+  document.getElementById("efekKategori").value;
+
+  /* VALIDASI */
+
+  if(
+    jenis === "" ||
+    range === "" ||
+    biaya === "" ||
+    bank === ""
+  ){
+
+    alert("Isi semua data dulu");
+
+    return;
+  }
+
+  /* TAMBAH ROW */
+
+  const table =
+  document.getElementById("tableBody");
+
+  const row =
+  `
+  <tr>
+
+    <td>${jenis}</td>
+
+    <td>${range}</td>
+
+    <td>Rp ${Number(biaya).toLocaleString("id-ID")}</td>
+
+    <td>Rp ${Number(bank).toLocaleString("id-ID")}</td>
+
+    <td>${kategori}</td>
+
+    <td>${efek}</td>
+
+  </tr>
+  `;
+
+  table.innerHTML += row;
+
+  /* RESET */
+
+  document.getElementById("jenisTransaksi").value = "";
+
+  document.getElementById("rangeNominal").value = "";
+
+  document.getElementById("biayaAdmin").value = "";
+
+  document.getElementById("adminBank").value = "";
+
+  /* CLOSE POPUP */
+
+  closePopup();
+
+}
 
 
 </script>
