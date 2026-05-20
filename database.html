@@ -419,7 +419,7 @@ body{
   box-shadow:
   0 5px 20px rgba(0,0,0,0.08);
 
-  overflow:hidden;
+  -webkit-overflow-scrolling:touch;
 }
 
 /* TABLE */
@@ -430,7 +430,7 @@ table{
 
   border-collapse:collapse;
 
-  min-width:900px;
+  min-width:700px;
 }
 
 /* HEAD */
@@ -720,6 +720,128 @@ tbody tr:hover{
 .sort-menu div:hover{
 
   background:#f3f3f3;
+}
+
+  /* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+  /* CONTENT */
+
+  .content{
+
+    padding:12px;
+  }
+
+  /* TOPBAR */
+
+  .topbar{
+
+    height:60px;
+
+    padding:0 12px;
+  }
+
+  /* TITLE */
+
+  .title{
+
+    font-size:18px;
+  }
+
+  /* BACK */
+
+  .back-btn{
+
+    font-size:30px;
+  }
+
+  /* PLUS */
+
+  .plus-btn{
+
+    font-size:42px;
+  }
+
+  /* TABLE */
+
+  table{
+
+    min-width:650px;
+  }
+
+  th{
+
+    padding:14px 12px;
+
+    font-size:12px;
+  }
+
+  td{
+
+    padding:14px 12px;
+
+    font-size:12px;
+  }
+
+  /* POPUP */
+
+  .popup-overlay{
+
+    padding:12px;
+  }
+
+  .popup-form{
+
+    width:100%;
+
+    max-width:100%;
+
+    border-radius:24px;
+
+    padding:18px;
+  }
+
+  /* INPUT */
+
+  .form-group label{
+
+    font-size:13px;
+  }
+
+  .form-group input,
+  .form-group select{
+
+    padding:13px;
+
+    font-size:13px;
+  }
+
+  /* BUTTON */
+
+  .save-btn{
+
+    padding:14px;
+
+    font-size:14px;
+  }
+
+  /* ACTION BUTTON */
+
+  .action-btn{
+
+    font-size:20px;
+  }
+
+  /* SORT */
+
+  .sort-icon{
+
+    font-size:13px;
+  }
+
 }
   
 </style>
@@ -1016,8 +1138,6 @@ function renderTable(){
       <td>${item.kategori}</td>
 
       <td>${item.efek}</td>
-
-      <td>
 
         <td class="aksi-cell">
 
