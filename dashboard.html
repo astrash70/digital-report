@@ -109,9 +109,15 @@ background-position:center -12px;
   }
 
 }
-    /* GREETING */
+   .greeting{
 
-    .greeting{
+  position:fixed;
+
+  top:18px;
+
+  left:20px;
+
+  z-index:1000;
 
   font-size:18px;
 
@@ -119,14 +125,10 @@ background-position:center -12px;
 
   color:white;
 
-  margin-bottom:16px;
-
-  padding-left:8px;
-
   text-shadow:
   0 4px 10px rgba(0,0,0,0.25);
-}
 
+}
 
     /* TOTAL CARD */
 
@@ -897,15 +899,15 @@ border-radius:30px;
 <body>
 
 <div class="top-bg"></div>
-  
-<div class="dashboard">
-
-<!-- GREETING -->
+  <!-- GREETING -->
 <div class="greeting">
   Hallo, <span id="namaToko">...</span> 👋
 </div>
 
 <div class="card-wrapper">
+<div class="dashboard">
+
+
     <!-- TOTAL CARD -->
 
   <div class="total-card">
