@@ -620,8 +620,6 @@ tbody tr:hover{
 
   <th>Efek</th>
 
-  <th>Aksi</th>
-
 </tr>
       
     </thead>
@@ -794,7 +792,10 @@ function renderTable(){
 
       <td>${item.jenis}</td>
 
-      <td>${item.range}</td>
+      <td>
+  Rp ${Number(item.range)
+  .toLocaleString("id-ID")}
+</td>
 
       <td>Rp ${Number(item.biaya).toLocaleString("id-ID")}</td>
 
@@ -806,31 +807,33 @@ function renderTable(){
 
       <td>
 
-        <div class="action-box">
+        <td class="aksi-cell">
 
-          <button class="action-btn"
-                  onclick="toggleAction(${index})">
+  <div class="action-box">
 
-            ⋮
+    <button class="action-btn"
+            onclick="toggleAction(${index})">
 
-          </button>
+      ⋮
 
-          <div class="action-menu"
-               id="actionMenu${index}">
+    </button>
 
-            <div onclick="editData(${index})">
-              ✏️ Edit
-            </div>
+    <div class="action-menu"
+         id="actionMenu${index}">
 
-            <div onclick="hapusData(${index})">
-              🗑️ Hapus
-            </div>
+      <div onclick="editData(${index})">
+        ✏️ Edit
+      </div>
 
-          </div>
+      <div onclick="hapusData(${index})">
+        🗑️ Hapus
+      </div>
 
-        </div>
+    </div>
 
-      </td>
+  </div>
+
+</td>
 
     </tr>
     `;
