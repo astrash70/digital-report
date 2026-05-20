@@ -600,6 +600,43 @@ tbody tr:hover{
 
   padding:0;
 }
+
+  /* SORT */
+
+.sort-box{
+
+  display:flex;
+
+  gap:10px;
+
+  margin-bottom:14px;
+}
+
+.sort-box button{
+
+  border:none;
+
+  background:
+  rgba(22,163,74,0.12);
+
+  color:#0a6b2d;
+
+  padding:10px 16px;
+
+  border-radius:14px;
+
+  cursor:pointer;
+
+  font-weight:600;
+
+  transition:0.2s;
+}
+
+.sort-box button:hover{
+
+  background:
+  rgba(22,163,74,0.2);
+}
   
 </style>
 </head>
@@ -638,6 +675,19 @@ tbody tr:hover{
 
 <!-- CONTENT -->
 <div class="content">
+
+  <div class="sort-box">
+
+  <button onclick="sortAZ()">
+    A-Z
+  </button>
+
+  <button onclick="sortZA()">
+    Z-A
+  </button>
+
+</div>
+  
   <div class="table-wrapper">
 
   <table>
@@ -740,13 +790,16 @@ tbody tr:hover{
 
   <label>Kategori</label>
 
-  <select id="kategori">
+  <select id="kategori"
+        onchange="syncKategori()">
 
-    <option>Saldo In</option>
+  <option>Saldo In</option>
 
-    <option>Saldo Out</option>
+  <option>Saldo Out</option>
 
-  </select>
+  <option>None</option>
+
+</select>
 
 </div>
 
@@ -756,11 +809,13 @@ tbody tr:hover{
 
   <select id="efekKategori">
 
-    <option>Cash In</option>
+  <option>Cash In</option>
 
-    <option>Cash Out</option>
+  <option>Cash Out</option>
 
-  </select>
+  <option>None</option>
+
+</select>
 
 </div>
     
@@ -1050,6 +1105,64 @@ function toggleAction(index){
 
 renderTable();
 
+
+  /* SORT A-Z */
+
+function sortAZ(){
+
+  dataTransaksi.sort((a,b)=>
+
+    a.jenis.localeCompare(b.jenis)
+
+  );
+
+  renderTable();
+
+}
+
+/* SORT Z-A */
+
+function sortZA(){
+
+  dataTransaksi.sort((a,b)=>
+
+    b.jenis.localeCompare(a.jenis)
+
+  );
+
+  renderTable();
+
+}
+
+  /* AUTO SYNC */
+
+function syncKategori(){
+
+  const kategori =
+  document.getElementById("kategori").value;
+
+  const efek =
+  document.getElementById("efekKategori");
+
+  if(kategori === "Saldo In"){
+
+    efek.value = "Cash Out";
+
+  }
+
+  else if(kategori === "Saldo Out"){
+
+    efek.value = "Cash In";
+
+  }
+
+  else{
+
+    efek.value = "None";
+
+  }
+
+}
 
 </script>
 
