@@ -410,8 +410,6 @@ body{
 
   width:100%;
 
-  overflow-x:auto;
-
   background:white;
 
   border-radius:24px;
@@ -419,7 +417,7 @@ body{
   box-shadow:
   0 5px 20px rgba(0,0,0,0.08);
 
-  -webkit-overflow-scrolling:touch;
+  overflow:hidden;
 }
 
 /* TABLE */
@@ -430,9 +428,8 @@ table{
 
   border-collapse:collapse;
 
-  min-width:700px;
+  table-layout:fixed;
 }
-
 /* HEAD */
 
 thead{
@@ -468,6 +465,8 @@ td{
 
   border-top:
   1px solid #f1f1f1;
+
+  white-space:nowrap;
 }
 
 /* ROW */
@@ -840,6 +839,63 @@ tbody tr:hover{
   .sort-icon{
 
     font-size:13px;
+  }
+
+}
+
+  @media(max-width:768px){
+
+  /* CONTENT */
+
+  .content{
+
+    padding:10px;
+  }
+
+  /* TABLE */
+
+  th{
+
+    font-size:10px;
+
+    padding:12px 6px;
+  }
+
+  td{
+
+  font-size:9px;
+
+  padding:12px 6px;
+
+  white-space:nowrap;
+}
+
+  /* HEADER */
+
+  .sort-header{
+
+    gap:3px;
+  }
+
+  /* SORT ICON */
+
+  .sort-icon{
+
+    font-size:11px;
+  }
+
+  /* ACTION */
+
+  .action-btn{
+
+    font-size:16px;
+  }
+
+  /* TABLE CARD */
+
+  .table-wrapper{
+
+    border-radius:20px;
   }
 
 }
