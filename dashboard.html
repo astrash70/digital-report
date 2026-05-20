@@ -136,7 +136,9 @@ background-position:center -12px;
     /* TOTAL CARD */
 
   .total-card{
-     z-index:2;
+
+  z-index:2;
+
   width:100%;
 
   min-height:160px;
@@ -154,30 +156,31 @@ background-position:center -12px;
   overflow:hidden;
 
   background:
-linear-gradient(
-135deg,
-rgba(255,255,255,0.16),
-rgba(255,255,255,0.05)
-);
+  linear-gradient(
+    135deg,
+    rgba(255,255,255,0.16),
+    rgba(255,255,255,0.05)
+  );
 
   background-size:cover;
 
   background-position:center;
 
   backdrop-filter:
-blur(18px)
-saturate(180%);
+  blur(18px)
+  saturate(180%);
 
-border:
-1px solid rgba(255,255,255,.18);
+  border:
+  1px solid rgba(255,255,255,.18);
 
-box-shadow:
+  box-shadow:
+  0 10px 35px rgba(0,0,0,.12),
+  inset 0 1px 1px rgba(255,255,255,.55);
 
-0 10px 35px rgba(0,0,0,.12),
+} /* INI YANG KELUPA 😭🔥 */
 
-inset 0 1px 1px rgba(255,255,255,.55);
+.total-card::before{
 
-    .total-card::before{
   content:"";
 
   position:absolute;
@@ -191,7 +194,9 @@ inset 0 1px 1px rgba(255,255,255,.55);
     transparent,
     rgba(255,255,255,0.05)
   );
-overflow:hidden;
+
+  overflow:hidden;
+
   pointer-events:none;
 }
 
@@ -874,7 +879,7 @@ overflow:hidden;
     <div class="total-amount" id="totalSemua">
       Rp 0
     </div>
-
+</div>
 
   <!-- CASH & SALDO -->
 
