@@ -832,9 +832,18 @@ function renderTable(){
 
       <td>${item.jenis}</td>
 
-      <td>
-  Rp ${Number(item.range)
-  .toLocaleString("id-ID")}
+    <td>
+
+  Rp ${
+    item.range
+    .split("-")
+    .map(n =>
+      Number(n.trim())
+      .toLocaleString("id-ID")
+    )
+    .join(" - ")
+  }
+
 </td>
 
       <td>Rp ${Number(item.biaya).toLocaleString("id-ID")}</td>
