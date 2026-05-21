@@ -562,15 +562,17 @@ tbody tr:hover{
 
 .aksi-cell{
 
-  width:1%;
+  width:20px;
 
   white-space:nowrap;
 
   text-align:right;
 
-  padding-right:10px;
-}
+  padding-right:2px;
 
+  padding-left:0;
+}
+  
 /* ACTION BOX */
 
 .action-box{
@@ -596,7 +598,19 @@ tbody tr:hover{
 
   color:#666;
 
-  padding:0;
+  padding:8px;
+
+  min-width:30px;
+
+  min-height:30px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  touch-action:manipulation;
 }
 
   /* SORT */
@@ -938,6 +952,12 @@ tbody tr:hover{
 
     font-size:12px;
   }
+    /* RANGE COLUMN */
+
+.range-column{
+
+  width:95px;
+}
 
   /* TABLE WRAPPER */
 
@@ -1034,7 +1054,9 @@ tbody tr:hover{
 
 </th>
 
-  <th>Range Nominal</th>
+  <th class="range-column">
+  Range Nominal
+</th>
 
   <th>Biaya Admin</th>
 
@@ -1221,7 +1243,7 @@ function renderTable(){
 
       <td>${item.jenis}</td>
 
-    <td>
+    <td class="range-column">
 
   Rp ${
     item.range
@@ -1248,7 +1270,7 @@ function renderTable(){
   <div class="action-box">
 
     <button class="action-btn"
-            onclick="toggleAction(${index})">
+            onclick="toggleAction(${index},event)"
 
       ⋮
 
@@ -1412,7 +1434,9 @@ function editData(index){
 
 /* TOGGLE MENU */
 
-function toggleAction(index){
+function toggleAction(index,event){
+
+  event.stopPropagation();
 
   const menu =
   document.getElementById(`actionMenu${index}`);
@@ -1432,7 +1456,6 @@ function toggleAction(index){
   isOpen ? "none" : "block";
 
 }
-
 /* FIRST LOAD */
 
 renderTable();
