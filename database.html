@@ -537,18 +537,18 @@ tbody tr:hover{
 
   display:none;
 
-  min-width:120px;
+  min-width:70px;
 
   z-index:100;
 }
 
 .action-menu div{
 
-  padding:12px;
+  padding:8px 10px;
 
   cursor:pointer;
 
-  font-size:14px;
+  font-size:11px;
 
   transition:0.2s;
 }
@@ -758,10 +758,8 @@ tbody tr:hover{
 
   table{
 
-    width:100%;
-
-    table-layout:fixed;
-  }
+  width:100%;
+}
 
   /* HEAD */
 
@@ -909,14 +907,19 @@ tbody tr:hover{
 
   /* HEADER */
 
-  th{
+ th{
 
-    font-size:6px;
+  font-size:6px;
 
-    padding:10px 2px;
+  padding:10px 3px;
 
-    letter-spacing:-0.4px;
-  }
+  letter-spacing:-0.4px;
+}
+    th:first-child,
+td:first-child{
+
+  padding-left:10px;
+}
 
   /* BODY */
 
@@ -956,7 +959,9 @@ tbody tr:hover{
 
 .range-column{
 
-  width:95px;
+  width:115px;
+
+  padding-left:8px;
 }
 
   /* TABLE WRAPPER */
@@ -1270,11 +1275,11 @@ function renderTable(){
   <div class="action-box">
 
     <button class="action-btn"
-            onclick="toggleAction(${index},event)"
+        onclick="toggleAction(${index},event)">
 
-      ⋮
+  ⋮
 
-    </button>
+</button>
 
     <div class="action-menu"
          id="actionMenu${index}">
