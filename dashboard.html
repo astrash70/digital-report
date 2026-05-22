@@ -811,10 +811,16 @@ MOBILE
   padding-bottom:95px;
 }
 
-  .topbar{
-    flex-direction:column;
-    gap:16px;
-  }
+ .topbar{
+
+  flex-direction:row;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  gap:10px;
+}
 
   .topbar-left h1{
     font-size:18px;
@@ -822,6 +828,10 @@ MOBILE
 
   .topbar-left p{
   font-size:8px;
+}
+
+  .topbar-right{
+  margin-left:auto;
 }
 
   .hero-card{
@@ -1615,6 +1625,9 @@ const months = [
   "SEP","OKT","NOV","DES"
 ];
 
+
+/* MOBILE */
+
 document.getElementById("monthNow")
 .innerText =
 months[now.getMonth()];
@@ -1622,6 +1635,24 @@ months[now.getMonth()];
 document.getElementById("dayNow")
 .innerText =
 now.getDate();
+
+
+/* DESKTOP */
+
+const fullDate =
+now.toLocaleDateString(
+'id-ID',
+{
+  day:'numeric',
+  month:'long',
+  year:'numeric'
+}
+);
+
+document.getElementById(
+'tanggalDesktop'
+).innerText =
+fullDate;
 
 </script>
 
