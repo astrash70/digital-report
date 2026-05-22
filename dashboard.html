@@ -933,8 +933,15 @@ MOBILE CALENDAR
 .mobile-calendar{
   display:none;
 }
+  .desktop-date{
+  display:block;
+}
 
 @media(max-width:768px){
+
+  .desktop-date{
+  display:none;
+}
 
   .mobile-calendar{
 
@@ -1093,9 +1100,20 @@ MOBILE CALENDAR
 
       </div>
 
-    <div class="topbar-right">
+   <div class="topbar-right">
 
-  <div class="date-box mobile-calendar">
+  <!-- DESKTOP -->
+  <div class="date-box desktop-date">
+
+    <span id="desktopDate">
+      22 Mei 2026
+    </span>
+
+  </div>
+
+
+  <!-- MOBILE -->
+  <div class="mobile-calendar">
 
     <span class="month" id="monthNow">
       MEI
