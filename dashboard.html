@@ -922,55 +922,63 @@ MOBILE NAVIGATION
 
 }
 
-  /* =========================
+/* =========================
 MOBILE CALENDAR
 ========================= */
 
 .mobile-calendar{
-
-  width:74px;
-
-  height:74px;
-
-  background:white;
-
-  border-radius:20px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  align-items:center;
-
-  justify-content:center;
-
-  box-shadow:
-  0 10px 25px rgba(0,0,0,0.08);
-
-  border:
-  1px solid #edf2f7;
+  display:none;
 }
 
-.mobile-calendar .month{
+@media(max-width:768px){
 
-  font-size:12px;
+  .mobile-calendar{
 
-  font-weight:700;
+    width:74px;
 
-  color:#0a6b2d;
+    height:74px;
 
-  letter-spacing:1px;
-}
+    background:white;
 
-.mobile-calendar .day{
+    border-radius:20px;
 
-  font-size:30px;
+    display:flex;
 
-  font-weight:800;
+    flex-direction:column;
 
-  color:#1f2937;
+    align-items:center;
 
-  line-height:1;
+    justify-content:center;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,0.08);
+
+    border:
+    1px solid #edf2f7;
+  }
+
+  .mobile-calendar .month{
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#0a6b2d;
+
+    letter-spacing:1px;
+  }
+
+  .mobile-calendar .day{
+
+    font-size:30px;
+
+    font-weight:800;
+
+    color:#1f2937;
+
+    line-height:1;
+  }
+
 }
   
 </style>
@@ -1067,16 +1075,19 @@ MOBILE CALENDAR
 
       </div>
 
-      <div class="topbar-right">
-<div class="mobile-calendar">
+    <div class="topbar-right">
 
-  <span class="month" id="monthNow">
-    MEI
-  </span>
+  <div class="mobile-calendar">
 
-  <span class="day" id="dayNow">
-    22
-  </span>
+    <span class="month" id="monthNow">
+      MEI
+    </span>
+
+    <span class="day" id="dayNow">
+      22
+    </span>
+
+  </div>
 
 </div>
 
