@@ -1,248 +1,81 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ========================= -->
+<!-- GOOGLE FONT -->
+<!-- ========================= -->
 
-  <title>Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-  <style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial,sans-serif;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
- /* HEADER TOP */
 
-.top-bg{
 
-  position:fixed;
+<style>
 
-  top:0;
-  left:0;
+/* =========================
+RESET
+========================= */
 
-  width:100%;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-  height:70px;
-
-  background-image:url("bg 1.png");
-
-  background-repeat:no-repeat;
-
-  background-size:100% auto;
-
-background-position:center -12px;
-  z-index:999;
-
-  pointer-events:none;
+body{
+  font-family:'Inter',sans-serif;
+  background:#f5f7f9;
+  color:#1c1c1c;
 }
 
 
-/* BIKIN CONTENT TURUN */
 
-.dashboard{
+/* =========================
+LAYOUT
+========================= */
 
-  position:relative;
-
-  z-index:10;
-
-  padding-top:55px;
-}
-@media(max-width:768px){
-
-  .top-bg{
-
-    height:55px;
-
-    background-image:url("m 1.png");
-
-    background-size:100% auto;
-
-    background-position:center top;
-
-  }
-
-}
-    
-  body::before{
-
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  left:0;
-
-  width:100%;
-
-  height:205px;
-
-  background-image:url("bg 1.png");
-
-  background-repeat:no-repeat;
-
-  background-size:100% auto;
-
-  background-position:top center;
-
-  border-bottom-left-radius:40px;
-  border-bottom-right-radius:40px;
-
-  overflow:hidden;
-  z-index:-1;
-
-  pointer-events:none;
-}
-   /* MOBILE */
-
-@media(max-width:768px){
-
-  body::before{
-
-    height:210px;
-
-    /* INI KUNCINYA */
-    background-size:100% 100%;
-
-    background-position:top center;
-
-  }
-
-}
-   .greeting{
-
-  position:fixed;
-
-  top:18px;
-
-  left:20px;
-
-  z-index:1000;
-
-  font-size:18px;
-
-  font-weight:bold;
-
-  color:white;
-
-  text-shadow:
-  0 4px 10px rgba(0,0,0,0.25);
-
-}
-
-    /* TOTAL CARD */
-.total-card{
-
-  position:relative;
-
-  z-index:2;
-
-  width:100%;
-
-  min-height:120px;
-
-  padding-top:110px;
-
-  color:white;
-
-}
-
-    .total-title{
-
-  font-size:12px;
-
-  margin-bottom:8px;
-
-  opacity:0.88;
-
-  letter-spacing:0.3px;
-
-  transform:translateX(-80px);
-}
-
-  .total-amount{
-
-  font-size:
-  clamp(
-    33px,
-    5vw,
-    56px
-  );
-
-  font-weight:bold;
-
-  line-height:1.1;
-
-  white-space:nowrap;
-
-  letter-spacing:-1px;
-
-  margin-top:-2px;
-
-  transform:translateX(-80px);
-}
-
-    /* BOX CONTAINER */
-
-.box-container{
-
-  display:grid;
-
-  grid-template-columns:
-  repeat(2, minmax(0,1fr));
-
-  gap:10px;
-
-  margin-top:40px;
-
-  position:relative;
-
-  z-index:20;
+.dashboard-layout{
+  display:flex;
+  min-height:100vh;
 }
 
 
-    /* BOX */
 
-   .box{
-  z-index:2;
+/* =========================
+SIDEBAR
+========================= */
 
-  flex:1;
+.sidebar{
 
-  min-height:95px;
-
-  border-radius:24px;
-
-  padding:10px 24px 24px;
-
-  position:relative;
-
-  overflow:hidden;
+  width:260px;
 
   background:
   linear-gradient(
-    135deg,
-    #fff7c7,
-    #f3d54e
+    180deg,
+    #052e1b,
+    #06351f,
+    #041f14
   );
 
-  box-shadow:
-  0 8px 22px rgba(0,0,0,0.12);
-
-  border:
-  1px solid rgba(255,255,255,0.35);
+  padding:24px 16px;
 
   display:flex;
 
   flex-direction:column;
 
-  justify-content:flex-start;
+  justify-content:space-between;
 
-  transform:translateY(15px);
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  height:100vh;
+
+  overflow:hidden;
 }
-    .box::before{
+
+.sidebar::before{
 
   content:"";
 
@@ -250,298 +83,484 @@ background-position:center -12px;
 
   inset:0;
 
-  background-image:url("ICON/batik.png");
-
-  background-size:cover;
-
-  background-position:center;
-
-  opacity:0.06;
+  background:
+  radial-gradient(
+    circle at top right,
+    rgba(32,201,111,0.16),
+    transparent 45%
+  );
 
   pointer-events:none;
 }
 
-    .box-title{
 
-  font-size:10px;
 
-  margin-bottom:12px;
+/* LOGO */
 
-  letter-spacing:0.3px;
-
-  font-weight:600;
-
-  opacity:0.75;
-}
-
-    .box-amount{
-
-  font-size:
-  clamp(
-    1px,
-    2.5vw,
-    34px
-  );
-
-  font-weight:bold;
-
-  color:#0a6b2d;
-
-  line-height:1.1;
-
-  white-space:nowrap;
-}
-
-.dashboard{
-
-  position:relative;
-
-  z-index:10;
-
-  width:100%;
-
-  max-width:1680px;
-
-  min-height:100vh;
-
-  padding:20px;
-
-  margin:auto;
-}
-
-@media(max-width:600px){
-
-  .dashboard{
-    padding:12px;
-  }
-
-  .greeting{
-    font-size:16px;
-    margin-bottom:10px;
-  }
-
-  /* TOTAL CARD */
-  .total-card{
-
-    min-height:100px;
-
-    padding:15px;
-
-    border-radius:20px;
-
-    margin-bottom:8px;
-  }
-
-  .total-title{
-
-    font-size:10px;
-
-    margin-bottom:10px;
-  }
-
-  .total-amount{
-
-    font-size:clamp(24px, 6vw, 34px);
-  }
-
-  /* MINI CARD */
-  .box{
-
-    min-height:65px;
-
-    padding:10px;
-
-    border-radius:16px;
-  }
-
-  .box-title{
-
-    font-size:8px;
-
-    margin-bottom:6px;
-  }
-
-  .box-amount{
-
-    font-size:clamp(13px, 3.5vw, 18px);
-  }
-
-  .box-container{
-    gap:6px;
-  }
-
-}
-    /* MENU */
-
-.menu-container{
-
-  margin-top:8px; /* tadinya 18px */
-
-  padding-bottom:2px; /* biar bawahnya ga kosong */
+.logo{
 
   display:flex;
 
-  justify-content:space-around;
-
   align-items:center;
 
-  gap:clamp(10px, 2vw, 28px);
-}
-    
-.menu-item{
+  gap:14px;
 
-  padding:8px 12px;
+  color:white;
+
+  font-size:30px;
+
+  font-weight:700;
+
+  margin-bottom:40px;
+
+  position:relative;
+
+  z-index:2;
+}
+
+.logo span{
+  font-size:16px;
+}
+
+
+
+/* MENU */
+
+.sidebar-menu{
 
   display:flex;
 
   flex-direction:column;
+
+  gap:8px;
+
+  position:relative;
+
+  z-index:2;
+}
+
+.sidebar-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  padding:16px 18px;
+
+  border-radius:18px;
+
+  color:rgba(255,255,255,0.82);
+
+  text-decoration:none;
+
+  font-size:15px;
+
+  font-weight:500;
+
+  transition:0.25s;
+}
+
+.sidebar-item:hover{
+
+  background:
+  rgba(255,255,255,0.08);
+
+  color:white;
+}
+
+.sidebar-item.active{
+
+  background:
+  linear-gradient(
+    135deg,
+    #0a6b2d,
+    #11853c
+  );
+
+  color:white;
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,0.15);
+}
+
+
+
+/* PROFILE */
+
+.sidebar-profile{
+
+  position:relative;
+
+  z-index:2;
+
+  background:
+  rgba(255,255,255,0.06);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  border-radius:22px;
+
+  padding:16px;
+
+  color:white;
+}
+
+.profile-top{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+}
+
+.profile-avatar{
+
+  width:46px;
+  height:46px;
+
+  border-radius:50%;
+
+  background:#1ec45d;
+
+  display:flex;
 
   align-items:center;
 
   justify-content:center;
 
-  gap:6px;
-
-  background:transparent;
-
-  border:none;
-
-  cursor:pointer;
+  font-weight:700;
 }
 
-.menu-item img{
 
-  width:clamp(34px, 5vw, 72px);
 
-  height:clamp(34px, 5vw, 72px);
+/* =========================
+MAIN CONTENT
+========================= */
 
-  object-fit:contain;
+.main-content{
+
+  flex:1;
+
+  margin-left:260px;
+
+  padding:28px;
 }
 
-.menu-item span{
 
-  font-size:clamp(10px, 1.8vw, 15px);
+
+/* =========================
+TOPBAR
+========================= */
+
+.topbar{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  margin-bottom:26px;
+}
+
+.topbar-left h1{
+
+  font-size:34px;
+
+  font-weight:800;
+
+  margin-bottom:8px;
+}
+
+.topbar-left p{
+
+  color:#6c757d;
+
+  font-size:15px;
+}
+
+.topbar-right{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:16px;
+}
+
+.date-box{
+
+  background:white;
+
+  border:
+  1px solid #e9ecef;
+
+  border-radius:16px;
+
+  padding:12px 18px;
+
+  font-size:14px;
 
   font-weight:600;
 
-  color:#0a6b2d;
-
-  letter-spacing:0.2px;
-
-  opacity:0.9;
-}
-
-    /* MENU VERTIKAL */
-
-.vertical-menu{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:clamp(14px, 2vw, 24px);
-
-  margin-top:-350px;
-}
-
-.vertical-item{
-
-  width:100%;
-
-  display:flex;
-
-  flex-direction:row !important;
-
-  align-items:flex-end !important;
-
-  justify-content:flex-start !important;
-
-  gap:5px;
-
-  padding:18px 20px;
-
-  border-radius:24px;
-
-  background:white;
-  border-right:5px solid #0a6b2d;
   box-shadow:
-0 10px 25px rgba(0,0,0,0.08),
-0 4px 10px rgba(0,0,0,0.04),
-0 0 0 1px rgba(10,107,45,0.05);
-
-  transition:0.25s ease;
-}
-    .vertical-item b{
-
-  margin-left:6px;
-
-  font-size:clamp(16px,2vw,24px);
-
-  color:#0a6b2d;
-
-  font-weight:700;
-
-  align-self:center;
+  0 2px 10px rgba(0,0,0,0.04);
 }
 
-.vertical-item img{
 
-  width:clamp(42px, 5vw, 64px);
 
-  height:clamp(42px, 5vw, 64px);
+/* =========================
+HERO CARD
+========================= */
 
-  object-fit:contain;
+.hero-card{
 
-  flex-shrink:0;
-}
+  position:relative;
 
-.vertical-item span{
+  overflow:hidden;
 
-  font-size:clamp(8px, 1vw, 11px);
+  border-radius:32px;
 
-  font-weight:400;
+  padding:38px;
 
-  color:#0a6b2d;
-
-  opacity:0.8;
-
-  line-height:1;
-
-  margin-bottom:0.5px;
-
-  letter-spacing:0.2px;
-
-  margin-left:auto;
-
-  margin-right:5px;
-}
-    
-/* TOP CUSTOMER */
-
-.top-customer-card{
-
-  margin-top:18px;
+  min-height:230px;
 
   background:
   linear-gradient(
-    180deg,
-    rgba(255,255,255,0.96),
-    rgba(245,245,245,0.92)
+    135deg,
+    #032417,
+    #08562b,
+    #0b7d3d
   );
+
+  color:white;
+
+  margin-bottom:24px;
+}
+
+.hero-card::before{
+
+  content:"";
+
+  position:absolute;
+
+  right:-120px;
+  bottom:-120px;
+
+  width:520px;
+  height:520px;
+
+  border-radius:50%;
+
+  border:
+  2px solid rgba(164,255,186,0.28);
+}
+
+.hero-card::after{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background-image:
+  linear-gradient(
+    rgba(255,255,255,0.04) 1px,
+    transparent 1px
+  );
+
+  background-size:100px 100px;
+
+  opacity:0.18;
+}
+
+.hero-content{
+
+  position:relative;
+
+  z-index:2;
+}
+
+.hero-subtitle{
+
+  font-size:16px;
+
+  opacity:0.82;
+
+  margin-bottom:16px;
+}
+
+.hero-total{
+
+  font-size:64px;
+
+  font-weight:800;
+
+  margin-bottom:10px;
+}
+
+.hero-desc{
+
+  font-size:15px;
+
+  opacity:0.84;
+
+  margin-bottom:24px;
+}
+
+.hero-btn{
+
+  border:none;
+
+  background:
+  rgba(255,255,255,0.12);
+
+  color:white;
+
+  padding:14px 22px;
+
+  border-radius:16px;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+  backdrop-filter:blur(8px);
+}
+
+
+
+/* =========================
+STATS
+========================= */
+
+.stats-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(4,1fr);
+
+  gap:18px;
+
+  margin-bottom:24px;
+}
+
+.stat-card{
+
+  background:white;
+
+  border-radius:24px;
+
+  padding:24px;
+
+  border:
+  1px solid #edf1f3;
+
+  box-shadow:
+  0 2px 10px rgba(0,0,0,0.04);
+}
+
+.stat-top{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  margin-bottom:18px;
+}
+
+.stat-icon{
+
+  width:54px;
+  height:54px;
+
+  border-radius:18px;
+
+  background:
+  rgba(10,107,45,0.08);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:24px;
+}
+
+.stat-title{
+
+  color:#6c757d;
+
+  font-size:14px;
+
+  margin-bottom:6px;
+}
+
+.stat-value{
+
+  font-size:18px;
+
+  font-weight:800;
+
+  color:#0a6b2d;
+}
+
+.stat-desc{
+
+  font-size:13px;
+
+  color:#8a8f95;
+}
+
+
+
+/* =========================
+CONTENT GRID
+========================= */
+
+.content-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  1.2fr 1fr;
+
+  gap:20px;
+
+  margin-bottom:24px;
+}
+
+
+
+/* =========================
+CARD
+========================= */
+
+.card{
+
+  background:white;
 
   border-radius:26px;
 
-  padding:
-  clamp(14px, 2vw, 22px);
-
-  box-shadow:
-  0 8px 24px rgba(0,0,0,0.07);
+  padding:24px;
 
   border:
-  1px solid rgba(255,255,255,0.7);
+  1px solid #edf1f3;
+
+  box-shadow:
+  0 2px 10px rgba(0,0,0,0.04);
 }
 
-.top-customer-header{
+.card-header{
 
   display:flex;
 
@@ -549,74 +568,102 @@ background-position:center -12px;
 
   align-items:center;
 
-  gap:10px;
-
-  margin-bottom:16px;
+  margin-bottom:20px;
 }
 
-.top-customer-header h2{
+.card-title{
 
-  font-size:
-  clamp(16px, 2vw, 24px);
-
-  color:#0a6b2d;
+  font-size:24px;
 
   font-weight:700;
 }
 
-.top-customer-header span{
 
-  font-size:
-  clamp(10px, 1.5vw, 14px);
 
-  color:#777;
+/* =========================
+CHART
+========================= */
 
-  white-space:nowrap;
+.chart-placeholder{
+
+  height:320px;
+
+  border-radius:20px;
+
+  background:
+  linear-gradient(
+    180deg,
+    rgba(16,185,129,0.08),
+    rgba(16,185,129,0.02)
+  );
+
+  position:relative;
+
+  overflow:hidden;
 }
 
-.customer-list{
+.chart-line{
+
+  position:absolute;
+
+  left:0;
+  bottom:60px;
+
+  width:100%;
+  height:120px;
+
+  border-bottom:
+  4px solid #0a6b2d;
+
+  border-radius:50%;
+}
+
+
+
+/* =========================
+TOP CUSTOMER
+========================= */
+
+.customer-table{
 
   display:flex;
 
   flex-direction:column;
 
-  gap:10px;
+  gap:12px;
 }
 
-.customer-item{
+.customer-row{
 
-  display:flex;
+  display:grid;
+
+  grid-template-columns:
+  60px 1fr 120px 100px;
 
   align-items:center;
 
-  gap:12px;
-
-  background:
-  rgba(255,255,255,0.72);
+  padding:16px;
 
   border-radius:18px;
 
-  padding:
-  clamp(10px, 1.5vw, 16px);
+  background:#fafbfc;
 
-  transition:0.25s ease;
+  border:
+  1px solid #eef1f4;
 }
 
-.customer-rank{
+.rank{
 
-  width:
-  clamp(42px, 5vw, 54px);
+  width:38px;
+  height:38px;
 
-  height:
-  clamp(42px, 5vw, 54px);
-
-  border-radius:50%;
+  border-radius:12px;
 
   background:
   linear-gradient(
     135deg,
     #0a6b2d,
-    #18a34a
+    #17a34a
   );
 
   color:white;
@@ -627,349 +674,231 @@ background-position:center -12px;
 
   justify-content:center;
 
-  font-size:
-  clamp(18px, 2vw, 22px);
-
-  font-weight:bold;
-
-  flex-shrink:0;
+  font-weight:700;
 }
 
-.customer-info h3{
+.customer-name{
 
-  font-size:
-  clamp(14px, 2vw, 20px);
-
-  color:#222;
-
-  line-height:1.1;
+  font-weight:600;
 }
 
-.customer-info p{
+.customer-trans{
 
-  font-size:
-  clamp(11px, 1.6vw, 14px);
-
-  color:#777;
-
-  margin-top:3px;
+  color:#6c757d;
 }
 
-/* KHUSUS HP */
+.customer-percent{
 
-@media(max-width:600px){
+  color:#16a34a;
 
-  .top-customer-card{
+  font-weight:700;
+}
 
-    border-radius:22px;
 
-    padding:14px;
+
+/* =========================
+ACTIVITY
+========================= */
+
+.activity-list{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(4,1fr);
+
+  gap:18px;
+}
+
+.activity-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  background:#fafbfc;
+
+  border:
+  1px solid #edf1f3;
+
+  border-radius:20px;
+
+  padding:18px;
+}
+
+.activity-icon{
+
+  width:52px;
+  height:52px;
+
+  border-radius:16px;
+
+  background:
+  rgba(16,185,129,0.1);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:24px;
+}
+
+.activity-text h4{
+
+  font-size:14px;
+
+  margin-bottom:4px;
+}
+
+.activity-text p{
+
+  font-size:12px;
+
+  color:#7b8794;
+}
+
+
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:1100px){
+
+  .stats-grid{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .top-customer-header{
-
-    margin-bottom:12px;
+  .content-grid{
+    grid-template-columns:1fr;
   }
 
-  .customer-item{
+  .activity-list{
+    grid-template-columns:1fr 1fr;
+  }
 
-    padding:10px 12px;
+}
 
-    border-radius:16px;
+@media(max-width:768px){
+
+  .sidebar{
+    display:none;
+  }
+
+  .main-content{
+    margin-left:0;
+    padding:16px;
+  }
+
+  .topbar{
+    flex-direction:column;
+    gap:16px;
+  }
+
+  .topbar-left h1{
+    font-size:26px;
+  }
+
+  .hero-card{
+    padding:26px;
+    border-radius:26px;
+  }
+
+  .hero-total{
+    font-size:42px;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+
+  .stat-card{
+    padding:18px;
+    border-radius:20px;
+  }
+
+  .activity-list{
+    grid-template-columns:1fr;
+  }
+
+  .customer-row{
+
+    grid-template-columns:
+    50px 1fr;
 
     gap:10px;
   }
 
-  .customer-rank{
-
-    width:34px;
-    height:34px;
-
-    font-size:16px;
-  }
-
-  .customer-info h3{
-
-    font-size:13px;
-  }
-
-  .customer-info p{
-
-    font-size:11px;
-  }
-
 }
 
-    /* HEADER */
+</style>
 
-.top-customer-header{
 
-  display:flex;
 
-  justify-content:space-between;
+<!-- ========================= -->
+<!-- HTML -->
+<!-- ========================= -->
 
-  align-items:center;
+<div class="dashboard-layout">
 
-  margin-bottom:16px;
 
-  position:relative;
-}
+  <!-- SIDEBAR -->
 
-/* FILTER */
+  <div class="sidebar">
 
-.filter-box{
-  position:relative;
-}
+    <div>
 
-.filter-btn{
-
-  border:none;
-
-  background:
-  rgba(10,107,45,0.08);
-
-  color:#0a6b2d;
-
-  padding:8px 12px;
-
-  border-radius:12px;
-
-  font-size:12px;
-
-  font-weight:600;
-
-  cursor:pointer;
-
-  transition:0.2s;
-}
-
-.filter-btn:hover{
-
-  background:
-  rgba(10,107,45,0.14);
-}
-
-/* DROPDOWN */
-
-.filter-dropdown{
-
-  position:absolute;
-
-  top:45px;
-
-  right:0;
-
-  width:120px;
-
-  background:white;
-
-  border-radius:14px;
-
-  overflow:hidden;
-
-  box-shadow:
-  0 10px 25px rgba(0,0,0,0.12);
-
-  display:none;
-
-  z-index:100;
-}
-
-.filter-dropdown div{
-
-  padding:12px;
-
-  font-size:13px;
-
-  cursor:pointer;
-
-  transition:0.2s;
-}
-
-.filter-dropdown div:hover{
-
-  background:#f3f3f3;
-}
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-  .filter-btn{
-
-    padding:7px 10px;
-
-    font-size:11px;
-  }
-
-  .filter-dropdown{
-
-    width:105px;
-  }
-
-  .filter-dropdown div{
-
-    font-size:12px;
-
-    padding:10px;
-  }
-
-}
-
-   
-    
-  </style>
-</head>
-<body>
-
-<div class="top-bg"></div>
-
-<!-- GREETING -->
-<div class="greeting">
-  Hallo, <span id="namaToko">...</span> 👋
-</div>
-
-<div class="dashboard">
-
-    <!-- TOTAL CARD -->
-
-  <div class="total-card">
-
-    <div class="total-title">
-      Financial Overview
-    </div>
-
-    <div class="total-amount" id="totalSemua">
-      Rp 0
-    </div>
-</div>
-
-  <!-- CASH & SALDO -->
-
-  <div class="box-container">
-
-
-    <!-- CASH -->
-
-    <div class="box">
-
-      <div class="box-title">
-        Cash On Hand
+      <div class="logo">
+        📊 <span>Digital Report</span>
       </div>
 
-      <div class="box-amount" id="cashAmount">
-        Rp 0
-      </div>
+      <div class="sidebar-menu">
 
-    </div>
+        <a class="sidebar-item active">
+          🏠 Dashboard
+        </a>
 
-    <!-- SALDO -->
+        <a class="sidebar-item">
+          📝 Input Laporan
+        </a>
 
-    <div class="box">
+        <a class="sidebar-item">
+          🗂 Database
+        </a>
 
-      <div class="box-title">
-        Account Balance
-      </div>
+        <a class="sidebar-item">
+          📈 Report
+        </a>
 
-      <div class="box-amount" id="saldoAmount">
-        Rp 0
+        <a class="sidebar-item">
+          📅 Rekap Bulanan
+        </a>
+
       </div>
 
     </div>
 
 
-  </div>
-  
-<!-- MENU -->
+    <!-- PROFILE -->
 
-<div class="menu-container">
+    <div class="sidebar-profile">
 
-  <div class="menu-item">
-    <img src="input.png">
-    <span>Input</span>
-  </div>
+      <div class="profile-top">
 
-  <div class="menu-item" onclick="window.location.href='database.html'">
-  <img src="database.png">
-  <span>Database</span>
-</div>
-
-  <div class="menu-item">
-    <img src="report.png">
-    <span>Report</span>
-  </div>
-
-</div>
-</div>
-  <!-- MENU VERTIKAL -->
-
-<div class="vertical-menu">
-
- <div class="menu-item vertical-item">
-  <img src="transaction volume.png">
-
-    <b id="totalTransaksi">
-    Rp 0
-  </b>
-   <span>
-    Transaction Volume
-  </span>
-</div>
-
-<div class="menu-item vertical-item">
-  <img src="admin.png">
-
-    <b id="totalAdmin">
-    Rp 0
-  </b>
-  <span>
-    Admin
-  </span>
-</div>
-
-<div class="menu-item vertical-item">
-  <img src="charge.png">
-
-  <b id="totalCharge">
-    Rp 0
-  </b>
-  <span>
-    Charge
-  </span>
-</div>
-
- <!-- TOP CUSTOMER -->
-
-<div class="top-customer-card">
-
-  <div class="top-customer-header">
-
-    <h2 id="topTitle">
-      Top 10 Pelanggan
-    </h2>
-
-    <div class="filter-box">
-
-      <button class="filter-btn" onclick="toggleFilter()">
-        ☰ Filter
-      </button>
-
-      <div class="filter-dropdown" id="filterDropdown">
-
-        <div onclick="setTop(5)">
-          Top 5
+        <div class="profile-avatar">
+          T
         </div>
 
-        <div onclick="setTop(10)">
-          Top 10
-        </div>
-
-        <div onclick="setTop(50)">
-          Top 50
-        </div>
-
-        <div onclick="setTop(100)">
-          Top 100
+        <div>
+          <h4>Tokosayyida</h4>
+          <p style="opacity:.7;font-size:13px;">
+            Admin
+          </p>
         </div>
 
       </div>
@@ -978,51 +907,424 @@ background-position:center -12px;
 
   </div>
 
-  <div class="customer-list">
 
-    <div class="customer-item">
 
-      <div class="customer-rank">
-        1
+  <!-- MAIN CONTENT -->
+
+  <div class="main-content">
+
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+
+      <div class="topbar-left">
+
+        <h1>
+          Hallo, Tokosayyida 👋
+        </h1>
+
+        <p>
+          Selamat datang kembali di Dashboard Digital Report
+        </p>
+
       </div>
 
-      <div class="customer-info">
+      <div class="topbar-right">
 
-        <h3>Astri Cell</h3>
-
-        <p>152 transaksi</p>
+        <div class="date-box">
+          📅 22 Mei 2026
+        </div>
 
       </div>
 
     </div>
 
-    <div class="customer-item">
 
-      <div class="customer-rank">
-        2
-      </div>
 
-      <div class="customer-info">
+    <!-- HERO -->
 
-        <h3>Rizky Store</h3>
+    <div class="hero-card">
 
-        <p>134 transaksi</p>
+      <div class="hero-content">
+
+        <div class="hero-subtitle">
+          Financial Overview
+        </div>
+
+        <div class="hero-total">
+          Rp 750.000
+        </div>
+
+        <div class="hero-desc">
+          Total keseluruhan saat ini
+        </div>
+
+        <button class="hero-btn">
+          Lihat Detail →
+        </button>
 
       </div>
 
     </div>
 
-    <div class="customer-item">
 
-      <div class="customer-rank">
-        3
+
+    <!-- STATS -->
+
+    <div class="stats-grid">
+
+
+      <div class="stat-card">
+
+        <div class="stat-top">
+
+          <div class="stat-icon">
+            💵
+          </div>
+
+          <div>
+
+            <div class="stat-title">
+              Cash On Hand
+            </div>
+
+            <div class="stat-value">
+              Rp 500.000
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="stat-desc">
+          Uang tunai saat ini
+        </div>
+
       </div>
 
-      <div class="customer-info">
 
-        <h3>Putra Jaya</h3>
 
-        <p>121 transaksi</p>
+      <div class="stat-card">
+
+        <div class="stat-top">
+
+          <div class="stat-icon">
+            🏦
+          </div>
+
+          <div>
+
+            <div class="stat-title">
+              Account Balance
+            </div>
+
+            <div class="stat-value">
+              Rp 250.000
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="stat-desc">
+          Saldo rekening saat ini
+        </div>
+
+      </div>
+
+
+
+      <div class="stat-card">
+
+        <div class="stat-top">
+
+          <div class="stat-icon">
+            👨‍💼
+          </div>
+
+          <div>
+
+            <div class="stat-title">
+              Total Admin
+            </div>
+
+            <div class="stat-value">
+              3
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="stat-desc">
+          Jumlah admin aktif
+        </div>
+
+      </div>
+
+
+
+      <div class="stat-card">
+
+        <div class="stat-top">
+
+          <div class="stat-icon">
+            👥
+          </div>
+
+          <div>
+
+            <div class="stat-title">
+              Total Customers
+            </div>
+
+            <div class="stat-value">
+              3
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="stat-desc">
+          Total pelanggan terdaftar
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- CONTENT GRID -->
+
+    <div class="content-grid">
+
+
+      <!-- CHART -->
+
+      <div class="card">
+
+        <div class="card-header">
+
+          <div class="card-title">
+            Grafik Transaksi
+          </div>
+
+          <div class="date-box">
+            7 Hari Terakhir
+          </div>
+
+        </div>
+
+        <div class="chart-placeholder">
+
+          <div class="chart-line"></div>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- TOP CUSTOMER -->
+
+      <div class="card">
+
+        <div class="card-header">
+
+          <div class="card-title">
+            Top 10 Pelanggan
+          </div>
+
+          <div class="date-box">
+            Lihat semua
+          </div>
+
+        </div>
+
+
+        <div class="customer-table">
+
+
+          <div class="customer-row">
+
+            <div class="rank">
+              1
+            </div>
+
+            <div class="customer-name">
+              Astri Cell
+            </div>
+
+            <div class="customer-trans">
+              152 transaksi
+            </div>
+
+            <div class="customer-percent">
+              34.2%
+            </div>
+
+          </div>
+
+
+
+          <div class="customer-row">
+
+            <div class="rank">
+              2
+            </div>
+
+            <div class="customer-name">
+              Rizky Store
+            </div>
+
+            <div class="customer-trans">
+              134 transaksi
+            </div>
+
+            <div class="customer-percent">
+              30.2%
+            </div>
+
+          </div>
+
+
+
+          <div class="customer-row">
+
+            <div class="rank">
+              3
+            </div>
+
+            <div class="customer-name">
+              Putra Jaya
+            </div>
+
+            <div class="customer-trans">
+              121 transaksi
+            </div>
+
+            <div class="customer-percent">
+              27.2%
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ACTIVITY -->
+
+    <div class="card">
+
+      <div class="card-header">
+
+        <div class="card-title">
+          Ringkasan Aktivitas
+        </div>
+
+        <div class="date-box">
+          Lihat semua
+        </div>
+
+      </div>
+
+
+      <div class="activity-list">
+
+
+        <div class="activity-item">
+
+          <div class="activity-icon">
+            🛒
+          </div>
+
+          <div class="activity-text">
+
+            <h4>
+              Transaksi baru ditambahkan
+            </h4>
+
+            <p>
+              Astri Cell - Pembelian Pulsa
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="activity-item">
+
+          <div class="activity-icon">
+            👤
+          </div>
+
+          <div class="activity-text">
+
+            <h4>
+              Data pelanggan diperbarui
+            </h4>
+
+            <p>
+              Rizky Store
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="activity-item">
+
+          <div class="activity-icon">
+            📋
+          </div>
+
+          <div class="activity-text">
+
+            <h4>
+              Laporan harian dibuat
+            </h4>
+
+            <p>
+              Laporan 22 Mei 2026
+            </p>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="activity-item">
+
+          <div class="activity-icon">
+            💰
+          </div>
+
+          <div class="activity-text">
+
+            <h4>
+              Data charge diperbarui
+            </h4>
+
+            <p>
+              Nominal charge sistem
+            </p>
+
+          </div>
+
+        </div>
 
       </div>
 
@@ -1031,153 +1333,3 @@ background-position:center -12px;
   </div>
 
 </div>
-  
-<script type="module">
-
-/* IMPORT FIREBASE */
-
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
-import {
-  getAuth,
-  onAuthStateChanged
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-import {
-  getFirestore,
-  doc,
-  getDoc
-}
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
-
-/* FIREBASE CONFIG */
-
-const firebaseConfig = {
-  apiKey: "AIzaSyA0YHpAO0JyCNt-oJNwJdgKCOwLiagrfvg",
-  authDomain: "digital-report-3567d.firebaseapp.com",
-  projectId: "digital-report-3567d",
-  storageBucket: "digital-report-3567d.firebasestorage.app",
-  messagingSenderId: "509408276429",
-  appId: "1:509408276429:web:65323d54b3211644ecde84"
-};
-
-
-
-/* INIT FIREBASE */
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const db = getFirestore(app);
-
-
-
-/* CEK USER LOGIN */
-
-onAuthStateChanged(auth, async (user) => {
-
-  if(user){
-
-    /* AMBIL DATA USER */
-
-    const docRef = doc(db, "users", user.uid);
-
-    const docSnap = await getDoc(docRef);
-
-
-    if(docSnap.exists()){
-
-      const data = docSnap.data();
-
-
-      /* TAMPILKAN NAMA TOKO */
-
-      document.getElementById("namaToko").innerText =
-      data.namaToko;
-
-    }
-
-
-
-    /* DATA SEMENTARA */
-
-    let cash = 500000;
-
-    let saldo = 250000;
-
-
-
-    /* TAMPILKAN CASH */
-
-    document.getElementById("cashAmount").innerText =
-    "Rp " + cash.toLocaleString("id-ID");
-
-
-
-    /* TAMPILKAN SALDO */
-
-    document.getElementById("saldoAmount").innerText =
-    "Rp " + saldo.toLocaleString("id-ID");
-
-
-
-    /* TOTAL */
-
-    const total = cash + saldo;
-
-
-
-    /* TAMPILKAN TOTAL */
-
-    document.getElementById("totalSemua").innerText =
-    "Rp " + total.toLocaleString("id-ID");
-
-  }
-
-});
-
-  /* TOGGLE DROPDOWN */
-
-window.toggleFilter = function(){
-
-  const dropdown =
-  document.getElementById("filterDropdown");
-
-  if(dropdown.style.display === "block"){
-
-    dropdown.style.display = "none";
-
-  }else{
-
-    dropdown.style.display = "block";
-  }
-
-}
-
-/* GANTI TOP */
-
-window.setTop = function(number){
-
-  document.getElementById("topTitle")
-  .innerText =
-  `Top ${number} Pelanggan`;
-
-  document.getElementById("filterDropdown")
-  .style.display = "none";
-
-  console.log("Filter Top:", number);
-
-}  
-
-</script>
-</div>
-
-</div>
-</body>
-  
-</html>
