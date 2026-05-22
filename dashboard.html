@@ -1544,30 +1544,37 @@ MOBILE CALENDAR
 
 const now = new Date();
 
-const months = [
-  "JAN","FEB","MAR","APR",
-  "MEI","JUN","JUL","AGS",
-  "SEP","OKT","NOV","DES"
-];
+let fullDate;
 
+if(window.innerWidth <= 768){
 
-/* DESKTOP */
-
-const now = new Date();
-
-const mobileDate =
-now.toLocaleDateString(
-'id-ID',
-{
-  day:'numeric',
-  month:'long'
-}
+  fullDate =
+  now.toLocaleDateString(
+  'id-ID',
+  {
+    day:'numeric',
+    month:'long'
+  }
 );
+
+}else{
+
+  fullDate =
+  now.toLocaleDateString(
+  'id-ID',
+  {
+    day:'numeric',
+    month:'long',
+    year:'numeric'
+  }
+);
+
+}
 
 document.getElementById(
 'tanggalDesktop'
 ).innerText =
-mobileDate;
+fullDate;
 
 </script>
 
