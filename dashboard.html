@@ -271,6 +271,12 @@ TOPBAR
 
 .topbar{
 
+  position:sticky;
+
+  top:0;
+
+  z-index:999;
+
   display:flex;
 
   justify-content:space-between;
@@ -278,6 +284,15 @@ TOPBAR
   align-items:flex-start;
 
   margin-bottom:26px;
+
+  padding:18px 0;
+
+  background:
+  rgba(245,247,249,0.82);
+
+  backdrop-filter:blur(14px);
+
+  -webkit-backdrop-filter:blur(14px);
 }
 
 .topbar-left h1{
@@ -813,13 +828,15 @@ MOBILE
 
  .topbar{
 
-  flex-direction:row;
+    top:0;
 
-  justify-content:space-between;
+    padding:10px 0;
 
-  align-items:flex-start;
+    margin-bottom:18px;
 
-  gap:10px;
+    backdrop-filter:blur(10px);
+
+    -webkit-backdrop-filter:blur(10px);
 }
 
   .topbar-left h1{
