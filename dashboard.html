@@ -817,8 +817,12 @@ MOBILE
   }
 
   .topbar-left h1{
-    font-size:12px;
+    font-size:14px;
   }
+
+  .topbar-left p{
+  font-size:11px;
+}
 
   .hero-card{
     padding:26px;
@@ -934,13 +938,13 @@ MOBILE CALENDAR
 
   .mobile-calendar{
 
-    width:74px;
+    width:58px;
 
-    height:74px;
+    height:64px;
 
     background:white;
 
-    border-radius:20px;
+    border-radius:16px;
 
     display:flex;
 
@@ -950,34 +954,48 @@ MOBILE CALENDAR
 
     justify-content:center;
 
+    overflow:hidden;
+
+    padding-top:0;
+
     box-shadow:
     0 10px 25px rgba(0,0,0,0.08);
 
     border:
     1px solid #edf2f7;
-  }
+}
 
   .mobile-calendar .month{
 
-    font-size:12px;
+    width:100%;
+
+    background:#0a6b2d;
+
+    color:white;
+
+    font-size:10px;
 
     font-weight:700;
 
-    color:#0a6b2d;
+    text-align:center;
+
+    padding:4px 0;
 
     letter-spacing:1px;
-  }
+}
 
   .mobile-calendar .day{
 
-    font-size:30px;
+    font-size:24px;
 
     font-weight:800;
 
     color:#1f2937;
 
     line-height:1;
-  }
+
+    margin-top:6px;
+}
 
 }
   
@@ -1077,7 +1095,7 @@ MOBILE CALENDAR
 
     <div class="topbar-right">
 
-  <div class="mobile-calendar">
+  <div class="date-box mobile-calendar">
 
     <span class="month" id="monthNow">
       MEI
