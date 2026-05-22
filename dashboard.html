@@ -817,7 +817,7 @@ MOBILE
   }
 
   .topbar-left h1{
-    font-size:26px;
+    font-size:12px;
   }
 
   .hero-card{
@@ -922,6 +922,56 @@ MOBILE NAVIGATION
 
 }
 
+  /* =========================
+MOBILE CALENDAR
+========================= */
+
+.mobile-calendar{
+
+  width:74px;
+
+  height:74px;
+
+  background:white;
+
+  border-radius:20px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,0.08);
+
+  border:
+  1px solid #edf2f7;
+}
+
+.mobile-calendar .month{
+
+  font-size:12px;
+
+  font-weight:700;
+
+  color:#0a6b2d;
+
+  letter-spacing:1px;
+}
+
+.mobile-calendar .day{
+
+  font-size:30px;
+
+  font-weight:800;
+
+  color:#1f2937;
+
+  line-height:1;
+}
   
 </style>
 
@@ -1018,14 +1068,17 @@ MOBILE NAVIGATION
       </div>
 
       <div class="topbar-right">
+<div class="mobile-calendar">
 
-        <div class="date-box" id="tanggalHariIni">
-  📅 Loading...
+  <span class="month" id="monthNow">
+    MEI
+  </span>
+
+  <span class="day" id="dayNow">
+    22
+  </span>
+
 </div>
-
-      </div>
-
-    </div>
 
 
 
@@ -1454,24 +1507,21 @@ MOBILE NAVIGATION
 
 <script>
 
-const today = new Date();
+const now = new Date();
 
-const options = {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric'
-};
+const months = [
+  "JAN","FEB","MAR","APR",
+  "MEI","JUN","JUL","AGS",
+  "SEP","OKT","NOV","DES"
+];
 
-const tanggal =
-today.toLocaleDateString(
-'id-ID',
-options
-);
+document.getElementById("monthNow")
+.innerText =
+months[now.getMonth()];
 
-document.getElementById(
-'tanggalHariIni'
-).innerHTML =
-`📅 ${tanggal}`;
+document.getElementById("dayNow")
+.innerText =
+now.getDate();
 
 </script>
 
