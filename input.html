@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8" />
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0"/>
+
+<title>Input Laporan</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+/* =========================
+RESET
+========================= */
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Inter',sans-serif;
+  background:#f5f7f9;
+  color:#1c1c1c;
+}
+
+/* =========================
+LAYOUT
+========================= */
+
+.dashboard-layout{
+  display:flex;
+  min-height:100vh;
+}
+
+/* =========================
+SIDEBAR
+========================= */
+
+.sidebar{
+
+  width:260px;
+
+  background:
+  linear-gradient(
+    180deg,
+    #052e1b,
+    #06351f,
+    #041f14
+  );
+
+  padding:24px 16px;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:space-between;
+
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  height:100vh;
+
+  overflow:hidden;
+}
+
+.sidebar::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+  radial-gradient(
+    circle at top right,
+    rgba(32,201,111,0.16),
+    transparent 45%
+  );
+
+  pointer-events:none;
+}
+
+/* LOGO */
+
+.logo{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  color:white;
+
+  margin-bottom:40px;
+
+  position:relative;
+
+  z-index:2;
+}
+
+.logo span{
+
+  font-size:16px;
+
+  font-weight:700;
+}
+
+.logo-icon{
+
+  width:44px;
+  height:44px;
+
+  border-radius:14px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background:
+  rgba(255,255,255,0.08);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+}
+
+.logo-icon i{
+
+  font-size:22px;
+
+  color:#8dff9d;
+}
+
+/* MENU */
+
+.sidebar-menu{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:8px;
+
+  position:relative;
+
+  z-index:2;
+}
+
+.sidebar-title{
+
+  color:rgba(255,255,255,0.45);
+
+  font-size:12px;
+
+  font-weight:600;
+
+  margin:
+  22px 14px 8px;
+}
+
+.sidebar-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  padding:16px 18px;
+
+  border-radius:18px;
+
+  color:rgba(255,255,255,0.82);
+
+  text-decoration:none;
+
+  font-size:15px;
+
+  font-weight:500;
+
+  transition:0.25s;
+}
+
+.sidebar-item i{
+
+  width:20px;
+
+  text-align:center;
+}
+
+.sidebar-item:hover{
+
+  background:
+  rgba(255,255,255,0.08);
+
+  color:white;
+}
+
+.sidebar-item.active{
+
+  background:
+  linear-gradient(
+    135deg,
+    #0a6b2d,
+    #11853c
+  );
+
+  color:white;
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* PROFILE */
+
+.sidebar-profile{
+
+  position:relative;
+
+  z-index:2;
+
+  background:
+  rgba(255,255,255,0.06);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  border-radius:22px;
+
+  padding:16px;
+
+  color:white;
+}
+
+.profile-top{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+}
+
+.profile-avatar{
+
+  width:46px;
+  height:46px;
+
+  border-radius:50%;
+
+  background:#1ec45d;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-weight:700;
+}
+
+/* =========================
+MAIN CONTENT
+========================= */
+
+.main-content{
+
+  flex:1;
+
+  margin-left:260px;
+
+  padding:24px;
+}
+
+/* =========================
+TOPBAR
+========================= */
+
+.topbar{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  margin-bottom:22px;
+}
+
+.topbar h1{
+
+  font-size:42px;
+
+  font-weight:800;
+
+  margin-bottom:8px;
+}
+
+.topbar p{
+
+  color:#6b7280;
+
+  font-size:15px;
+}
+
+.topbar-right{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:16px;
+}
+
+.date-box{
+
+  background:white;
+
+  border:
+  1px solid #edf1f3;
+
+  border-radius:16px;
+
+  padding:14px 18px;
+
+  font-weight:600;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+}
+
+.user-box{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  background:white;
+
+  border:
+  1px solid #edf1f3;
+
+  border-radius:16px;
+
+  padding:10px 14px;
+}
+
+/* =========================
+GRID
+========================= */
+
+.content-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  1.6fr .7fr;
+
+  gap:18px;
+}
+
+/* =========================
+CARD
+========================= */
+
+.card{
+
+  background:white;
+
+  border:
+  1px solid #edf1f3;
+
+  border-radius:24px;
+
+  padding:22px;
+}
+
+.section-header{
+
+  display:flex;
+
+  align-items:flex-start;
+
+  justify-content:space-between;
+
+  margin-bottom:18px;
+}
+
+.section-left{
+
+  display:flex;
+
+  gap:14px;
+}
+
+.number-badge{
+
+  width:34px;
+  height:34px;
+
+  border-radius:50%;
+
+  background:#063f24;
+
+  color:white;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-weight:700;
+
+  font-size:14px;
+}
+
+.section-title{
+
+  font-size:32px;
+
+  font-weight:700;
+
+  margin-bottom:6px;
+}
+
+.section-desc{
+
+  font-size:14px;
+
+  color:#667085;
+}
+
+/* =========================
+OPENING
+========================= */
+
+.opening-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  1.1fr 1fr 1fr auto;
+
+  gap:18px;
+
+  align-items:center;
+}
+
+.total-box{
+
+  background:#f6faf7;
+
+  border:
+  1px solid #e7f1ea;
+
+  border-radius:18px;
+
+  padding:22px;
+}
+
+.total-box h4{
+
+  color:#0a6b2d;
+
+  font-size:15px;
+
+  margin-bottom:10px;
+}
+
+.total-box h2{
+
+  color:#0a6b2d;
+
+  font-size:28px;
+
+  font-weight:800;
+
+  margin-bottom:10px;
+}
+
+.total-box p{
+
+  color:#667085;
+
+  font-size:14px;
+}
+
+.input-group label{
+
+  display:block;
+
+  margin-bottom:10px;
+
+  font-size:14px;
+
+  color:#667085;
+}
+
+.input-group input{
+
+  width:100%;
+
+  height:52px;
+
+  border:
+  1px solid #dfe5e8;
+
+  border-radius:14px;
+
+  padding:0 16px;
+
+  font-size:16px;
+
+  outline:none;
+}
+
+.detail-btn{
+
+  height:52px;
+
+  padding:0 24px;
+
+  border:
+  1px solid #15803d;
+
+  background:white;
+
+  color:#15803d;
+
+  border-radius:14px;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+/* =========================
+TABLE
+========================= */
+
+.table-box{
+
+  border:
+  1px solid #edf1f3;
+
+  border-radius:20px;
+
+  overflow:hidden;
+}
+
+table{
+
+  width:100%;
+
+  border-collapse:collapse;
+}
+
+thead{
+
+  background:#f7faf8;
+}
+
+th{
+
+  padding:16px;
+
+  text-align:left;
+
+  font-size:14px;
+}
+
+td{
+
+  padding:16px;
+
+  border-top:
+  1px solid #edf1f3;
+
+  font-size:14px;
+}
+
+.table-footer{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:16px;
+
+  font-size:14px;
+
+  color:#667085;
+}
+
+.green{
+
+  color:#15803d;
+
+  font-weight:700;
+}
+
+.red{
+  color:#dc2626;
+}
+
+.action-btn{
+
+  background:
+  linear-gradient(
+    135deg,
+    #0a6b2d,
+    #11853c
+  );
+
+  border:none;
+
+  color:white;
+
+  height:48px;
+
+  padding:0 22px;
+
+  border-radius:14px;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+/* =========================
+RIGHT PANEL
+========================= */
+
+.side-panel{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:16px;
+}
+
+.summary-card{
+
+  background:white;
+
+  border:
+  1px solid #edf1f3;
+
+  border-radius:22px;
+
+  padding:22px;
+}
+
+.summary-card h3{
+
+  font-size:16px;
+
+  margin-bottom:8px;
+}
+
+.summary-card p{
+
+  color:#667085;
+
+  font-size:14px;
+
+  margin-bottom:18px;
+}
+
+.total-summary{
+
+  border:
+  1px solid #b7dfc0;
+
+  border-radius:18px;
+
+  padding:18px;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+}
+
+.total-summary h2{
+
+  color:#0a6b2d;
+
+  font-size:22px;
+
+  font-weight:800;
+}
+
+.summary-list{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+}
+
+.summary-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  font-size:15px;
+}
+
+.divider{
+
+  border-top:
+  1px dashed #d7dee2;
+
+  margin:14px 0;
+}
+
+.balance-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:12px 0;
+
+  border-bottom:
+  1px solid #edf1f3;
+}
+
+.balance-total{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-top:16px;
+
+  color:#15803d;
+
+  font-weight:800;
+
+  font-size:18px;
+}
+
+.check-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:12px 0;
+}
+
+.balance-badge{
+
+  background:#e7f6eb;
+
+  color:#15803d;
+
+  padding:8px 14px;
+
+  border-radius:12px;
+
+  font-size:13px;
+
+  font-weight:700;
+}
+
+/* =========================
+BOTTOM BUTTON
+========================= */
+
+.bottom-actions{
+
+  display:grid;
+
+  grid-template-columns:
+  1fr 1fr 1.5fr;
+
+  gap:14px;
+
+  margin-top:18px;
+}
+
+.bottom-btn{
+
+  height:60px;
+
+  border:none;
+
+  border-radius:16px;
+
+  font-size:16px;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+.btn-light{
+
+  background:white;
+
+  border:
+  1px solid #e2e8ec;
+}
+
+.btn-green{
+
+  background:
+  linear-gradient(
+    135deg,
+    #0a6b2d,
+    #11853c
+  );
+
+  color:white;
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:1200px){
+
+  .content-grid{
+    grid-template-columns:1fr;
+  }
+
+  .opening-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .sidebar{
+    display:none;
+  }
+
+  .main-content{
+    margin-left:0;
+    padding:16px;
+  }
+
+  .topbar{
+    flex-direction:column;
+    gap:18px;
+  }
+
+  .topbar h1{
+    font-size:28px;
+  }
+
+  .section-title{
+    font-size:24px;
+  }
+
+  .bottom-actions{
+    grid-template-columns:1fr;
+  }
+
+  .table-box{
+    overflow:auto;
+  }
+
+  table{
+    min-width:900px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="dashboard-layout">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div>
+
+<div class="logo">
+
+<div class="logo-icon">
+<i class="fa-solid fa-database"></i>
+</div>
+
+<span>Digital Report</span>
+
+</div>
+
+<div class="sidebar-menu">
+
+<a href="dashboard.html" class="sidebar-item">
+<i class="fa-solid fa-house"></i>
+Dashboard
+</a>
+
+<a href="input.html" class="sidebar-item active">
+<i class="fa-solid fa-pen-to-square"></i>
+Input Laporan
+</a>
+
+<a href="database.html" class="sidebar-item">
+<i class="fa-solid fa-database"></i>
+Database
+</a>
+
+<a href="report.html" class="sidebar-item">
+<i class="fa-regular fa-clipboard"></i>
+Report
+</a>
+
+<a href="rekap.html" class="sidebar-item">
+<i class="fa-regular fa-calendar"></i>
+Rekap Bulanan
+</a>
+
+<div class="sidebar-title">
+MASTER DATA
+</div>
+
+<a href="#" class="sidebar-item">
+<i class="fa-solid fa-arrows-left-right"></i>
+Jenis Transaksi
+</a>
+
+<a href="#" class="sidebar-item">
+<i class="fa-solid fa-shapes"></i>
+Kategori
+</a>
+
+<a href="#" class="sidebar-item">
+<i class="fa-solid fa-filter-circle-dollar"></i>
+Efek Kategori
+</a>
+
+<a href="#" class="sidebar-item">
+<i class="fa-solid fa-building-columns"></i>
+Akun Bank / ATM
+</a>
+
+</div>
+
+</div>
+
+<div class="sidebar-profile">
+
+<div class="profile-top">
+
+<div class="profile-avatar">
+T
+</div>
+
+<div>
+
+<h4>Tokosayyida</h4>
+
+<p style="opacity:.7;font-size:13px;">
+Admin
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main-content">
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+<div>
+
+<h1>
+Input Laporan Harian
+</h1>
+
+<p>
+Catat semua transaksi dan kondisi keuangan hari ini
+</p>
+
+</div>
+
+<div class="topbar-right">
+
+<div class="date-box">
+<i class="fa-regular fa-calendar"></i>
+22 Mei 2026
+<i class="fa-solid fa-chevron-down"></i>
+</div>
+
+<div class="user-box">
+
+<div class="profile-avatar"
+style="width:42px;height:42px;">
+T
+</div>
+
+<div>
+<div style="font-weight:700;">
+Tokosayyida
+</div>
+
+<div style="font-size:13px;color:#667085;">
+Admin
+</div>
+</div>
+
+<i class="fa-solid fa-chevron-down"
+style="margin-left:10px;"></i>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- CONTENT GRID -->
+
+<div class="content-grid">
+
+<!-- LEFT -->
+
+<div>
+
+<!-- OPENING -->
+
+<div class="card">
+
+<div class="section-header">
+
+<div class="section-left">
+
+<div class="number-badge">
+1
+</div>
+
+<div>
+
+<div class="section-title">
+Opening Shift (Kondisi Awal)
+</div>
+
+<div class="section-desc">
+Masukkan total kas dan saldo awal sebelum transaksi hari ini
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="opening-grid">
+
+<div class="total-box">
+
+<h4>
+TOTAL MODAL HARI INI
+</h4>
+
+<h2>
+Rp 88.294.480
+</h2>
+
+<p>
+Total Kas + Total Saldo
+</p>
+
+</div>
+
+<div class="input-group">
+
+<label>
+Cash Pagi
+</label>
+
+<input type="text"
+value="Rp 23.890.509">
+
+</div>
+
+<div class="input-group">
+
+<label>
+Total Saldo
+</label>
+
+<input type="text"
+value="Rp 64.403.971">
+
+</div>
+
+<button class="detail-btn">
+<i class="fa-regular fa-eye"></i>
+&nbsp;
+Lihat Detail
+</button>
+
+</div>
+
+</div>
+
+<!-- TRANSAKSI -->
+
+<div class="card"
+style="margin-top:18px;">
+
+<div class="section-header">
+
+<div class="section-left">
+
+<div class="number-badge">
+2
+</div>
+
+<div>
+
+<div class="section-title">
+Transaksi Nasabah
+</div>
+
+<div class="section-desc">
+Catat semua transaksi yang berasal dari nasabah
+</div>
+
+</div>
+
+</div>
+
+<button class="action-btn">
+<i class="fa-solid fa-plus"></i>
+&nbsp;
+Tambah Transaksi
+</button>
+
+</div>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>No</th>
+<th>Jenis Transaksi</th>
+<th>Nominal</th>
+<th>Admin</th>
+<th>Admin Bank</th>
+<th>Arah</th>
+<th>Cash</th>
+<th>Keterangan</th>
+<th></th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>1</td>
+<td>TARIK TUNAI</td>
+<td>2.000.000</td>
+<td>6.000</td>
+<td>-</td>
+<td class="green">↓</td>
+<td class="red">↑</td>
+<td>Budi Santoso</td>
+<td>⋮</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>PLN</td>
+<td>50.000</td>
+<td>3.000</td>
+<td>3.000</td>
+<td class="red">↑</td>
+<td class="green">↓</td>
+<td>Siti Aminah</td>
+<td>⋮</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>TARIK TUNAI</td>
+<td>150.000</td>
+<td>3.000</td>
+<td>-</td>
+<td class="green">↓</td>
+<td class="red">↑</td>
+<td>Andi Pratama</td>
+<td>⋮</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>DANA</td>
+<td>2.000.000</td>
+<td>6.000</td>
+<td>1.500</td>
+<td class="red">↑</td>
+<td class="green">↓</td>
+<td>Rina Marlina</td>
+<td>⋮</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>DANA</td>
+<td>1.200.000</td>
+<td>6.000</td>
+<td>1.500</td>
+<td class="red">↑</td>
+<td class="green">↓</td>
+<td>Joko Widodo</td>
+<td>⋮</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>TARIK TUNAI</td>
+<td>280.000</td>
+<td>3.000</td>
+<td>-</td>
+<td class="green">↓</td>
+<td class="red">↑</td>
+<td>Mira Handayani</td>
+<td>⋮</td>
+</tr>
+
+<tr>
+<td>7</td>
+<td>TARIK TUNAI</td>
+<td>2.000.000</td>
+<td>6.000</td>
+<td>-</td>
+<td class="green">↓</td>
+<td class="red">↑</td>
+<td>Agus Setiawan</td>
+<td>⋮</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="table-footer">
+
+<div>
+Total 7 transaksi
+</div>
+
+<div>
+Total Admin (Luar + Dalam)
+</div>
+
+<div class="green">
+Rp 369.000
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MUTASI -->
+
+<div class="card"
+style="margin-top:18px;">
+
+<div class="section-header">
+
+<div class="section-left">
+
+<div class="number-badge">
+3
+</div>
+
+<div>
+
+<div class="section-title">
+Mutasi Internal / Transaksi Operasional
+</div>
+
+<div class="section-desc">
+Catat mutasi saldo antar tempat, setoran, pengeluaran, tambahan saldo, dll (bukan transaksi nasabah)
+</div>
+
+</div>
+
+</div>
+
+<button class="detail-btn">
+<i class="fa-solid fa-plus"></i>
+&nbsp;
+Tambah Mutasi
+</button>
+
+</div>
+
+<div class="table-box">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>No</th>
+<th>Jenis Mutasi</th>
+<th>Dari</th>
+<th>Ke</th>
+<th>Nominal</th>
+<th>Admin Bank</th>
+<th>Keterangan</th>
+<th></th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>1</td>
+<td>TRANSFER BRI</td>
+<td>-</td>
+<td>BANK</td>
+<td>30.000.000</td>
+<td>5.000</td>
+<td>Setoran bulanan ke BRI</td>
+<td>⋮</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>ATM KE MESIN</td>
+<td>ATM 1</td>
+<td>MESIN EDC</td>
+<td>30.004.000</td>
+<td>4.000</td>
+<td>Pindah saldo untuk mesin</td>
+<td>⋮</td>
+</tr>
+
+</tbody>
+
+</table>
+
+<div class="table-footer">
+
+<div>
+Total 2 mutasi
+</div>
+
+<div>
+Total Mutasi
+</div>
+
+<div class="green">
+Rp 60.004.000
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- BUTTON -->
+
+<div class="bottom-actions">
+
+<button class="bottom-btn btn-light">
+<i class="fa-regular fa-floppy-disk"></i>
+&nbsp;
+Simpan Draft
+</button>
+
+<button class="bottom-btn btn-light">
+<i class="fa-solid fa-rotate-left"></i>
+&nbsp;
+Reset
+</button>
+
+<button class="bottom-btn btn-green">
+<i class="fa-regular fa-floppy-disk"></i>
+&nbsp;
+Simpan & Finalisasi Laporan
+</button>
+
+</div>
+
+</div>
+
+<!-- RIGHT -->
+
+<div class="side-panel">
+
+<div class="summary-card">
+
+<h3>
+REKAP HARI INI
+</h3>
+
+<p>
+Ringkasan otomatis berdasarkan input di samping
+</p>
+
+<div class="total-summary">
+
+<div>
+
+<div style="font-size:14px;">
+TOTAL PERPUTARAN
+</div>
+
+<h2>
+Rp 88.641.130
+</h2>
+
+<div style="margin-top:8px;font-size:14px;color:#667085;">
+Cash + Saldo Akhir
+</div>
+
+</div>
+
+<div style="font-size:42px;color:#16a34a;">
+↗
+</div>
+
+</div>
+
+</div>
+
+<div class="summary-card">
+
+<h3>
+RINCIAN
+</h3>
+
+<div class="summary-list">
+
+<div class="summary-row">
+<span>TOTAL ADMIN (LUAR + DALAM)</span>
+<strong>Rp 369.000</strong>
+</div>
+
+<div class="summary-row">
+<span>ADMIN BANK</span>
+<strong>Rp 83.000</strong>
+</div>
+
+<div class="summary-row">
+<span>FEE</span>
+<strong>Rp 60.650</strong>
+</div>
+
+<div class="divider"></div>
+
+<div class="summary-row">
+<span>TOTAL TRANSAKSI NASABAH</span>
+<strong>7 Transaksi</strong>
+</div>
+
+<div class="summary-row">
+<span>TOTAL MUTASI INTERNAL</span>
+<strong>2 Mutasi</strong>
+</div>
+
+</div>
+
+</div>
+
+<div class="summary-card">
+
+<h3>
+SALDO AKHIR
+</h3>
+
+<div class="balance-row">
+<span>SALDO ATM</span>
+<strong>Rp 3.680.143</strong>
+</div>
+
+<div class="balance-row">
+<span>SALDO MESIN</span>
+<strong>Rp 6.986.414</strong>
+</div>
+
+<div class="balance-row">
+<span>BRI ATM 1</span>
+<strong>Rp 17.924.764</strong>
+</div>
+
+<div class="balance-row">
+<span>BRI ATM 2</span>
+<strong>Rp 1.802.300</strong>
+</div>
+
+<div class="balance-total">
+<span>TOTAL SALDO AKHIR</span>
+<span>Rp 30.393.621</span>
+</div>
+
+</div>
+
+<div class="summary-card">
+
+<h3>
+CASH AKHIR</h3>
+
+<div class="balance-row"
+style="border:none;">
+<span>CASH MALAM</span>
+<strong>Rp 58.247.509</strong>
+</div>
+
+</div>
+
+<div class="summary-card">
+
+<h3>
+CEK KESEIMBANGAN
+</h3>
+
+<div class="check-row">
+
+<div style="display:flex;gap:10px;align-items:center;">
+<i class="fa-regular fa-circle-check"
+style="color:#16a34a;"></i>
+
+<span>Saldo Balance</span>
+</div>
+
+<div class="balance-badge">
+BALANCE
+</div>
+
+</div>
+
+<div class="check-row">
+
+<div style="display:flex;gap:10px;align-items:center;">
+<i class="fa-regular fa-circle-check"
+style="color:#16a34a;"></i>
+
+<span>Cash Balance</span>
+</div>
+
+<div class="balance-badge">
+BALANCE
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
