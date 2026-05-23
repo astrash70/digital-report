@@ -1170,7 +1170,9 @@ MOBILE CALENDAR
   Input Laporan
 </a>
 
-<a href="database.html" class="sidebar-item">
+<a href="#"
+class="sidebar-item"
+onclick="loadPage('database-content.html'); return false;">
   <i class="fa-solid fa-database"></i>
   Database
 </a>
@@ -1216,7 +1218,7 @@ MOBILE CALENDAR
 
   <!-- MAIN CONTENT -->
 
-  <div class="main-content">
+  <div class="main-content" id="mainContent">
 
 
     <!-- TOPBAR -->
@@ -1816,6 +1818,17 @@ document.getElementById(
 'tanggalDesktop'
 ).innerText =
 fullDate;
+
+async function loadPage(page){
+
+  const response = await fetch(page);
+
+  const html = await response.text();
+
+  document.getElementById('mainContent').innerHTML = html;
+
+}
+
 
 </script>
 
