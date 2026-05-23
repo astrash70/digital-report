@@ -1,356 +1,371 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Database</title>
+<title>Database - Digital Report</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
+/* =========================
+RESET
+========================= */
 
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Arial,sans-serif;
 }
 
 body{
-  background:#f5f5f5;
+  font-family:'Inter',sans-serif;
+  background:#f5f7f9;
+  color:#1c1c1c;
 }
 
-/* HEADER */
+/* =========================
+LAYOUT
+========================= */
 
-.topbar{
+.dashboard-layout{
+  display:flex;
+  min-height:100vh;
+}
 
-  width:100%;
+/* =========================
+SIDEBAR
+========================= */
 
-  height:75px;
+.sidebar{
+
+  width:260px;
 
   background:
   linear-gradient(
-    135deg,
-    #0a6b2d,
-    #179647
+    180deg,
+    #052e1b,
+    #06351f,
+    #041f14
   );
 
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  padding:0 20px;
-
-  color:white;
-
-  position:sticky;
-
-  top:0;
-
-  z-index:999;
-
-  box-shadow:
-  0 5px 15px rgba(0,0,0,0.15);
-}
-
-/* BACK BUTTON */
-
-.back-btn{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:
-  clamp(
-    28px,
-    4vw,
-    42px
-  );
-
-  font-weight:900;
-
-  color:white;
-
-  cursor:pointer;
-
-  transition:0.2s;
-
-  line-height:1;
-
-  padding:
-  clamp(2px,1vw,6px)
-  clamp(6px,1vw,12px);
-}
-  
-.back-btn:hover{
-
-  transform:scale(1.05);
-
-  background:
-  rgba(255,255,255,0.22);
-}
-
-/* TITLE */
-
-.title{
-
-  font-size:20px;
-
-  font-weight:bold;
-}
-
-/* PLUS BUTTON */
-
-.plus-btn{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  font-size:
-  clamp(
-    34px,
-    5vw,
-    52px
-  );
-
-  font-weight:200;
-
-  color:white;
-
-  cursor:pointer;
-
-  transition:0.25s;
-
-  position:relative;
-
-  padding:
-  clamp(2px,1vw,6px);
-
-  line-height:1;
-}
-
-
-/* CONTENT */
-
-.content{
-
-  padding:20px;
-}
-
-/* CARD */
-
-.data-card{
-
-  background:white;
-
-  border-radius:22px;
-
-  padding:18px;
-
-  margin-bottom:14px;
-
-  box-shadow:
-  0 5px 15px rgba(0,0,0,0.08);
-}
-
-.data-card h3{
-
-  color:#0a6b2d;
-
-  margin-bottom:8px;
-}
-
-.data-card p{
-
-  color:#666;
-
-  font-size:14px;
-}
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-  .topbar{
-
-    height:65px;
-
-    padding:0 14px;
-  }
-
-  .title{
-
-    font-size:17px;
-  }
-}
-
-/* OVERLAY */
-
-.popup-overlay{
-
-  position:fixed;
-
-  inset:0;
-
-  background:
-  rgba(0,0,0,0.45);
-
-  backdrop-filter:blur(4px);
-
-  display:none;
-
-  align-items:center;
-
-  justify-content:center;
-
-  padding:20px;
-
-  z-index:5000;
-}
-
-/* FORM */
-
-.popup-form{
-
-  width:100%;
-
-  max-width:520px;
-
-  max-height:90vh;
-
-  overflow-y:auto;
-
-  background:white;
-
-  border-radius:30px;
-
-  padding:24px;
-
-  box-shadow:
-  0 20px 50px rgba(0,0,0,0.25);
-
-  animation:popupShow 0.25s ease;
-}
-
-/* ANIMATION */
-
-@keyframes popupShow{
-
-  from{
-
-    opacity:0;
-
-    transform:
-    translateY(20px)
-    scale(0.96);
-  }
-
-  to{
-
-    opacity:1;
-
-    transform:
-    translateY(0)
-    scale(1);
-  }
-
-}
-
-/* HEADER */
-
-.popup-header{
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  margin-bottom:24px;
-}
-
-.popup-header h2{
-
-  color:#0a6b2d;
-
-  font-size:
-  clamp(20px,2vw,28px);
-}
-
-.popup-header span{
-
-  font-size:28px;
-
-  cursor:pointer;
-
-  color:#555;
-}
-
-/* FORM GROUP */
-
-.form-group{
+  padding:24px 16px;
 
   display:flex;
 
   flex-direction:column;
 
-  margin-bottom:18px;
+  justify-content:space-between;
+
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  height:100vh;
+
+  overflow:hidden;
 }
 
-.form-group label{
+.sidebar::before{
+
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+  radial-gradient(
+    circle at top right,
+    rgba(32,201,111,0.16),
+    transparent 45%
+  );
+
+  pointer-events:none;
+}
+
+/* LOGO */
+
+.logo{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  color:white;
+
+  font-size:30px;
+
+  font-weight:700;
+
+  margin-bottom:40px;
+
+  position:relative;
+
+  z-index:2;
+}
+
+.logo span{
+  font-size:16px;
+}
+
+/* MENU */
+
+.sidebar-menu{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:8px;
+
+  position:relative;
+
+  z-index:2;
+}
+
+.sidebar-item{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
+
+  padding:16px 18px;
+
+  border-radius:18px;
+
+  color:rgba(255,255,255,0.82);
+
+  text-decoration:none;
+
+  font-size:15px;
+
+  font-weight:500;
+
+  transition:0.25s;
+}
+
+.sidebar-item:hover{
+
+  background:
+  rgba(255,255,255,0.08);
+
+  color:white;
+}
+
+.sidebar-item.active{
+
+  background:
+  linear-gradient(
+    135deg,
+    #0a6b2d,
+    #11853c
+  );
+
+  color:white;
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,0.15);
+}
+
+.sidebar-title{
+
+  color:rgba(255,255,255,0.45);
+
+  font-size:12px;
+
+  font-weight:600;
+
+  margin:
+  24px 14px 8px;
+}
+
+/* PROFILE */
+
+.sidebar-profile{
+
+  position:relative;
+
+  z-index:2;
+
+  background:
+  rgba(255,255,255,0.06);
+
+  border:
+  1px solid rgba(255,255,255,0.08);
+
+  border-radius:22px;
+
+  padding:16px;
+
+  color:white;
+}
+
+.profile-top{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+}
+
+.profile-avatar{
+
+  width:46px;
+  height:46px;
+
+  border-radius:50%;
+
+  background:#1ec45d;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-weight:700;
+}
+
+/* =========================
+MAIN CONTENT
+========================= */
+
+.main-content{
+
+  flex:1;
+
+  margin-left:260px;
+
+  padding:24px;
+}
+
+/* =========================
+TOPBAR
+========================= */
+
+.topbar{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:24px;
+
+  background:white;
+
+  border-radius:24px;
+
+  padding:20px 24px;
+
+  border:
+  1px solid #edf1f3;
+}
+
+.breadcrumb{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  font-size:14px;
+
+  color:#6b7280;
+}
+
+.breadcrumb strong{
+  color:#15803d;
+}
+
+.topbar-right{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:18px;
+}
+
+.date-box{
+
+  background:#f8faf9;
+
+  border:
+  1px solid #edf1f3;
+
+  border-radius:14px;
+
+  padding:10px 14px;
 
   font-size:14px;
 
   font-weight:600;
+}
 
-  color:#333;
+/* =========================
+MAIN CARD
+========================= */
+
+.main-card{
+
+  background:white;
+
+  border-radius:28px;
+
+  padding:26px;
+
+  border:
+  1px solid #edf1f3;
+
+  box-shadow:
+  0 2px 10px rgba(0,0,0,0.03);
+}
+
+/* =========================
+HEADER
+========================= */
+
+.page-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:flex-start;
+
+  margin-bottom:26px;
+}
+
+.page-header h1{
+
+  font-size:34px;
 
   margin-bottom:8px;
 }
 
-/* INPUT */
+.page-header p{
 
-.form-group input,
-.form-group select{
+  color:#6b7280;
 
-  width:100%;
-
-  border:none;
-
-  outline:none;
-
-  background:#f3f3f3;
-
-  border-radius:16px;
-
-  padding:14px 16px;
-
-  font-size:14px;
-
-  transition:0.2s;
+  font-size:15px;
 }
 
-.form-group input:focus,
-.form-group select:focus{
-
-  background:#ebebeb;
-
-  box-shadow:
-  0 0 0 2px rgba(10,107,45,0.15);
-}
-
-/* BUTTON */
-
-.save-btn{
-
-  width:100%;
+.add-btn{
 
   border:none;
 
@@ -358,69 +373,164 @@ body{
   linear-gradient(
     135deg,
     #0a6b2d,
-    #16a34a
+    #169344
   );
 
   color:white;
 
-  padding:16px;
+  padding:16px 22px;
 
-  border-radius:18px;
+  border-radius:16px;
 
-  font-size:15px;
-
-  font-weight:bold;
+  font-weight:600;
 
   cursor:pointer;
-
-  margin-top:10px;
-
-  transition:0.25s;
 }
 
-.save-btn:hover{
+/* =========================
+SUMMARY
+========================= */
 
-  transform:translateY(-2px);
+.summary-grid{
 
-  opacity:0.95;
+  display:grid;
+
+  grid-template-columns:
+  repeat(5,1fr);
+
+  gap:16px;
+
+  margin-bottom:24px;
 }
 
-/* MOBILE */
+.summary-card{
 
-@media(max-width:600px){
+  border:
+  1px solid #edf1f3;
 
-  .popup-form{
+  border-radius:22px;
 
-    border-radius:24px;
+  padding:20px;
 
-    padding:18px;
-  }
-
-  .form-group input,
-  .form-group select{
-
-    padding:13px;
-  }
-
+  background:white;
 }
 
-/* TABLE WRAPPER */
+.summary-top{
 
-.table-wrapper{
+  display:flex;
 
-  width:100%;
+  align-items:center;
+
+  gap:14px;
+
+  margin-bottom:12px;
+}
+
+.summary-icon{
+
+  width:50px;
+  height:50px;
+
+  border-radius:50%;
+
+  background:#eef8f1;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+}
+
+.summary-icon svg{
+
+  width:22px;
+  height:22px;
+
+  stroke:#15803d;
+
+  fill:none;
+
+  stroke-width:2;
+}
+
+.summary-value{
+
+  font-size:34px;
+
+  font-weight:800;
+}
+
+.summary-title{
+
+  font-size:14px;
+
+  color:#6b7280;
+}
+
+/* =========================
+FILTER
+========================= */
+
+.filter-bar{
+
+  display:grid;
+
+  grid-template-columns:
+  1.2fr 1fr 1fr auto;
+
+  gap:14px;
+
+  margin-bottom:18px;
+}
+
+.filter-input,
+.filter-select{
+
+  height:50px;
+
+  border:
+  1px solid #e8edf0;
+
+  border-radius:14px;
+
+  padding:0 16px;
 
   background:white;
 
-  border-radius:24px;
+  outline:none;
 
-  box-shadow:
-  0 5px 20px rgba(0,0,0,0.08);
+  font-family:inherit;
+}
+
+.filter-btn{
+
+  border:none;
+
+  background:#f4f7f5;
+
+  padding:0 18px;
+
+  border-radius:14px;
+
+  font-weight:600;
+
+  cursor:pointer;
+}
+
+/* =========================
+TABLE
+========================= */
+
+.table-wrapper{
+
+  border:
+  1px solid #edf1f3;
+
+  border-radius:22px;
 
   overflow:hidden;
 }
-
-/* TABLE */
 
 table{
 
@@ -428,1132 +538,826 @@ table{
 
   border-collapse:collapse;
 }
-  
-/* HEAD */
 
 thead{
 
-  background:
-  rgba(22,163,74,0.12);
+  background:#f4f8f5;
 }
 
 th{
 
-  padding:18px;
-
   text-align:left;
 
-  color:#0a6b2d;
+  padding:18px;
 
   font-size:14px;
-
-  font-weight:700;
-
-  white-space:nowrap;
 }
-
-/* BODY */
 
 td{
 
-  padding:16px 18px;
-
-  font-size:14px;
-
-  color:#333;
+  padding:18px;
 
   border-top:
-  1px solid #f1f1f1;
+  1px solid #f0f3f5;
 
-  white-space:nowrap;
+  font-size:14px;
 }
 
-/* ROW */
+.badge{
 
-tbody tr{
+  background:#e8f5ec;
 
-  transition:0.2s;
-}
+  color:#15803d;
 
-tbody tr:hover{
+  padding:8px 12px;
 
-  background:#fafafa;
-}
+  border-radius:999px;
 
-/* MOBILE */
-
-@media(max-width:600px){
-
-  th,
-  td{
-
-    padding:14px;
-
-    font-size:13px;
-  }
-
-}
-
-  /* ACTION */
-
-.action-box{
-
-  position:relative;
-}
-
-/* TITIK 3 */
-
-.action-btn{
-
-  border:none;
-
-  background:none;
-
-  font-size:22px;
-
-  cursor:pointer;
-
-  color:#666;
-}
-
-/* MENU */
-
-.action-menu{
-
-  position:absolute;
-
-  right:0;
-
-  top:30px;
-
-  background:white;
-
-  border-radius:14px;
-
-  overflow:hidden;
-
-  box-shadow:
-  0 10px 25px rgba(0,0,0,0.12);
-
-  display:none;
-
-  min-width:70px;
-
-  z-index:100;
-}
-
-.action-menu div{
-
-  padding:8px 10px;
-
-  cursor:pointer;
-
-  font-size:7px;
-
-  transition:0.2s;
-}
-
-.action-menu div:hover{
-
-  background:#f3f3f3;
-}
-
-  /* AKSI CELL */
-
-.aksi-cell{
-
-  width:20px;
-
-  white-space:nowrap;
-
-  text-align:right;
-
-  padding-right:2px;
-
-  padding-left:0;
-}
-  
-/* ACTION BOX */
-
-.action-box{
-
-  display:flex;
-
-  justify-content:flex-end;
-
-  position:relative;
-}
-
-/* TITIK 3 */
-
-.action-btn{
-
-  border:none;
-
-  background:none;
-
-  font-size:22px;
-
-  cursor:pointer;
-
-  color:#666;
-
-  padding:8px;
-
-  min-width:30px;
-
-  min-height:30px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  touch-action:manipulation;
-}
-
-  /* SORT */
-
-.sort-box{
-
-  display:flex;
-
-  gap:10px;
-
-  margin-bottom:14px;
-}
-
-.sort-box button{
-
-  border:none;
-
-  background:
-  rgba(22,163,74,0.12);
-
-  color:#0a6b2d;
-
-  padding:10px 16px;
-
-  border-radius:14px;
-
-  cursor:pointer;
+  font-size:12px;
 
   font-weight:600;
-
-  transition:0.2s;
 }
 
-.sort-box button:hover{
-
-  background:
-  rgba(22,163,74,0.2);
-}
-
-/* SORT HEADER */
-
-.sort-header{
+.effect{
 
   display:flex;
 
   align-items:center;
 
   gap:8px;
+
+  color:#ef4444;
+
+  font-weight:600;
 }
 
-/* BOX */
+.expand-btn{
 
-.sort-dropdown-box{
+  width:36px;
+  height:36px;
 
-  position:relative;
-}
+  border:none;
 
-/* ICON */
+  border-radius:12px;
 
-.sort-icon{
+  background:#f5f7f9;
 
   cursor:pointer;
 
-  font-size:15px;
-
-  color:#0a6b2d;
-
-  user-select:none;
-
-  transition:0.2s;
+  font-size:18px;
 }
 
-.sort-icon:hover{
+/* =========================
+CHILD TABLE
+========================= */
 
-  opacity:0.7;
+.child-wrapper{
+
+  background:#fafcfa;
+
+  padding:18px;
 }
 
-/* MENU */
+.child-table{
 
-.sort-menu{
+  width:100%;
 
-  position:absolute;
+  border:
+  1px solid #e8edf0;
 
-  top:24px;
-
-  left:0;
-
-  background:white;
-
-  border-radius:14px;
+  border-radius:18px;
 
   overflow:hidden;
-
-  box-shadow:
-  0 10px 25px rgba(0,0,0,0.12);
-
-  display:none;
-
-  min-width:90px;
-
-  z-index:999;
 }
 
-/* ITEM */
+.child-table th{
 
-.sort-menu div{
-
-  padding:10px 14px;
+  background:#f4f8f5;
 
   font-size:13px;
+}
 
-  color:#333;
+.child-table td{
+
+  font-size:13px;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+.table-footer{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-top:18px;
+
+  font-size:14px;
+
+  color:#6b7280;
+}
+
+.pagination{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+}
+
+.page-btn{
+
+  width:38px;
+  height:38px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:#f4f7f5;
 
   cursor:pointer;
 
-  transition:0.2s;
+  font-weight:700;
 }
 
-.sort-menu div:hover{
+.page-btn.active{
 
-  background:#f3f3f3;
+  background:#15803d;
+
+  color:white;
 }
 
-  /* =========================
-   MOBILE RESPONSIVE
+/* =========================
+MOBILE
 ========================= */
+
+@media(max-width:1100px){
+
+  .summary-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .filter-bar{
+    grid-template-columns:1fr;
+  }
+
+}
 
 @media(max-width:768px){
 
-  /* CONTENT */
-
-  .content{
-
-    padding:10px;
+  .sidebar{
+    display:none;
   }
 
-  /* TABLE WRAPPER */
-
-  .table-wrapper{
-
-    border-radius:18px;
+  .main-content{
+    margin-left:0;
+    padding:14px;
   }
-
-  /* TABLE */
-
-  table{
-
-  width:100%;
-}
-
-  /* HEAD */
-
-  th{
-
-    font-size:8px;
-
-    padding:10px 4px;
-
-    white-space:nowrap;
-  }
-
-  /* BODY */
-
-  td{
-
-    font-size:8px;
-
-    padding:10px 4px;
-
-    white-space:nowrap;
-
-    overflow:hidden;
-
-    text-overflow:ellipsis;
-  }
-
-  /* SORT */
-
-  .sort-header{
-
-    gap:2px;
-  }
-
-  .sort-icon{
-
-    font-size:9px;
-  }
-
-  /* TITIK 3 */
-
-  .action-btn{
-
-    font-size:14px;
-  }
-
-  /* TOPBAR */
 
   .topbar{
-
-    height:58px;
-
-    padding:0 10px;
-  }
-
-  .title{
-
-    font-size:16px;
-  }
-
-  .back-btn{
-
-    font-size:26px;
-  }
-
-  .plus-btn{
-
-    font-size:38px;
-  }
-
-}
-
-  @media(max-width:768px){
-
-  /* CONTENT */
-
-  .content{
-
-    padding:10px;
-  }
-
-  /* TABLE */
-
-  th{
-
-    font-size:10px;
-
-    padding:12px 6px;
-  }
-
-  td{
-
-  font-size:9px;
-
-  padding:12px 6px;
-
-  white-space:nowrap;
-}
-
-  /* HEADER */
-
-  .sort-header{
-
-    gap:3px;
-  }
-
-  /* SORT ICON */
-
-  .sort-icon{
-
-    font-size:11px;
-  }
-
-  /* ACTION */
-
-  .action-btn{
-
-    font-size:16px;
-  }
-
-  /* TABLE CARD */
-
-  .table-wrapper{
-
+    padding:16px;
     border-radius:20px;
   }
 
-}
-
-  @media(max-width:768px){
-
-  /* CONTENT */
-
-  .content{
-
-    padding:6px;
+  .page-header{
+    flex-direction:column;
+    gap:18px;
   }
 
-  /* TABLE */
-
-  table{
-
-    width:100%;
+  .page-header h1{
+    font-size:26px;
   }
 
-  /* HEADER */
-
- th{
-
-  font-size:6px;
-
-  padding:10px 3px;
-
-  letter-spacing:-0.4px;
-}
-    th:first-child,
-td:first-child{
-
-  padding-left:10px;
-}
-
-  /* BODY */
-
-  td{
-
-    font-size:6px;
-
-    padding:10px 2px;
-
-    white-space:nowrap;
+  .summary-grid{
+    grid-template-columns:1fr;
   }
-
-  /* SORT */
-
-  .sort-header{
-
-    gap:1px;
-  }
-
-  .sort-icon{
-
-    font-size:6px;
-  }
-
-  /* ACTION */
-
-  .aksi-cell{
-
-    padding-right:4px;
-  }
-
-  .action-btn{
-
-    font-size:12px;
-  }
-    /* RANGE COLUMN */
-
-.range-column{
-
-  width:115px;
-
-  padding-left:8px;
-}
-
-  /* TABLE WRAPPER */
 
   .table-wrapper{
+    overflow:auto;
+  }
 
-    border-radius:18px;
+  table{
+    min-width:900px;
   }
 
 }
-  
+
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<div class="dashboard-layout">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div>
+
+<div class="logo">
+📊 <span>Digital Report</span>
+</div>
+
+<div class="sidebar-menu">
+
+<a class="sidebar-item" href="index.html">
+🏠 Dashboard
+</a>
+
+<a class="sidebar-item">
+📝 Input Data
+</a>
+
+<a class="sidebar-item active">
+🗂 Database
+</a>
+
+<a class="sidebar-item">
+📈 Report
+</a>
+
+<div class="sidebar-title">
+MASTER DATA
+</div>
+
+<a class="sidebar-item active">
+↔ Jenis Transaksi
+</a>
+
+<a class="sidebar-item">
+🧩 Kategori
+</a>
+
+<a class="sidebar-item">
+📋 Efek Kategori
+</a>
+
+</div>
+
+</div>
+
+<div class="sidebar-profile">
+
+<div class="profile-top">
+
+<div class="profile-avatar">
+T
+</div>
+
+<div>
+
+<h4>Tokosayyida</h4>
+
+<p style="opacity:.7;font-size:13px;">
+Admin
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main-content">
+
+<!-- TOPBAR -->
 
 <div class="topbar">
 
-  <!-- BACK -->
+<div class="breadcrumb">
 
-<div class="back-btn"
-     onclick="history.back()">
+<strong>Database</strong>
 
-  ❮
+<span>/</span>
+
+<span>Jenis Transaksi</span>
+
+</div>
+
+<div class="topbar-right">
+
+<div class="date-box">
+22 Mei 2026
+</div>
 
 </div>
 
-  <!-- TITLE -->
+</div>
 
-  <div class="title">
-    Database
-  </div>
+<!-- CARD -->
 
-  <!-- PLUS -->
+<div class="main-card">
 
- <div class="plus-btn"
-     onclick="openPopup()">
+<!-- HEADER -->
 
-  +
+<div class="page-header">
+
+<div>
+
+<h1>
+Jenis Transaksi
+</h1>
+
+<p>
+Kelola semua jenis transaksi beserta range biaya admin yang digunakan pada laporan harian.
+</p>
 
 </div>
+
+<button class="add-btn">
++ Tambah Jenis Transaksi
+</button>
+
 </div>
-  
 
-<!-- CONTENT -->
-<div class="content">
+<!-- SUMMARY -->
 
-  <div class="table-wrapper">
+<div class="summary-grid">
 
-  <table>
+<div class="summary-card">
 
-    <!-- HEAD -->
+<div class="summary-top">
 
-    <thead>
+<div class="summary-icon">
 
-      <tr>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12 5v14"></path>
+<path d="M5 12h14"></path>
+</svg>
 
-  <th>
+</div>
 
-  <div class="sort-header">
+<div>
 
-    Jenis Transaksi
+<div class="summary-title">
+Total Jenis Transaksi
+</div>
 
-    <div class="sort-dropdown-box">
+<div class="summary-value">
+5
+</div>
 
-      <!-- ICON -->
+</div>
 
-      <span class="sort-icon"
-            onclick="toggleSortMenu()">
+</div>
 
-        ⇅
+<div class="summary-title">
+Jenis transaksi
+</div>
 
-      </span>
+</div>
 
-      <!-- MENU -->
+<div class="summary-card">
 
-      <div class="sort-menu"
-           id="sortMenu">
+<div class="summary-top">
 
-        <div onclick="sortAZ()">
-          A-Z
-        </div>
+<div class="summary-icon">
 
-        <div onclick="sortZA()">
-          Z-A
-        </div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M17 7 7 17"></path>
+<path d="M7 7h10v10"></path>
+</svg>
 
-      </div>
+</div>
 
-    </div>
+<div>
 
-  </div>
+<div class="summary-title">
+Uang Masuk Rekening
+</div>
 
-</th>
+<div class="summary-value">
+2
+</div>
 
-  <th class="range-column">
-  Range Nominal
-</th>
+</div>
 
-  <th>Biaya Admin</th>
+</div>
 
-  <th>Admin Bank</th>
+<div class="summary-title">
+Jenis transaksi
+</div>
 
-  <th>Kategori</th>
+</div>
 
-  <th>Efek</th>
+<div class="summary-card">
+
+<div class="summary-top">
+
+<div class="summary-icon">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M7 7 17 17"></path>
+<path d="M17 7H7v10"></path>
+</svg>
+
+</div>
+
+<div>
+
+<div class="summary-title">
+Uang Keluar Rekening
+</div>
+
+<div class="summary-value">
+2
+</div>
+
+</div>
+
+</div>
+
+<div class="summary-title">
+Jenis transaksi
+</div>
+
+</div>
+
+<div class="summary-card">
+
+<div class="summary-top">
+
+<div class="summary-icon">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<rect x="4" y="7" width="16" height="13" rx="2"></rect>
+<path d="M16 3v4"></path>
+<path d="M8 3v4"></path>
+</svg>
+
+</div>
+
+<div>
+
+<div class="summary-title">
+Kas Masuk
+</div>
+
+<div class="summary-value">
+1
+</div>
+
+</div>
+
+</div>
+
+<div class="summary-title">
+Jenis transaksi
+</div>
+
+</div>
+
+<div class="summary-card">
+
+<div class="summary-top">
+
+<div class="summary-icon">
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M7 7 17 17"></path>
+<path d="M17 7H7v10"></path>
+</svg>
+
+</div>
+
+<div>
+
+<div class="summary-title">
+Kas Keluar
+</div>
+
+<div class="summary-value">
+2
+</div>
+
+</div>
+
+</div>
+
+<div class="summary-title">
+Jenis transaksi
+</div>
+
+</div>
+
+</div>
+
+<!-- FILTER -->
+
+<div class="filter-bar">
+
+<input
+type="text"
+class="filter-input"
+placeholder="Cari jenis transaksi..."
+>
+
+<select class="filter-select">
+<option>Semua Kategori</option>
+</select>
+
+<select class="filter-select">
+<option>Semua Efek</option>
+</select>
+
+<button class="filter-btn">
+↻ Reset Filter
+</button>
+
+</div>
+
+<!-- TABLE -->
+
+<div class="table-wrapper">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Jenis Transaksi</th>
+<th>Kategori</th>
+<th>Efek</th>
+<th>Total Range</th>
+<th>Aksi</th>
 
 </tr>
-      
-    </thead>
 
-    <!-- BODY -->
+</thead>
 
-    <tbody id="tableBody">
+<tbody>
 
-    </tbody>
+<tr>
 
-  </table>
+<td>
+💳 Tarik Tunai
+</td>
+
+<td>
+<span class="badge">
+Saldo Keluar (Rekening)
+</span>
+</td>
+
+<td>
+<div class="effect">
+↑ Kas Keluar
+</div>
+</td>
+
+<td>
+11 Range
+</td>
+
+<td>
+<button class="expand-btn">
+⌄
+</button>
+</td>
+
+</tr>
+
+<tr>
+
+<td colspan="5" class="child-wrapper">
+
+<div class="child-table">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>No</th>
+<th>Range Nominal</th>
+<th>Nominal Min</th>
+<th>Nominal Max</th>
+<th>Biaya Admin</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>1</td>
+<td>Rp 1 - Rp 1.000.000</td>
+<td>Rp 1</td>
+<td>Rp 1.000.000</td>
+<td>Rp 5.000</td>
+</tr>
+
+<tr>
+<td>2</td>
+<td>Rp 1.001.000 - Rp 1.599.999</td>
+<td>Rp 1.001.000</td>
+<td>Rp 1.599.999</td>
+<td>Rp 10.000</td>
+</tr>
+
+<tr>
+<td>3</td>
+<td>Rp 1.600.000 - Rp 2.999.999</td>
+<td>Rp 1.600.000</td>
+<td>Rp 2.999.999</td>
+<td>Rp 10.000</td>
+</tr>
+
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+
+<tr>
+<td>9</td>
+<td>Rp 10.001.000 - Rp 99.999.999.999</td>
+<td>Rp 10.001.000</td>
+<td>Rp 99.999.999.999</td>
+<td>Konsultasi</td>
+</tr>
+
+</tbody>
+
+</table>
 
 </div>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+🏦 TF Bank Lain
+</td>
+
+<td>
+<span class="badge">
+Saldo Keluar (Rekening)
+</span>
+</td>
+
+<td>
+<div class="effect">
+↑ Kas Keluar
+</div>
+</td>
+
+<td>
+9 Range
+</td>
+
+<td>
+<button class="expand-btn">
+⌃
+</button>
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+📲 Transfer BRI
+</td>
+
+<td>
+<span class="badge">
+Saldo Keluar (Rekening)
+</span>
+</td>
+
+<td>
+<div class="effect">
+↑ Kas Keluar
+</div>
+</td>
+
+<td>
+2 Range
+</td>
+
+<td>
+<button class="expand-btn">
+⌄
+</button>
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+⚡ PLN
+</td>
+
+<td>
+<span class="badge">
+Saldo Keluar (Rekening)
+</span>
+</td>
+
+<td>
+<div class="effect">
+↑ Kas Keluar
+</div>
+</td>
+
+<td>
+1 Range
+</td>
+
+<td>
+<button class="expand-btn">
+⌄
+</button>
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+📱 Pulsa
+</td>
+
+<td>
+<span class="badge">
+Saldo Keluar (Rekening)
+</span>
+</td>
+
+<td>
+<div class="effect">
+↑ Kas Keluar
+</div>
+</td>
+
+<td>
+1 Range
+</td>
+
+<td>
+<button class="expand-btn">
+⌄
+</button>
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
 </div>
 
-<!-- POPUP FORM -->
+<!-- FOOTER -->
 
-<div class="popup-overlay"
-     id="popupOverlay">
+<div class="table-footer">
 
-  <div class="popup-form">
-
-    <!-- HEADER -->
-
-    <div class="popup-header">
-
-      <h2>Tambah Data</h2>
-
-      <span onclick="closePopup()">
-        ✕
-      </span>
-
-    </div>
-
-    <!-- FORM -->
-
-<div class="form-group">
-
-  <label>Jenis Transaksi</label>
-
-  <input type="text"
-         id="jenisTransaksi"
-         placeholder="Contoh: Transfer BCA">
-
+<div>
+Menampilkan 1 - 5 dari 5 data
 </div>
 
-<div class="form-group">
+<div class="pagination">
 
-  <label>Range Nominal</label>
+<button class="page-btn">
+‹
+</button>
 
-  <input type="text"
-         id="rangeNominal"
-         placeholder="Contoh: 10.000 - 100.000">
+<button class="page-btn active">
+1
+</button>
 
-</div>
-
-<div class="form-group">
-
-  <label>Biaya Admin</label>
-
-  <input type="number"
-         id="biayaAdmin"
-         placeholder="Masukkan nominal">
-
-</div>
-
-<div class="form-group">
-
-  <label>Admin Bank</label>
-
-  <input type="number"
-         id="adminBank"
-         placeholder="Masukkan nominal">
-
-</div>
-
-<div class="form-group">
-
-  <label>Kategori</label>
-
-  <select id="kategori"
-        onchange="syncKategori()">
-
-  <option>Saldo In</option>
-
-  <option>Saldo Out</option>
-
-  <option>None</option>
-
-</select>
-
-</div>
-
-<div class="form-group">
-
-  <label>Efek Kategori</label>
-
-  <select id="efekKategori">
-
-  <option>Cash In</option>
-
-  <option>Cash Out</option>
-
-  <option>None</option>
-
-</select>
-
-</div>
-    
-    <!-- BUTTON -->
-
-   <button class="save-btn"
-        onclick="simpanData()">
-
-  Simpan Data
-
+<button class="page-btn">
+›
 </button>
 
 </div>
 
-<script>
+</div>
 
-  /* OPEN */
+</div>
 
-function openPopup(){
-
-  document.getElementById("popupOverlay")
-  .style.display = "flex";
-}
-
-/* CLOSE */
-
-function closePopup(){
-
-  document.getElementById("popupOverlay")
-  .style.display = "none";
-}
-
-/* CLOSE KLIK LUAR */
-
-window.addEventListener("click", function(e){
-
-  const popup =
-  document.getElementById("popupOverlay");
-
-  if(e.target === popup){
-
-    popup.style.display = "none";
-  }
-
-});
-
- /* LOAD DATA */
-
-let dataTransaksi =
-JSON.parse(localStorage.getItem("dataTransaksi"))
-|| [];
-
-let editIndex = null;
-
-/* RENDER TABLE */
-
-function renderTable(){
-
-  const table =
-  document.getElementById("tableBody");
-
-  table.innerHTML = "";
-
-  dataTransaksi.forEach((item,index)=>{
-
-    table.innerHTML +=
-    `
-    <tr>
-
-      <td>${item.jenis}</td>
-
-    <td class="range-column">
-
-  Rp ${
-    item.range
-    .split("-")
-    .map(n =>
-      Number(n.trim())
-      .toLocaleString("id-ID")
-    )
-    .join(" - ")
-  }
-
-</td>
-
-      <td>Rp ${Number(item.biaya).toLocaleString("id-ID")}</td>
-
-      <td>Rp ${Number(item.bank).toLocaleString("id-ID")}</td>
-
-      <td>${item.kategori}</td>
-
-      <td>${item.efek}</td>
-
-        <td class="aksi-cell">
-
-  <div class="action-box">
-
-    <button class="action-btn"
-        onclick="toggleAction(${index},event)">
-
-  ⋮
-
-</button>
-
-    <div class="action-menu"
-         id="actionMenu${index}">
-
-      <div onclick="editData(${index})">
-        ✏️ Edit
-      </div>
-
-      <div onclick="hapusData(${index})">
-        🗑️ Hapus
-      </div>
-
-    </div>
-
-  </div>
-
-</td>
-
-    </tr>
-    `;
-  });
-
-  localStorage.setItem(
-    "dataTransaksi",
-    JSON.stringify(dataTransaksi)
-  );
-
-}
-
-/* SIMPAN */
-
-function simpanData(){
-
-  const jenis =
-  document.getElementById("jenisTransaksi").value;
-
-  const range =
-  document.getElementById("rangeNominal").value;
-
-  const biaya =
-  document.getElementById("biayaAdmin").value;
-
-  const bank =
-  document.getElementById("adminBank").value;
-
-  const kategori =
-  document.getElementById("kategori").value;
-
-  const efek =
-  document.getElementById("efekKategori").value;
-
-  if(
-    jenis === "" ||
-    range === "" ||
-    biaya === "" ||
-    bank === ""
-  ){
-
-    alert("Isi semua data dulu");
-
-    return;
-  }
-
-  const data = {
-
-    jenis,
-    range,
-    biaya,
-    bank,
-    kategori,
-    efek
-
-  };
-
-  /* EDIT */
-
-  if(editIndex !== null){
-
-    dataTransaksi[editIndex] = data;
-
-    editIndex = null;
-
-  }else{
-
-    /* TAMBAH */
-
-    dataTransaksi.push(data);
-
-  }
-
-  renderTable();
-
-  resetForm();
-
-  closePopup();
-
-}
-
-/* RESET */
-
-function resetForm(){
-
-  document.getElementById("jenisTransaksi").value = "";
-
-  document.getElementById("rangeNominal").value = "";
-
-  document.getElementById("biayaAdmin").value = "";
-
-  document.getElementById("adminBank").value = "";
-
-}
-
-/* HAPUS */
-
-function hapusData(index){
-
-  if(confirm("Hapus data ini?")){
-
-    dataTransaksi.splice(index,1);
-
-    renderTable();
-
-  }
-
-}
-
-/* EDIT */
-
-function editData(index){
-
-  const item =
-  dataTransaksi[index];
-
-  document.getElementById("jenisTransaksi").value =
-  item.jenis;
-
-  document.getElementById("rangeNominal").value =
-  item.range;
-
-  document.getElementById("biayaAdmin").value =
-  item.biaya;
-
-  document.getElementById("adminBank").value =
-  item.bank;
-
-  document.getElementById("kategori").value =
-  item.kategori;
-
-  document.getElementById("efekKategori").value =
-  item.efek;
-
-  editIndex = index;
-
-  openPopup();
-
-}
-
-/* TOGGLE MENU */
-
-function toggleAction(index,event){
-
-  event.stopPropagation();
-
-  const menu =
-  document.getElementById(`actionMenu${index}`);
-
-  const isOpen =
-  menu.style.display === "block";
-
-  document
-  .querySelectorAll(".action-menu")
-  .forEach(menu=>{
-
-    menu.style.display = "none";
-
-  });
-
-  menu.style.display =
-  isOpen ? "none" : "block";
-
-}
-/* FIRST LOAD */
-
-renderTable();
-
-
-  /* SORT A-Z */
-
-function sortAZ(){
-
-  dataTransaksi.sort((a,b)=>
-
-    a.jenis.localeCompare(b.jenis)
-
-  );
-
-  renderTable();
-
-}
-
-/* SORT Z-A */
-
-function sortZA(){
-
-  dataTransaksi.sort((a,b)=>
-
-    b.jenis.localeCompare(a.jenis)
-
-  );
-
-  renderTable();
-
-}
-
-  /* AUTO SYNC */
-
-function syncKategori(){
-
-  const kategori =
-  document.getElementById("kategori").value;
-
-  const efek =
-  document.getElementById("efekKategori");
-
-  if(kategori === "Saldo In"){
-
-    efek.value = "Cash Out";
-
-  }
-
-  else if(kategori === "Saldo Out"){
-
-    efek.value = "Cash In";
-
-  }
-
-  else{
-
-    efek.value = "None";
-
-  }
-
-}
-
-  /* TOGGLE SORT MENU */
-
-function toggleSortMenu(){
-
-  const menu =
-  document.getElementById("sortMenu");
-
-  if(menu.style.display === "block"){
-
-    menu.style.display = "none";
-
-  }else{
-
-    menu.style.display = "block";
-
-  }
-
-}
-  window.addEventListener("click", function(e){
-
-  if(!e.target.closest(".sort-dropdown-box")){
-
-    document.getElementById("sortMenu")
-    .style.display = "none";
-
-  }
-
-});
-
-</script>
+</div>
 
 </body>
 </html>
