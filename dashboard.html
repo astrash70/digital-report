@@ -1825,8 +1825,16 @@ async function loadPage(page){
 
   const html = await response.text();
 
-  document.getElementById('mainContent').innerHTML = html;
+  const parser = new DOMParser();
 
+  const doc = parser.parseFromString(html, 'text/html');
+
+  const content = doc.querySelector('.main-content');
+
+  document.getElementById('mainContent').innerHTML =
+  content.innerHTML;
+
+}
 }
 
 
