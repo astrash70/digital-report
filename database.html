@@ -1812,6 +1812,28 @@ if(existingRow){
 
   tbody.appendChild(newRange);
 saveData();
+
+ /* DELETE BUTTON */
+
+newRange
+.querySelector(".delete-btn")
+.addEventListener("click", (event) => {
+
+  const currentRow =
+  event.target.closest("tr");
+
+  currentRow.remove();
+
+  if(tbody.children.length === 0){
+
+    existingRow.remove();
+    detailRow.remove();
+
+  }
+
+  saveData();
+
+});                         
   
 /* ACTION MENU */
 
@@ -1839,25 +1861,7 @@ newRange
 
 });
 
-  /* DELETE */
 
-  const currentRow =
-  event.target.closest("tbody tr");
-
-  currentRow.remove();
-
-  if(
-    tbody.children.length === 0
-  ){
-
-    existingRow.remove();
-    detailRow.remove();
-
-  }
-
-  saveData();
-
-});
   }   
 
 /* =========================
@@ -2033,33 +2037,30 @@ detailRow
 
 });
 
-/* DELETE FIRST ROW */
+  /* DELETE FIRST ROW */
+
+detailRow
+.querySelector(".delete-btn")
+.addEventListener("click", (event) => {
 
   const currentRow =
-  event.target.closest("tbody tr");
+  event.target.closest("tr");
 
   currentRow.remove();
-
-  /* CEK SISA */
 
   const tbody =
   detailRow.querySelector("tbody");
 
-  if(
-    tbody.children.length === 0
-  ){
+  if(tbody.children.length === 0){
 
     row.remove();
     detailRow.remove();
 
   }
 
-  /* SAVE */
-
   saveData();
 
 });
-
   
   /* TOGGLE */
 
@@ -2144,6 +2145,15 @@ function loadActionMenu(){
   /* SAVE */
 
 saveData();
+
+  function saveData(){
+
+  localStorage.setItem(
+    "databaseContent",
+    tableBody.innerHTML
+  );
+
+}
   
  /* LOAD SAVED DATA */
 
@@ -2248,7 +2258,7 @@ document.addEventListener("click", () => {
     btn.addEventListener("click", (event) => {
 
       const currentRow =
-      event.target.closest("tbody tr");
+      event.target.closest("tr");
 
       if(!currentRow) return;
 
@@ -2259,9 +2269,7 @@ document.addEventListener("click", () => {
 
       /* CEK APAKAH MASIH ADA ROW */
 
-      if(
-        tbody.children.length === 0
-      ){
+      if(tbody.children.length === 0){
 
         const detailRow =
         tbody.closest("tr");
@@ -2274,10 +2282,7 @@ document.addEventListener("click", () => {
 
       }
 
-      /* SAVE */
-
       saveData();
-      );
 
     });
 
