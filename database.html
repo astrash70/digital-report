@@ -1294,231 +1294,9 @@ placeholder="Cari jenis transaksi..."
 
 </thead>
 
-<tbody>
+<tbody id="transactionTable">
 
-<tr>
 
-<td>
-💳 Tarik Tunai
-</td>
-
-<td>
-<span class="badge">
-Saldo Keluar (Rekening)
-</span>
-</td>
-
-<td>
-<div class="effect">
-↑ Kas Keluar
-</div>
-</td>
-
-<td>
-11 Range
-</td>
-
-<td>
-<button class="expand-btn">
-⌄
-</button>
-</td>
-
-</tr>
-
-<tr>
-
-<td colspan="5" class="child-wrapper">
-
-<div class="child-table">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>No</th>
-<th>Range Nominal</th>
-<th>Nominal Min</th>
-<th>Nominal Max</th>
-<th>Biaya Admin</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-<td>1</td>
-<td>Rp 1 - Rp 1.000.000</td>
-<td>Rp 1</td>
-<td>Rp 1.000.000</td>
-<td>Rp 5.000</td>
-</tr>
-
-<tr>
-<td>2</td>
-<td>Rp 1.001.000 - Rp 1.599.999</td>
-<td>Rp 1.001.000</td>
-<td>Rp 1.599.999</td>
-<td>Rp 10.000</td>
-</tr>
-
-<tr>
-<td>3</td>
-<td>Rp 1.600.000 - Rp 2.999.999</td>
-<td>Rp 1.600.000</td>
-<td>Rp 2.999.999</td>
-<td>Rp 10.000</td>
-</tr>
-
-<tr>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-
-<tr>
-<td>9</td>
-<td>Rp 10.001.000 - Rp 99.999.999.999</td>
-<td>Rp 10.001.000</td>
-<td>Rp 99.999.999.999</td>
-<td>Konsultasi</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-🏦 TF Bank Lain
-</td>
-
-<td>
-<span class="badge">
-Saldo Keluar (Rekening)
-</span>
-</td>
-
-<td>
-<div class="effect">
-↑ Kas Keluar
-</div>
-</td>
-
-<td>
-9 Range
-</td>
-
-<td>
-<button class="expand-btn">
-⌃
-</button>
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-📲 Transfer BRI
-</td>
-
-<td>
-<span class="badge">
-Saldo Keluar (Rekening)
-</span>
-</td>
-
-<td>
-<div class="effect">
-↑ Kas Keluar
-</div>
-</td>
-
-<td>
-2 Range
-</td>
-
-<td>
-<button class="expand-btn">
-⌄
-</button>
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-⚡ PLN
-</td>
-
-<td>
-<span class="badge">
-Saldo Keluar (Rekening)
-</span>
-</td>
-
-<td>
-<div class="effect">
-↑ Kas Keluar
-</div>
-</td>
-
-<td>
-1 Range
-</td>
-
-<td>
-<button class="expand-btn">
-⌄
-</button>
-</td>
-
-</tr>
-
-<tr>
-
-<td>
-📱 Pulsa
-</td>
-
-<td>
-<span class="badge">
-Saldo Keluar (Rekening)
-</span>
-</td>
-
-<td>
-<div class="effect">
-↑ Kas Keluar
-</div>
-</td>
-
-<td>
-1 Range
-</td>
-
-<td>
-<button class="expand-btn">
-⌄
-</button>
-</td>
-
-</tr>
 
 </tbody>
 
@@ -1578,19 +1356,21 @@ POPUP TAMBAH DATA
         <label>Jenis Transaksi</label>
 
         <input
-          type="text"
-          placeholder="Contoh: Transfer BCA"
-        >
-      </div>
+type="text"
+id="jenisInput"
+placeholder="Contoh: Transfer BCA"
+>
+</div>
 
      <div class="form-group">
 
   <label>Nominal Min</label>
 
   <input
-    type="number"
-    placeholder="Contoh: 10000"
-  >
+type="number"
+id="minInput"
+placeholder="Contoh: 10000"
+>
 
 </div>
 
@@ -1599,9 +1379,10 @@ POPUP TAMBAH DATA
   <label>Nominal Max</label>
 
   <input
-    type="number"
-    placeholder="Contoh: 100000"
-  >
+type="number"
+id="maxInput"
+placeholder="Contoh: 100000"
+>
 
 </div>
 
@@ -1609,19 +1390,23 @@ POPUP TAMBAH DATA
         <label>Biaya Admin</label>
 
         <input
-          type="text"
-          placeholder="Masukkan nominal"
-        >
+type="text"
+id="adminInput"
+placeholder="Masukkan nominal"
+>
       </div>
 
       <div class="form-group">
-        <label>Admin Bank</label>
 
-        <input
-          type="text"
-          placeholder="Masukkan nominal"
-        >
-      </div>
+  <label>Charge</label>
+
+  <input
+    type="text"
+    id="chargeInput"
+    placeholder="Contoh: 2.500"
+  >
+
+</div>
 
      <div class="form-group">
 
@@ -1667,7 +1452,7 @@ POPUP TAMBAH DATA
 
 </div>
 
-      <button type="submit" class="submit-btn">
+      <button type="button" class="submit-btn" id="saveBtn">
         Simpan Data
       </button>
 
@@ -1755,6 +1540,165 @@ popup.addEventListener("click", (e) => {
     popup.classList.remove("show");
 
   }
+
+});
+
+  /* =========================
+SIMPAN DATA
+========================= */
+
+const saveBtn =
+document.getElementById("saveBtn");
+
+const tableBody =
+document.getElementById("transactionTable");
+
+saveBtn.addEventListener("click", () => {
+
+  const jenis =
+  document.getElementById("jenisInput").value;
+
+  const kategori =
+  document.getElementById("kategoriSelect")
+  .options[
+    document.getElementById("kategoriSelect").selectedIndex
+  ].text;
+
+  const efek =
+  document.getElementById("efekSelect")
+  .options[
+    document.getElementById("efekSelect").selectedIndex
+  ].text;
+
+  const nominalMin =
+  document.getElementById("minInput").value;
+
+  const nominalMax =
+  document.getElementById("maxInput").value;
+
+  const admin =
+  document.getElementById("adminInput").value;
+
+  const charge =
+  document.getElementById("chargeInput").value;
+
+  /* ROW UTAMA */
+
+  const row = document.createElement("tr");
+
+  row.innerHTML = `
+
+    <td>${jenis}</td>
+
+    <td>
+      <span class="badge">
+        ${kategori}
+      </span>
+    </td>
+
+    <td>
+      <div class="effect">
+        ${efek}
+      </div>
+    </td>
+
+    <td>
+      1 Range
+    </td>
+
+    <td>
+      <button class="expand-btn">
+        ⌄
+      </button>
+    </td>
+
+  `;
+
+  /* DETAIL */
+
+  const detailRow =
+  document.createElement("tr");
+
+  detailRow.style.display =
+  "none";
+
+  detailRow.innerHTML = `
+
+    <td colspan="5" class="child-wrapper">
+
+      <div class="child-table">
+
+        <table>
+
+          <thead>
+
+            <tr>
+              <th>No</th>
+              <th>Nominal Min</th>
+              <th>Nominal Max</th>
+              <th>Biaya Admin</th>
+              <th>Charge</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            <tr>
+
+              <td>${nominalMin}</td>
+              <td>${nominalMax}</td>
+              <td>${admin}</td>
+              <td>${charge}</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </td>
+
+  `;
+
+  tableBody.appendChild(row);
+  tableBody.appendChild(detailRow);
+
+  /* TOGGLE */
+
+  const expandBtn =
+  row.querySelector(".expand-btn");
+
+  expandBtn.addEventListener("click", () => {
+
+    if(detailRow.style.display === "none"){
+
+      detailRow.style.display =
+      "table-row";
+
+      expandBtn.innerHTML =
+      "⌃";
+
+    }
+
+    else{
+
+      detailRow.style.display =
+      "none";
+
+      expandBtn.innerHTML =
+      "⌄";
+
+    }
+
+  });
+
+  /* CLOSE POPUP */
+
+  popup.classList.remove("show");
 
 });
 
