@@ -1633,42 +1633,110 @@ saveBtn.addEventListener("click", () => {
   const charge =
   document.getElementById("chargeInput").value;
 
-  /* ROW UTAMA */
+  
+/* CEK TRANSAKSI SUDAH ADA */
 
-  const row = document.createElement("tr");
+const existingRow =
+document.querySelector(
+  `tr[data-jenis="${jenis.toLowerCase()}"]`
+);
+
+/* =========================
+JIKA TRANSAKSI SUDAH ADA
+========================= */
+
+if(existingRow){
+
+  const detailRow =
+  existingRow.nextElementSibling;
+
+  const tbody =
+  detailRow.querySelector("tbody");
+
+  const totalRow =
+  tbody.querySelectorAll("tr").length + 1;
+
+  const newRange =
+  document.createElement("tr");
+
+  newRange.innerHTML = `
+
+    <td>${totalRow}</td>
+
+    <td>${formatRupiah(nominalMin)}</td>
+
+    <td>${formatRupiah(nominalMax)}</td>
+
+    <td>${formatRupiah(admin)}</td>
+
+    <td>${formatRupiah(charge)}</td>
+
+  `;
+
+  tbody.appendChild(newRange);
+
+  
+}
+
+
+  
+
+/* =========================
+JIKA BELUM ADA
+========================= */
+
+else{
+
+  const row =
+  document.createElement("tr");
+
+  row.setAttribute(
+    "data-jenis",
+    jenis.toLowerCase()
+  );
 
   row.innerHTML = `
 
     <td>${jenis}</td>
 
     <td>
-      <div class="effect ${kategori === 'Saldo In' ? 'in' : 'out'}">
 
-  ${kategori === 'Saldo In'
-    ? '↓'
-    : '↑'}
+      <div class="effect ${kategori === 'Saldo In'
+      ? 'in'
+      : 'out'}">
 
-  ${kategori}
+        ${kategori === 'Saldo In'
+        ? '↓'
+        : '↑'}
 
-</div>
+        ${kategori}
+
+      </div>
+
     </td>
 
     <td>
-      <div class="effect ${efek === 'Cash In' ? 'in' : 'out'}">
 
-  ${efek === 'Cash In'
-    ? '↓'
-    : '↑'}
+      <div class="effect ${efek === 'Cash In'
+      ? 'in'
+      : 'out'}">
 
-  ${efek}
+        ${efek === 'Cash In'
+        ? '↓'
+        : '↑'}
 
-</div>
+        ${efek}
+
+      </div>
+
     </td>
 
     <td>
+
       <button class="expand-btn">
         ⌄
       </button>
+
     </td>
 
   `;
@@ -1692,6 +1760,7 @@ saveBtn.addEventListener("click", () => {
           <thead>
 
             <tr>
+
               <th>No</th>
               <th>Nominal Min</th>
               <th>Nominal Max</th>
@@ -1705,7 +1774,9 @@ saveBtn.addEventListener("click", () => {
           <tbody>
 
             <tr>
+
               <td>1</td>
+
               <td>${formatRupiah(nominalMin)}</td>
 
               <td>${formatRupiah(nominalMax)}</td>
@@ -1726,15 +1797,8 @@ saveBtn.addEventListener("click", () => {
 
   `;
 
- tableBody.appendChild(row);
+  tableBody.appendChild(row);
 tableBody.appendChild(detailRow);
-
-/* SAVE LOCAL STORAGE */
-
-localStorage.setItem(
-  "databaseContent",
-  tableBody.innerHTML
-);
 
   /* TOGGLE */
 
@@ -1764,6 +1828,17 @@ localStorage.setItem(
     }
 
   });
+
+}
+
+
+
+/* SAVE LOCAL STORAGE */
+
+localStorage.setItem(
+  "databaseContent",
+  tableBody.innerHTML
+);
 
   /* RESET FORM */
 
