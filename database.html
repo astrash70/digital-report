@@ -568,9 +568,11 @@ td{
 
 .badge{
 
-  background:#e8f5ec;
+  display:inline-flex;
 
-  color:#15803d;
+  align-items:center;
+
+  gap:6px;
 
   padding:8px 12px;
 
@@ -578,7 +580,25 @@ td{
 
   font-size:12px;
 
-  font-weight:600;
+  font-weight:700;
+}
+
+/* SALDO IN */
+
+.badge.in{
+
+  background:#e8f8ee;
+
+  color:#16a34a;
+}
+
+/* SALDO OUT */
+
+.badge.out{
+
+  background:#fef0f0;
+
+  color:#ef4444;
 }
 
 .effect{
@@ -589,9 +609,15 @@ td{
 
   gap:8px;
 
-  color:#ef4444;
+  font-weight:700;
+}
 
-  font-weight:600;
+.effect.in{
+  color:#16a34a;
+}
+
+.effect.out{
+  color:#ef4444;
 }
 
 .expand-btn{
@@ -614,11 +640,20 @@ td{
 CHILD TABLE
 ========================= */
 
-.child-wrapper{
+.child-table{
 
-  background:#fafcfa;
+  width:92%;
 
-  padding:18px;
+  margin-left:auto;
+
+  border:
+  1px solid #edf1f3;
+
+  border-radius:18px;
+
+  overflow:hidden;
+
+  background:white;
 }
 
 .child-table{
@@ -1552,6 +1587,14 @@ document.getElementById("saveBtn");
 const tableBody =
 document.getElementById("transactionTable");
 
+  function formatRupiah(angka){
+
+  return "Rp " +
+  Number(angka)
+  .toLocaleString("id-ID");
+
+}
+
 saveBtn.addEventListener("click", () => {
 
   const jenis =
@@ -1590,15 +1633,27 @@ saveBtn.addEventListener("click", () => {
     <td>${jenis}</td>
 
     <td>
-      <span class="badge">
-        ${kategori}
-      </span>
+      <span class="badge ${kategori === 'Saldo In' ? 'in' : 'out'}">
+
+  ${kategori === 'Saldo In'
+    ? '↓'
+    : '↑'}
+
+  ${kategori}
+
+</span>
     </td>
 
     <td>
-      <div class="effect">
-        ${efek}
-      </div>
+      <div class="effect ${efek === 'Cash In' ? 'in' : 'out'}">
+
+  ${efek === 'Cash In'
+    ? '↓'
+    : '↑'}
+
+  ${efek}
+
+</div>
     </td>
 
     <td>
@@ -1642,10 +1697,13 @@ saveBtn.addEventListener("click", () => {
 
             <tr>
               <td>1</td>
-              <td>${nominalMin}</td>
-              <td>${nominalMax}</td>
-              <td>${admin}</td>
-              <td>${charge}</td>
+              <td>${formatRupiah(nominalMin)}</td>
+
+              <td>${formatRupiah(nominalMax)}</td>
+
+              <td>${formatRupiah(admin)}</td>
+
+              <td>${formatRupiah(charge)}</td>
 
             </tr>
 
