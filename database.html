@@ -2030,9 +2030,21 @@ detailRow
 
   e.stopPropagation();
 
-  detailRow
-  .querySelector(".action-menu")
-  .classList.toggle("show");
+  /* TUTUP SEMUA */
+
+document
+.querySelectorAll(".action-menu")
+.forEach((menu) => {
+
+  menu.classList.remove("show");
+
+});
+
+/* BUKA YANG DIKLIK */
+
+detailRow
+.querySelector(".action-menu")
+.classList.add("show");
 
 });
 
@@ -2110,9 +2122,21 @@ function loadActionMenu(){
 
       e.stopPropagation();
 
+      /* TUTUP SEMUA */
+
+      document
+      .querySelectorAll(".action-menu")
+      .forEach((menu) => {
+
+        menu.classList.remove("show");
+
+      });
+
+      /* BUKA YANG DIKLIK */
+
       btn
       .closest(".action-menu")
-      .classList.toggle("show");
+      .classList.add("show");
 
     });
 
@@ -2190,6 +2214,20 @@ resetAllBtn.addEventListener("click", () => {
     );
 
   }
+
+});
+
+  /* CLOSE DROPDOWN KLIK LUAR */
+
+document.addEventListener("click", () => {
+
+  document
+  .querySelectorAll(".action-menu")
+  .forEach((menu) => {
+
+    menu.classList.remove("show");
+
+  });
 
 });
 
