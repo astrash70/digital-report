@@ -1811,10 +1811,7 @@ if(existingRow){
   `;
 
   tbody.appendChild(newRange);
-localStorage.setItem(
-  "databaseContent",
-  tableBody.innerHTML
-);
+saveData();
   
 /* ACTION MENU */
 
@@ -1844,10 +1841,6 @@ newRange
 
   /* DELETE */
 
-newRange
-.querySelector(".delete-btn")
-.addEventListener("click", (event) => {
-
   const currentRow =
   event.target.closest("tbody tr");
 
@@ -1862,13 +1855,10 @@ newRange
 
   }
 
-  localStorage.setItem(
-    "databaseContent",
-    tableBody.innerHTML
-  );
+  saveData();
 
 });
-   
+  }   
 
 /* =========================
 JIKA BELUM ADA
@@ -2013,11 +2003,9 @@ else{
 
   tableBody.appendChild(row);
 tableBody.appendChild(detailRow);
+  loadExpandButton();
 
-  localStorage.setItem(
-  "databaseContent",
-  tableBody.innerHTML
-);
+  saveData();
 
   /* ACTION MENU FIRST ROW */
 
@@ -2047,10 +2035,6 @@ detailRow
 
 /* DELETE FIRST ROW */
 
-detailRow
-.querySelector(".delete-btn")
-.addEventListener("click", (event) => {
-
   const currentRow =
   event.target.closest("tbody tr");
 
@@ -2072,10 +2056,7 @@ detailRow
 
   /* SAVE */
 
-  localStorage.setItem(
-    "databaseContent",
-    tableBody.innerHTML
-  );
+  saveData();
 
 });
 
@@ -2159,8 +2140,12 @@ function loadActionMenu(){
   });
 
 }
+
+  /* SAVE */
+
+saveData();
   
-  /* LOAD SAVED DATA */
+ /* LOAD SAVED DATA */
 
 const savedData =
 localStorage.getItem("databaseContent");
@@ -2169,47 +2154,53 @@ if(savedData){
 
   tableBody.innerHTML =
   savedData;
-loadActionMenu();
-loadDeleteButton();
+
+  loadExpandButton();
+  loadActionMenu();
+  loadDeleteButton();
+
 }
 
-  /* RELOAD TOGGLE BUTTON */
+  function loadExpandButton(){
 
-document
-.querySelectorAll(".expand-btn")
-.forEach((btn) => {
+  document
+  .querySelectorAll(".expand-btn")
+  .forEach((btn) => {
 
-  btn.addEventListener("click", () => {
+    btn.addEventListener("click", () => {
 
-    const row =
-    btn.closest("tr");
+      const row =
+      btn.closest("tr");
 
-    const detailRow =
-    row.nextElementSibling;
+      const detailRow =
+      row.nextElementSibling;
 
-    if(detailRow.style.display === "none"
-    || detailRow.style.display === ""){
+      if(
+        detailRow.style.display === "none"
+        || detailRow.style.display === ""
+      ){
 
-      detailRow.style.display =
-      "table-row";
+        detailRow.style.display =
+        "table-row";
 
-      btn.innerHTML = "⌃";
+        btn.innerHTML = "⌃";
 
-    }
+      }
 
-    else{
+      else{
 
-      detailRow.style.display =
-      "none";
+        detailRow.style.display =
+        "none";
 
-      btn.innerHTML = "⌄";
+        btn.innerHTML = "⌄";
 
-    }
+      }
+
+    });
 
   });
 
-});
-
+}
   /* =========================
 RESET ALL
 ========================= */
@@ -2285,9 +2276,7 @@ document.addEventListener("click", () => {
 
       /* SAVE */
 
-      localStorage.setItem(
-        "databaseContent",
-        tableBody.innerHTML
+      saveData();
       );
 
     });
