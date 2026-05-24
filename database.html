@@ -1822,11 +1822,23 @@ newRange
 .querySelector(".action-btn")
 .addEventListener("click", (e) => {
 
-  e.stopPropagation();
+ e.stopPropagation();
 
-  newRange
-  .querySelector(".action-menu")
-  .classList.toggle("show");
+/* TUTUP SEMUA */
+
+document
+.querySelectorAll(".action-menu")
+.forEach((menu) => {
+
+  menu.classList.remove("show");
+
+});
+
+/* BUKA YANG DIKLIK */
+
+newRange
+.querySelector(".action-menu")
+.classList.add("show");
 
 });
 
