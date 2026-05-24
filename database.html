@@ -390,6 +390,42 @@ HEADER
   cursor:pointer;
 }
 
+  .header-action{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+}
+
+.reset-btn{
+
+  width:54px;
+  height:54px;
+
+  border:none;
+
+  border-radius:16px;
+
+  background:#f4f7f5;
+
+  cursor:pointer;
+
+  font-size:18px;
+
+  color:#374151;
+
+  transition:.2s;
+}
+
+.reset-btn:hover{
+
+  background:#ef4444;
+
+  color:white;
+}
+
 /* =========================
 SUMMARY
 ========================= */
@@ -687,6 +723,73 @@ CHILD TABLE
 
   border-top:
   1px solid #f5f5f5;
+}
+
+  .action-menu{
+
+  position:relative;
+}
+
+.action-btn{
+
+  width:34px;
+  height:34px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:#f5f7f9;
+
+  cursor:pointer;
+
+  font-size:18px;
+}
+
+.action-dropdown{
+
+  position:absolute;
+
+  top:40px;
+  right:0;
+
+  background:white;
+
+  border:1px solid #edf1f3;
+
+  border-radius:12px;
+
+  padding:6px;
+
+  display:none;
+
+  flex-direction:column;
+
+  gap:6px;
+
+  box-shadow:
+  0 10px 20px rgba(0,0,0,0.08);
+
+  z-index:100;
+}
+
+.action-dropdown button{
+
+  width:36px;
+  height:36px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:#f8faf9;
+
+  cursor:pointer;
+}
+
+.action-menu.show .action-dropdown{
+
+  display:flex;
 }
 
 /* =========================
@@ -1116,9 +1219,17 @@ Kelola semua jenis transaksi beserta range biaya admin yang digunakan pada lapor
 
 </div>
 
-<button class="add-btn">
-+ Tambah Jenis Transaksi
-</button>
+<div class="header-action">
+
+  <button class="add-btn">
+    + Tambah Transaksi
+  </button>
+
+  <button class="reset-btn" id="resetAllBtn">
+    <i class="fa-solid fa-rotate-left"></i>
+  </button>
+
+</div>
 
 </div>
 
@@ -1332,6 +1443,8 @@ placeholder="Cari jenis transaksi..."
 <th>Kategori</th>
 <th>Efek</th>
 <th></th>
+
+  
 
 </tr>
 
@@ -1671,13 +1784,80 @@ if(existingRow){
 
     <td>${formatRupiah(charge)}</td>
 
+<td>
+
+  <div class="action-menu">
+
+    <button class="action-btn">
+      ⋮
+    </button>
+
+    <div class="action-dropdown">
+
+      <button class="edit-btn">
+        <i class="fa-solid fa-pen"></i>
+      </button>
+
+      <button class="delete-btn">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+
+    </div>
+
+  </div>
+
+</td>
+
   `;
 
   tbody.appendChild(newRange);
+localStorage.setItem(
+  "databaseContent",
+  tableBody.innerHTML
+);
+  
+/* ACTION MENU */
+
+newRange
+.querySelector(".action-btn")
+.addEventListener("click", (e) => {
+
+  e.stopPropagation();
+
+  newRange
+  .querySelector(".action-menu")
+  .classList.toggle("show");
+
+});
+
+  /* DELETE */
+
+newRange
+.querySelector(".delete-btn")
+.addEventListener("click", () => {
+
+  newRange.remove();
+
+if(
+  tbody.querySelectorAll("tr").length === 0
+){
+
+  existingRow.remove();
+  detailRow.remove();
+
+}
+
+  localStorage.setItem(
+    "databaseContent",
+    tableBody.innerHTML
+  );
+
+});
 
   
 }
 
+  
 
   
 
@@ -1766,6 +1946,7 @@ else{
               <th>Nominal Max</th>
               <th>Biaya Admin</th>
               <th>Charge</th>
+              <th></th>
 
             </tr>
 
@@ -1783,7 +1964,31 @@ else{
 
               <td>${formatRupiah(admin)}</td>
 
-              <td>${formatRupiah(charge)}</td>
+             <td>${formatRupiah(charge)}</td>
+
+<td>
+
+  <div class="action-menu">
+
+    <button class="action-btn">
+      ⋮
+    </button>
+
+    <div class="action-dropdown">
+
+      <button class="edit-btn">
+        <i class="fa-solid fa-pen"></i>
+      </button>
+
+      <button class="delete-btn">
+        <i class="fa-solid fa-trash"></i>
+      </button>
+
+    </div>
+
+  </div>
+
+</td>
 
             </tr>
 
@@ -1799,6 +2004,41 @@ else{
 
   tableBody.appendChild(row);
 tableBody.appendChild(detailRow);
+
+  localStorage.setItem(
+  "databaseContent",
+  tableBody.innerHTML
+);
+
+  /* ACTION MENU FIRST ROW */
+
+detailRow
+.querySelector(".action-btn")
+.addEventListener("click", (e) => {
+
+  e.stopPropagation();
+
+  detailRow
+  .querySelector(".action-menu")
+  .classList.toggle("show");
+
+});
+
+/* DELETE FIRST ROW */
+
+detailRow
+.querySelector(".delete-btn")
+.addEventListener("click", () => {
+
+  row.remove();
+  detailRow.remove();
+
+  localStorage.setItem(
+    "databaseContent",
+    tableBody.innerHTML
+  );
+
+});
 
   /* TOGGLE */
 
@@ -1831,15 +2071,6 @@ tableBody.appendChild(detailRow);
 
 }
 
-
-
-/* SAVE LOCAL STORAGE */
-
-localStorage.setItem(
-  "databaseContent",
-  tableBody.innerHTML
-);
-
   /* RESET FORM */
 
 document.getElementById("jenisInput").value = "";
@@ -1857,6 +2088,26 @@ popup.classList.remove("show");
 
 });
 
+function loadActionMenu(){
+
+  document
+  .querySelectorAll(".action-btn")
+  .forEach((btn) => {
+
+    btn.addEventListener("click", (e) => {
+
+      e.stopPropagation();
+
+      btn
+      .closest(".action-menu")
+      .classList.toggle("show");
+
+    });
+
+  });
+
+}
+  
   /* LOAD SAVED DATA */
 
 const savedData =
@@ -1866,7 +2117,7 @@ if(savedData){
 
   tableBody.innerHTML =
   savedData;
-
+loadActionMenu();
 }
 
   /* RELOAD TOGGLE BUTTON */
@@ -1903,6 +2154,30 @@ document
     }
 
   });
+
+});
+
+  /* =========================
+RESET ALL
+========================= */
+
+const resetAllBtn =
+document.getElementById("resetAllBtn");
+
+resetAllBtn.addEventListener("click", () => {
+
+  const confirmReset =
+  confirm("Hapus semua data transaksi?");
+
+  if(confirmReset){
+
+    tableBody.innerHTML = "";
+
+    localStorage.removeItem(
+      "databaseContent"
+    );
+
+  }
 
 });
 
