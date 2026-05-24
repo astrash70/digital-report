@@ -2052,10 +2052,28 @@ detailRow
 
 detailRow
 .querySelector(".delete-btn")
-.addEventListener("click", () => {
+.addEventListener("click", (event) => {
 
-  row.remove();
-  detailRow.remove();
+  const currentRow =
+  event.target.closest("tr");
+
+  currentRow.remove();
+
+  /* CEK SISA */
+
+  const tbody =
+  detailRow.querySelector("tbody");
+
+  if(
+    tbody.querySelectorAll("tr").length === 0
+  ){
+
+    row.remove();
+    detailRow.remove();
+
+  }
+
+  /* SAVE */
 
   localStorage.setItem(
     "databaseContent",
@@ -2063,7 +2081,6 @@ detailRow
   );
 
 });
-
   /* TOGGLE */
 
   const expandBtn =
