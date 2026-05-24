@@ -1846,18 +1846,21 @@ newRange
 
 newRange
 .querySelector(".delete-btn")
-.addEventListener("click", () => {
+.addEventListener("click", (event) => {
 
-  newRange.remove();
+  const currentRow =
+  event.target.closest("tbody tr");
 
-if(
-  tbody.querySelectorAll("tr").length === 0
-){
+  currentRow.remove();
 
-  existingRow.remove();
-  detailRow.remove();
+  if(
+    tbody.children.length === 0
+  ){
 
-}
+    existingRow.remove();
+    detailRow.remove();
+
+  }
 
   localStorage.setItem(
     "databaseContent",
@@ -1865,13 +1868,7 @@ if(
   );
 
 });
-
-  
-}
-
-  
-
-  
+   
 
 /* =========================
 JIKA BELUM ADA
@@ -2055,7 +2052,7 @@ detailRow
 .addEventListener("click", (event) => {
 
   const currentRow =
-  event.target.closest("tr");
+  event.target.closest("tbody tr");
 
   currentRow.remove();
 
@@ -2065,7 +2062,7 @@ detailRow
   detailRow.querySelector("tbody");
 
   if(
-    tbody.querySelectorAll("tr").length === 0
+    tbody.children.length === 0
   ){
 
     row.remove();
@@ -2081,6 +2078,8 @@ detailRow
   );
 
 });
+
+  
   /* TOGGLE */
 
   const expandBtn =
@@ -2171,6 +2170,7 @@ if(savedData){
   tableBody.innerHTML =
   savedData;
 loadActionMenu();
+loadDeleteButton();
 }
 
   /* RELOAD TOGGLE BUTTON */
@@ -2247,6 +2247,54 @@ document.addEventListener("click", () => {
   });
 
 });
+
+  function loadDeleteButton(){
+
+  document
+  .querySelectorAll(".delete-btn")
+  .forEach((btn) => {
+
+    btn.addEventListener("click", (event) => {
+
+      const currentRow =
+      event.target.closest("tbody tr");
+
+      if(!currentRow) return;
+
+      const tbody =
+      currentRow.parentElement;
+
+      currentRow.remove();
+
+      /* CEK APAKAH MASIH ADA ROW */
+
+      if(
+        tbody.children.length === 0
+      ){
+
+        const detailRow =
+        tbody.closest("tr");
+
+        const parentRow =
+        detailRow.previousElementSibling;
+
+        parentRow.remove();
+        detailRow.remove();
+
+      }
+
+      /* SAVE */
+
+      localStorage.setItem(
+        "databaseContent",
+        tableBody.innerHTML
+      );
+
+    });
+
+  });
+
+}
 
 </script>
 
