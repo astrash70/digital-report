@@ -558,7 +558,7 @@ th{
 
 td{
 
-  padding:18px;
+  padding:14px 18px;
 
   border-top:
   1px solid #f0f3f5;
@@ -1322,7 +1322,7 @@ placeholder="Cari jenis transaksi..."
 <th>Jenis Transaksi</th>
 <th>Kategori</th>
 <th>Efek</th>
-<th>Aksi</th>
+<th></th>
 
 </tr>
 
@@ -1633,7 +1633,7 @@ saveBtn.addEventListener("click", () => {
     <td>${jenis}</td>
 
     <td>
-      <span class="badge ${kategori === 'Saldo In' ? 'in' : 'out'}">
+      <div class="effect ${kategori === 'Saldo In' ? 'in' : 'out'}">
 
   ${kategori === 'Saldo In'
     ? '↓'
@@ -1641,7 +1641,7 @@ saveBtn.addEventListener("click", () => {
 
   ${kategori}
 
-</span>
+</div>
     </td>
 
     <td>
@@ -1720,6 +1720,13 @@ saveBtn.addEventListener("click", () => {
   tableBody.appendChild(row);
   tableBody.appendChild(detailRow);
 
+  /* SAVE LOCAL STORAGE */
+
+localStorage.setItem(
+  "databaseContent",
+  tableBody.innerHTML
+);
+
   /* TOGGLE */
 
   const expandBtn =
@@ -1765,6 +1772,18 @@ efekSelect.value = "none";
 popup.classList.remove("show");
 
 });
+
+  /* LOAD SAVED DATA */
+
+const savedData =
+localStorage.getItem("databaseContent");
+
+if(savedData){
+
+  tableBody.innerHTML =
+  savedData;
+
+}
 
 </script>
 
