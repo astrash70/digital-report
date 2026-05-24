@@ -1717,7 +1717,20 @@ document.getElementById("transactionTable");
 
 }
 
+let editTargetRow = null;
+
 saveBtn.addEventListener("click", () => {
+
+  /* =========================
+  MODE EDIT
+  ========================= */
+
+  if(editTargetRow){
+
+    updateData();
+    return;
+
+  }
 
   const jenis =
   document.getElementById("jenisInput").value;
@@ -1811,7 +1824,10 @@ if(existingRow){
   `;
 
   tbody.appendChild(newRange);
+
 saveData();
+
+loadEditButtons();
 
  /* DELETE BUTTON */
 
@@ -2007,9 +2023,12 @@ else{
 
   tableBody.appendChild(row);
 tableBody.appendChild(detailRow);
-  loadExpandButton();
 
-  saveData();
+loadExpandButton();
+
+saveData();
+
+loadEditButtons();
 
   /* ACTION MENU FIRST ROW */
 
@@ -2150,8 +2169,10 @@ function loadActionMenu(){
   );
 
 }
+
   
- /* LOAD SAVED DATA */
+
+/* LOAD SAVED DATA */
 
 const savedData =
 localStorage.getItem("databaseContent");
@@ -2163,6 +2184,7 @@ if(savedData){
 
   loadExpandButton();
   loadActionMenu();
+  loadEditButtons();
 
 }
 
@@ -2244,6 +2266,119 @@ document.addEventListener("click", () => {
 
 });
 
+
+/* =========================
+EDIT BUTTON
+========================= */
+
+function loadEditButtons(){
+
+  document
+  .querySelectorAll(".edit-btn")
+  .forEach((btn) => {
+
+    btn.onclick = (event) => {
+
+      const currentRow =
+      event.target.closest("tr");
+
+      editTargetRow =
+      currentRow;
+
+      const detailRow =
+      currentRow.closest(".child-wrapper");
+
+      const parentRow =
+      detailRow
+      .closest("tr")
+      .previousElementSibling;
+
+      const jenis =
+      parentRow.children[0].innerText;
+
+      const nominalMin =
+      currentRow.children[1]
+      .innerText
+      .replace(/[^\d]/g,'');
+
+      const nominalMax =
+      currentRow.children[2]
+      .innerText
+      .replace(/[^\d]/g,'');
+
+      const admin =
+      currentRow.children[3]
+      .innerText
+      .replace(/[^\d]/g,'');
+
+      const charge =
+      currentRow.children[4]
+      .innerText
+      .replace(/[^\d]/g,'');
+
+      document.getElementById("jenisInput").value =
+      jenis;
+
+      document.getElementById("minInput").value =
+      nominalMin;
+
+      document.getElementById("maxInput").value =
+      nominalMax;
+
+      document.getElementById("adminInput").value =
+      admin;
+
+      document.getElementById("chargeInput").value =
+      charge;
+
+      popup.classList.add("show");
+
+    };
+
+  });
+
+}
+  
+  /* =========================
+UPDATE DATA
+========================= */
+
+function updateData(){
+
+  const jenis =
+  document.getElementById("jenisInput").value;
+
+  const nominalMin =
+  document.getElementById("minInput").value;
+
+  const nominalMax =
+  document.getElementById("maxInput").value;
+
+  const admin =
+  document.getElementById("adminInput").value;
+
+  const charge =
+  document.getElementById("chargeInput").value;
+
+  editTargetRow.children[1].innerHTML =
+  formatRupiah(nominalMin);
+
+  editTargetRow.children[2].innerHTML =
+  formatRupiah(nominalMax);
+
+  editTargetRow.children[3].innerHTML =
+  formatRupiah(admin);
+
+  editTargetRow.children[4].innerHTML =
+  formatRupiah(charge);
+
+  saveData();
+
+  popup.classList.remove("show");
+
+  editTargetRow = null;
+
+}
 
 </script>
 
