@@ -2141,11 +2141,7 @@ function loadActionMenu(){
   });
 
 }
-
-  /* SAVE */
-
-saveData();
-
+  
   function saveData(){
 
   localStorage.setItem(
@@ -2167,7 +2163,6 @@ if(savedData){
 
   loadExpandButton();
   loadActionMenu();
-  loadDeleteButton();
 
 }
 
@@ -2249,46 +2244,6 @@ document.addEventListener("click", () => {
 
 });
 
-  function loadDeleteButton(){
-
-  document
-  .querySelectorAll(".delete-btn")
-  .forEach((btn) => {
-
-    btn.addEventListener("click", (event) => {
-
-      const currentRow =
-      event.target.closest("tr");
-
-      if(!currentRow) return;
-
-      const tbody =
-      currentRow.parentElement;
-
-      currentRow.remove();
-
-      /* CEK APAKAH MASIH ADA ROW */
-
-      if(tbody.children.length === 0){
-
-        const detailRow =
-        tbody.closest("tr");
-
-        const parentRow =
-        detailRow.previousElementSibling;
-
-        parentRow.remove();
-        detailRow.remove();
-
-      }
-
-      saveData();
-
-    });
-
-  });
-
-}
 
 </script>
 
