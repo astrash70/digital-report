@@ -1287,7 +1287,6 @@ placeholder="Cari jenis transaksi..."
 <th>Jenis Transaksi</th>
 <th>Kategori</th>
 <th>Efek</th>
-<th>Total Range</th>
 <th>Aksi</th>
 
 </tr>
@@ -1603,10 +1602,6 @@ saveBtn.addEventListener("click", () => {
     </td>
 
     <td>
-      1 Range
-    </td>
-
-    <td>
       <button class="expand-btn">
         ⌄
       </button>
@@ -1624,7 +1619,7 @@ saveBtn.addEventListener("click", () => {
 
   detailRow.innerHTML = `
 
-    <td colspan="5" class="child-wrapper">
+    <td colspan="4" class="child-wrapper">
 
       <div class="child-table">
 
@@ -1646,7 +1641,7 @@ saveBtn.addEventListener("click", () => {
           <tbody>
 
             <tr>
-
+              <td>1</td>
               <td>${nominalMin}</td>
               <td>${nominalMax}</td>
               <td>${admin}</td>
@@ -1696,9 +1691,20 @@ saveBtn.addEventListener("click", () => {
 
   });
 
-  /* CLOSE POPUP */
+  /* RESET FORM */
 
-  popup.classList.remove("show");
+document.getElementById("jenisInput").value = "";
+document.getElementById("minInput").value = "";
+document.getElementById("maxInput").value = "";
+document.getElementById("adminInput").value = "";
+document.getElementById("chargeInput").value = "";
+
+kategoriSelect.value = "none";
+efekSelect.value = "none";
+
+/* CLOSE POPUP */
+
+popup.classList.remove("show");
 
 });
 
