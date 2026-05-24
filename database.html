@@ -751,6 +751,203 @@ MOBILE
 
 }
 
+  /* =========================
+POPUP MODAL
+========================= */
+
+.modal-overlay{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+  rgba(0,0,0,0.35);
+
+  backdrop-filter:blur(4px);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  opacity:0;
+
+  visibility:hidden;
+
+  transition:0.25s;
+
+  z-index:9999;
+}
+
+.modal-overlay.show{
+
+  opacity:1;
+
+  visibility:visible;
+}
+
+.modal-box{
+
+  width:100%;
+
+  max-width:440px;
+
+  background:white;
+
+  border-radius:34px;
+
+  padding:26px;
+
+  position:relative;
+
+  transform:
+  translateY(20px) scale(.96);
+
+  transition:0.25s;
+
+  box-shadow:
+  0 30px 60px rgba(0,0,0,0.18);
+}
+
+.modal-overlay.show .modal-box{
+
+  transform:
+  translateY(0) scale(1);
+}
+
+.modal-box h2{
+
+  font-size:22px;
+
+  color:#15803d;
+
+  margin-bottom:24px;
+
+  font-weight:800;
+}
+
+/* CLOSE */
+
+.modal-close{
+
+  position:absolute;
+
+  top:20px;
+  right:20px;
+
+  width:42px;
+  height:42px;
+
+  border:none;
+
+  background:transparent;
+
+  font-size:24px;
+
+  color:#666;
+
+  cursor:pointer;
+}
+
+/* FORM */
+
+.popup-form{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:18px;
+}
+
+.form-group{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:10px;
+}
+
+.form-group label{
+
+  font-size:14px;
+
+  font-weight:700;
+
+  color:#3b3b3b;
+}
+
+.form-group input,
+.form-group select{
+
+  height:52px;
+
+  border:none;
+
+  background:#f3f4f4;
+
+  border-radius:16px;
+
+  padding:0 16px;
+
+  font-family:inherit;
+
+  font-size:14px;
+
+  outline:none;
+}
+
+.submit-btn{
+
+  margin-top:8px;
+
+  height:56px;
+
+  border:none;
+
+  border-radius:18px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #0a6b2d,
+    #16a34a
+  );
+
+  color:white;
+
+  font-size:15px;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+  transition:0.2s;
+}
+
+.submit-btn:hover{
+
+  transform:translateY(-2px);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .modal-box{
+
+    width:92%;
+
+    border-radius:28px;
+
+    padding:22px;
+  }
+
+}
+
 </style>
 </head>
 
@@ -1358,6 +1555,135 @@ Menampilkan 1 - 5 dari 5 data
 </div>
 
 </div>
+
+<!-- =========================
+POPUP TAMBAH DATA
+========================= -->
+
+<div class="modal-overlay" id="popupForm">
+
+  <div class="modal-box">
+
+    <!-- CLOSE -->
+
+    <button class="modal-close" id="closePopup">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <h2>Tambah Data</h2>
+
+    <form class="popup-form">
+
+      <div class="form-group">
+        <label>Jenis Transaksi</label>
+
+        <input
+          type="text"
+          placeholder="Contoh: Transfer BCA"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Range Nominal</label>
+
+        <input
+          type="text"
+          placeholder="Contoh: 10.000 - 100.000"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Biaya Admin</label>
+
+        <input
+          type="text"
+          placeholder="Masukkan nominal"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Admin Bank</label>
+
+        <input
+          type="text"
+          placeholder="Masukkan nominal"
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Kategori</label>
+
+        <select>
+          <option>Saldo In</option>
+          <option>Saldo Out</option>
+          <option>Kas Masuk</option>
+          <option>Kas Keluar</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Efek Kategori</label>
+
+        <select>
+          <option>Cash In</option>
+          <option>Cash Out</option>
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        Simpan Data
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- =========================
+SCRIPT POPUP
+========================= -->
+
+<script>
+
+const popup =
+document.getElementById("popupForm");
+
+const openBtn =
+document.querySelector(".add-btn");
+
+const closeBtn =
+document.getElementById("closePopup");
+
+/* OPEN */
+
+openBtn.addEventListener("click", () => {
+
+  popup.classList.add("show");
+
+});
+
+/* CLOSE */
+
+closeBtn.addEventListener("click", () => {
+
+  popup.classList.remove("show");
+
+});
+
+/* CLOSE KLIK LUAR */
+
+popup.addEventListener("click", (e) => {
+
+  if(e.target === popup){
+
+    popup.classList.remove("show");
+
+  }
+
+});
+
+</script>
 
 </body>
 </html>
