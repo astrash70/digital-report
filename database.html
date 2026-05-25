@@ -1839,6 +1839,7 @@ if(existingRow){
 saveData();
 
 loadEditButtons();
+loadDeleteButtons();
 
  /* DELETE BUTTON */
 
@@ -2040,6 +2041,7 @@ loadExpandButton();
 saveData();
 
 loadEditButtons();
+loadDeleteButtons();
 
   /* ACTION MENU FIRST ROW */
 
@@ -2196,6 +2198,7 @@ if(savedData){
   loadExpandButton();
   loadActionMenu();
   loadEditButtons();
+  loadDeleteButtons();
 
 }
 
@@ -2276,6 +2279,54 @@ document.addEventListener("click", () => {
   });
 
 });
+
+  /* =========================
+DELETE BUTTON
+========================= */
+
+function loadDeleteButtons(){
+
+  document
+  .querySelectorAll(".delete-btn")
+  .forEach((btn) => {
+
+    btn.onclick = (event) => {
+
+      const currentRow =
+      event.target.closest("tr");
+
+      if(!currentRow) return;
+
+      const tbody =
+      currentRow.parentElement;
+
+      currentRow.remove();
+
+      /* CEK APAKAH MASIH ADA ROW */
+
+      if(tbody.children.length === 0){
+
+        const detailRow =
+        tbody.closest("tr");
+
+        const parentRow =
+        detailRow.previousElementSibling;
+
+        if(parentRow){
+          parentRow.remove();
+        }
+
+        detailRow.remove();
+
+      }
+
+      saveData();
+
+    };
+
+  });
+
+}
 
 
 /* =========================
