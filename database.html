@@ -1848,6 +1848,41 @@ function getTransactionIcon(jenis){
 
   }
 
+/* ANGSURAN */
+
+else if(
+
+  text.includes("fif")
+  || text.includes("mandala")
+  || text.includes("oto")
+  || text.includes("angsuran")
+  || text.includes("kredit")
+
+){
+
+  return `
+    <i class="fa-solid fa-car-side"></i>
+  `;
+
+}
+
+/* TABUNGAN / SETOR */
+
+else if(
+
+  text.includes("setor")
+  || text.includes("tabungan")
+  || text.includes("simpanan")
+
+){
+
+  return `
+    <i class="fa-solid fa-piggy-bank"></i>
+  `;
+
+}
+    
+
   /* PLN */
 
   else if(text.includes("pln")){
