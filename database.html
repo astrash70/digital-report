@@ -1343,8 +1343,8 @@ Kelola semua jenis transaksi beserta range biaya admin yang digunakan pada lapor
 Total Jenis Transaksi
 </div>
 
-<div class="summary-value">
-5
+<div class="summary-value" id="totalTransaksi">
+0
 </div>
 
 </div>
@@ -1376,8 +1376,8 @@ Jenis transaksi
 Uang Masuk Rekening
 </div>
 
-<div class="summary-value">
-2
+<div class="summary-value" id="uangMasuk">
+0
 </div>
 
 </div>
@@ -1409,8 +1409,8 @@ Jenis transaksi
 Uang Keluar Rekening
 </div>
 
-<div class="summary-value">
-2
+<div class="summary-value" id="uangKeluar">
+0
 </div>
 
 </div>
@@ -1443,8 +1443,8 @@ Jenis transaksi
 Kas Masuk
 </div>
 
-<div class="summary-value">
-1
+<div class="summary-value" id="kasMasuk">
+0
 </div>
 
 </div>
@@ -1476,8 +1476,8 @@ Jenis transaksi
 Kas Keluar
 </div>
 
-<div class="summary-value">
-2
+<div class="summary-value" id="kasKeluar">
+0
 </div>
 
 </div>
@@ -1780,7 +1780,7 @@ popup.addEventListener("click", (e) => {
 
   if(e.target === popup){
 
-    popup.classList.remove("show");
+    
 
   }
 
@@ -2050,6 +2050,7 @@ newRange
   }
 
   saveData();
+  updateSummary();
 
 });                         
   
@@ -2254,6 +2255,7 @@ tableBody.appendChild(detailRow);
 loadExpandButton();
 
 saveData();
+updateSummary();
 
 loadEditButtons();
 loadDeleteButtons();
@@ -2307,6 +2309,7 @@ detailRow
   }
 
   saveData();
+  updateSummary();
 
 });
   
@@ -2461,6 +2464,8 @@ if(savedData){
   tableBody.innerHTML =
   savedData;
 
+  updateSummary();
+
   loadExpandButton();
   loadActionMenu();
   loadEditButtons();
@@ -2528,6 +2533,7 @@ resetAllBtn.addEventListener("click", () => {
     localStorage.removeItem(
       "databaseContent"
     );
+    updateSummary();
 
   }
 
@@ -2588,6 +2594,7 @@ function loadDeleteButtons(){
       }
 
       saveData();
+updateSummary();
 
     };
 
@@ -2906,6 +2913,7 @@ editTargetRow.parentElement;
 sortRanges(tbody);
 
   saveData();
+  updateSummary();
 
   popup.classList.remove("show");
 
