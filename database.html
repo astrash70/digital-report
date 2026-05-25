@@ -2913,6 +2913,107 @@ sortRanges(tbody);
 
 }
 
+  /* =========================
+AUTO SUMMARY
+========================= */
+
+function updateSummary(){
+
+  const parentRows =
+  document.querySelectorAll(
+    '#transactionTable tr[data-jenis]'
+  );
+
+  /* TOTAL JENIS */
+
+  document.getElementById(
+    "totalTransaksi"
+  ).innerText =
+  parentRows.length;
+
+  let saldoIn = 0;
+  let saldoOut = 0;
+  let cashIn = 0;
+  let cashOut = 0;
+
+  parentRows.forEach((row) => {
+
+    const kategori =
+    row.children[1]
+    .innerText
+    .trim();
+
+    const efek =
+    row.children[2]
+    .innerText
+    .trim();
+
+    /* =========================
+    SALDO IN
+    ========================= */
+
+    if(
+      kategori.includes("Saldo In")
+    ){
+      saldoIn++;
+    }
+
+    /* =========================
+    SALDO OUT
+    ========================= */
+
+    if(
+      kategori.includes("Saldo Out")
+    ){
+      saldoOut++;
+    }
+
+    /* =========================
+    CASH IN
+    ========================= */
+
+    if(
+      efek.includes("Cash In")
+    ){
+      cashIn++;
+    }
+
+    /* =========================
+    CASH OUT
+    ========================= */
+
+    if(
+      efek.includes("Cash Out")
+    ){
+      cashOut++;
+    }
+
+  });
+
+  /* UPDATE CARD */
+
+  document.getElementById(
+    "uangMasuk"
+  ).innerText =
+  saldoIn;
+
+  document.getElementById(
+    "uangKeluar"
+  ).innerText =
+  saldoOut;
+
+  document.getElementById(
+    "kasMasuk"
+  ).innerText =
+  cashIn;
+
+  document.getElementById(
+    "kasKeluar"
+  ).innerText =
+  cashOut;
+
+}
+
 </script>
 
 </body>
