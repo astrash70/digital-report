@@ -2510,6 +2510,64 @@ function loadEditButtons(){
       document.getElementById("chargeInput").value =
       charge;
 
+      /* AMBIL DATA MOTHER */
+
+const kategoriText =
+parentRow.children[1]
+.innerText
+.trim();
+
+const efekText =
+parentRow.children[2]
+.innerText
+.trim();
+
+/* SET KATEGORI */
+
+if(kategoriText.includes("Saldo In")){
+
+  kategoriSelect.value =
+  "saldo_in";
+
+}
+
+else if(kategoriText.includes("Saldo Out")){
+
+  kategoriSelect.value =
+  "saldo_out";
+
+}
+
+else{
+
+  kategoriSelect.value =
+  "none";
+
+}
+
+/* SET EFEK */
+
+if(efekText.includes("Cash In")){
+
+  efekSelect.value =
+  "cash_in";
+
+}
+
+else if(efekText.includes("Cash Out")){
+
+  efekSelect.value =
+  "cash_out";
+
+}
+
+else{
+
+  efekSelect.value =
+  "none";
+
+}
+
       popup.classList.add("show");
 
     };
@@ -2539,6 +2597,18 @@ function updateData(){
   const charge =
   document.getElementById("chargeInput").value;
 
+  const kategori =
+document.getElementById("kategoriSelect")
+.options[
+  document.getElementById("kategoriSelect").selectedIndex
+].text;
+
+const efek =
+document.getElementById("efekSelect")
+.options[
+  document.getElementById("efekSelect").selectedIndex
+].text;
+
   editTargetRow.children[1].innerHTML =
   formatRupiah(nominalMin);
 
@@ -2550,6 +2620,60 @@ function updateData(){
 
   editTargetRow.children[4].innerHTML =
   formatRupiah(charge);
+
+
+  /* =========================
+UPDATE MOTHER ROW
+========================= */
+
+const detailRow =
+editTargetRow
+.closest(".child-wrapper")
+.closest("tr");
+
+const parentRow =
+detailRow.previousElementSibling;
+
+/* UPDATE JENIS */
+
+parentRow.children[0].innerHTML =
+jenis;
+
+/* UPDATE KATEGORI */
+
+parentRow.children[1].innerHTML = `
+
+  <div class="effect ${kategori === 'Saldo In'
+  ? 'in'
+  : 'out'}">
+
+    ${kategori === 'Saldo In'
+    ? '↓'
+    : '↑'}
+
+    ${kategori}
+
+  </div>
+
+`;
+
+/* UPDATE EFEK */
+
+parentRow.children[2].innerHTML = `
+
+  <div class="effect ${efek === 'Cash In'
+  ? 'in'
+  : 'out'}">
+
+    ${efek === 'Cash In'
+    ? '↓'
+    : '↑'}
+
+    ${efek}
+
+  </div>
+
+`;
 
   saveData();
 
