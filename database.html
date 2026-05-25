@@ -757,6 +757,33 @@ CHILD TABLE
   font-size:18px;
 }
 
+  .add-range-btn{
+
+  width:36px;
+  height:36px;
+
+  border:none;
+
+  border-radius:10px;
+
+  background:#e8f8ee;
+
+  color:#15803d;
+
+  cursor:pointer;
+
+  font-size:16px;
+
+  transition:.2s;
+}
+
+.add-range-btn:hover{
+
+  background:#15803d;
+
+  color:white;
+}
+
 .action-dropdown{
 
   position:absolute;
@@ -1840,6 +1867,7 @@ saveData();
 
 loadEditButtons();
 loadDeleteButtons();
+loadAddRangeButtons();
 
  /* DELETE BUTTON */
 
@@ -1977,7 +2005,14 @@ else{
               <th>Nominal Max</th>
               <th>Biaya Admin</th>
               <th>Charge</th>
-              <th></th>
+
+<th>
+
+  <button class="add-range-btn">
+    <i class="fa-solid fa-plus"></i>
+  </button>
+
+</th>
 
             </tr>
 
@@ -2042,6 +2077,7 @@ saveData();
 
 loadEditButtons();
 loadDeleteButtons();
+loadAddRangeButtons();
 
   /* ACTION MENU FIRST ROW */
 
@@ -2199,6 +2235,7 @@ if(savedData){
   loadActionMenu();
   loadEditButtons();
   loadDeleteButtons();
+  loadAddRangeButtons();
 
 }
 
@@ -2321,6 +2358,54 @@ function loadDeleteButtons(){
       }
 
       saveData();
+
+    };
+
+  });
+
+}
+
+  /* =========================
+ADD RANGE BUTTON
+========================= */
+
+function loadAddRangeButtons(){
+
+  document
+  .querySelectorAll(".add-range-btn")
+  .forEach((btn) => {
+
+    btn.onclick = () => {
+
+      /* AMBIL PARENT ROW */
+
+      const detailRow =
+      btn.closest("tr");
+
+      const parentRow =
+      detailRow.previousElementSibling;
+
+      /* AMBIL JENIS TRANSAKSI */
+
+      const jenis =
+      parentRow.children[0]
+      .innerText;
+
+      /* RESET FORM */
+
+      document.getElementById("minInput").value = "";
+      document.getElementById("maxInput").value = "";
+      document.getElementById("adminInput").value = "";
+      document.getElementById("chargeInput").value = "";
+
+      /* AUTO ISI JENIS */
+
+      document.getElementById("jenisInput").value =
+      jenis;
+
+      /* BUKA POPUP */
+
+      popup.classList.add("show");
 
     };
 
