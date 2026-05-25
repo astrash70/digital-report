@@ -2168,7 +2168,7 @@ document.getElementById("minInput").value = "";
 document.getElementById("maxInput").value = "";
 document.getElementById("adminInput").value = "";
 document.getElementById("chargeInput").value = "";
-
+  
 kategoriSelect.value = "none";
 efekSelect.value = "none";
 
@@ -2365,7 +2365,7 @@ function loadDeleteButtons(){
 
 }
 
-  /* =========================
+/* =========================
 ADD RANGE BUTTON
 ========================= */
 
@@ -2377,15 +2377,22 @@ function loadAddRangeButtons(){
 
     btn.onclick = () => {
 
-      /* AMBIL PARENT ROW */
+      /* AMBIL CHILD TABLE */
+
+      const childTable =
+      btn.closest(".child-table");
+
+      /* AMBIL DETAIL ROW */
 
       const detailRow =
-      btn.closest("tr");
+      childTable.closest("tr");
+
+      /* AMBIL PARENT */
 
       const parentRow =
       detailRow.previousElementSibling;
 
-      /* AMBIL JENIS TRANSAKSI */
+      /* AMBIL JENIS */
 
       const jenis =
       parentRow.children[0]
@@ -2397,11 +2404,17 @@ function loadAddRangeButtons(){
       document.getElementById("maxInput").value = "";
       document.getElementById("adminInput").value = "";
       document.getElementById("chargeInput").value = "";
+      kategoriSelect.value = "none";
+efekSelect.value = "none";
 
-      /* AUTO ISI JENIS */
+      /* AUTO ISI */
 
       document.getElementById("jenisInput").value =
       jenis;
+
+      /* RESET EDIT MODE */
+
+      editTargetRow = null;
 
       /* BUKA POPUP */
 
@@ -2412,7 +2425,6 @@ function loadAddRangeButtons(){
   });
 
 }
-
 
 /* =========================
 EDIT BUTTON
