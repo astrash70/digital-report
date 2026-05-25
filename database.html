@@ -1879,6 +1879,10 @@ if(existingRow){
 
   tbody.appendChild(newRange);
 
+/* SORT OTOMATIS */
+
+sortRanges(tbody);
+
 saveData();
 
 loadEditButtons();
@@ -2225,6 +2229,56 @@ function loadActionMenu(){
       .classList.add("show");
 
     });
+
+  });
+
+}
+
+  /* =========================
+SORT RANGE
+========================= */
+
+function sortRanges(tbody){
+
+  const rows =
+  Array.from(
+    tbody.querySelectorAll("tr")
+  );
+
+  rows.sort((a,b) => {
+
+    const minA =
+    Number(
+      a.children[1]
+      .innerText
+      .replace(/[^\d]/g,'')
+    );
+
+    const minB =
+    Number(
+      b.children[1]
+      .innerText
+      .replace(/[^\d]/g,'')
+    );
+
+    return minA - minB;
+
+  });
+
+  /* RESET ISI */
+
+  tbody.innerHTML = "";
+
+  /* MASUKKAN ULANG */
+
+  rows.forEach((row,index) => {
+
+    /* UPDATE NOMOR */
+
+    row.children[0].innerHTML =
+    index + 1;
+
+    tbody.appendChild(row);
 
   });
 
@@ -2674,6 +2728,13 @@ parentRow.children[2].innerHTML = `
   </div>
 
 `;
+
+  /* SORT ULANG */
+
+const tbody =
+editTargetRow.parentElement;
+
+sortRanges(tbody);
 
   saveData();
 
