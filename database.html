@@ -660,6 +660,39 @@ td{
   color:#ef4444;
 }
 
+  .transaction-name{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  font-weight:600;
+}
+
+.transaction-icon{
+
+  width:34px;
+  height:34px;
+
+  border-radius:10px;
+
+  background:#eef8f1;
+
+  color:#15803d;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  font-size:14px;
+
+  flex-shrink:0;
+}
+
 .expand-btn{
 
   width:36px;
@@ -1773,6 +1806,80 @@ document.getElementById("transactionTable");
 
 let editTargetRow = null;
 
+  /* =========================
+ICON TRANSAKSI
+========================= */
+
+function getTransactionIcon(jenis){
+
+  const text =
+  jenis.toLowerCase();
+
+  /* TARIK TUNAI */
+
+  if(text.includes("tarik")){
+
+    return `
+      <i class="fa-solid fa-wallet"></i>
+    `;
+
+  }
+
+  /* TRANSFER */
+
+  else if(
+    text.includes("transfer")
+    || text.includes("tf")
+  ){
+
+    return `
+      <i class="fa-solid fa-right-left"></i>
+    `;
+
+  }
+
+  /* BANK */
+
+  else if(text.includes("bank")){
+
+    return `
+      <i class="fa-solid fa-building-columns"></i>
+    `;
+
+  }
+
+  /* PLN */
+
+  else if(text.includes("pln")){
+
+    return `
+      <i class="fa-solid fa-bolt"></i>
+    `;
+
+  }
+
+  /* PULSA */
+
+  else if(text.includes("pulsa")){
+
+    return `
+      <i class="fa-solid fa-mobile-screen"></i>
+    `;
+
+  }
+
+  /* DEFAULT */
+
+  else{
+
+    return `
+      <i class="fa-solid fa-money-bill-wave"></i>
+    `;
+
+  }
+
+}
+
 saveBtn.addEventListener("click", () => {
 
   /* =========================
@@ -1956,7 +2063,21 @@ else{
 
   row.innerHTML = `
 
-    <td>${jenis}</td>
+   <td>
+
+  <div class="transaction-name">
+
+    <div class="transaction-icon">
+
+      ${getTransactionIcon(jenis)}
+
+    </div>
+
+    ${jenis}
+
+  </div>
+
+</td>
 
     <td>
 
@@ -2690,8 +2811,21 @@ detailRow.previousElementSibling;
 
 /* UPDATE JENIS */
 
-parentRow.children[0].innerHTML =
-jenis;
+parentRow.children[0].innerHTML = `
+
+  <div class="transaction-name">
+
+    <div class="transaction-icon">
+
+      ${getTransactionIcon(jenis)}
+
+    </div>
+
+    ${jenis}
+
+  </div>
+
+`;
 
 /* UPDATE KATEGORI */
 
