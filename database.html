@@ -2316,6 +2316,7 @@ detailRow
 
       detailRow.style.display =
       "table-row";
+      detailRow.dataset.open = "true";
 
       expandBtn.innerHTML =
       "⌃";
@@ -2326,6 +2327,7 @@ detailRow
 
       detailRow.style.display =
       "none";
+      detailRow.dataset.open = "false";
 
       expandBtn.innerHTML =
       "⌄";
@@ -3013,6 +3015,68 @@ function updateSummary(){
   cashOut;
 
 }
+
+  /* =========================
+SEARCH TRANSAKSI
+========================= */
+
+const searchInput =
+document.querySelector(".filter-input");
+
+searchInput.addEventListener("input", () => {
+
+  const keyword =
+  searchInput.value.toLowerCase();
+
+  const parentRows =
+  document.querySelectorAll(
+    '#transactionTable tr[data-jenis]'
+  );
+
+  parentRows.forEach((row) => {
+
+    const jenis =
+    row.innerText.toLowerCase();
+
+    const detailRow =
+    row.nextElementSibling;
+
+    if(jenis.includes(keyword)){
+
+      row.style.display = "";
+
+      /* BIAR CHILD TETEP NORMAL */
+
+      if(
+        detailRow &&
+        detailRow.classList !== "hidden-detail"
+      ){
+
+        detailRow.style.display =
+        detailRow.dataset.open === "true"
+        ? "table-row"
+        : "none";
+
+      }
+
+    }
+
+    else{
+
+      row.style.display = "none";
+
+      if(detailRow){
+
+        detailRow.style.display =
+        "none";
+
+      }
+
+    }
+
+  });
+
+});
 
 </script>
 
