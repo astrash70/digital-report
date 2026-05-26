@@ -2202,6 +2202,54 @@ newRange
   }   
 
 /* =========================
+SORT TRANSAKSI A-Z
+========================= */
+
+function sortTransactionAZ(){
+
+  const allRows =
+  Array.from(tableBody.children);
+
+  const grouped = [];
+
+  for(let i = 0; i < allRows.length; i += 2){
+
+    grouped.push({
+      parent: allRows[i],
+      child: allRows[i + 1]
+    });
+
+  }
+
+  grouped.sort((a,b) => {
+
+    const textA =
+    a.parent
+    .getAttribute("data-jenis")
+    .toLowerCase();
+
+    const textB =
+    b.parent
+    .getAttribute("data-jenis")
+    .toLowerCase();
+
+    return textA.localeCompare(textB);
+
+  });
+
+  tableBody.innerHTML = "";
+
+  grouped.forEach((item) => {
+
+    tableBody.appendChild(item.parent);
+    tableBody.appendChild(item.child);
+
+  });
+
+}
+  
+
+/* =========================
 JIKA BELUM ADA
 ========================= */
 
@@ -2371,6 +2419,8 @@ else{
 tableBody.appendChild(detailRow);
 
 loadExpandButton();
+sortTransactionAZ();
+
 
 saveData();
 updateSummary();
@@ -3031,6 +3081,10 @@ const tbody =
 editTargetRow.parentElement;
 
 sortRanges(tbody);
+sortTransactionAZ();
+
+saveData();
+updateSummary();
 
   saveData();
   updateSummary();
