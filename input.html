@@ -573,17 +573,47 @@ OPENING
 
   position:absolute;
 
-  top:-8px;
+  top:-10px;
 
   right:0;
 
-  height:23px;
+  height:34px;
 
-  padding:0 8px;
+  padding:0 18px;
 
-  font-size:9px;
+  border:none;
 
   border-radius:999px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #178a43,
+    #116b34
+  );
+
+  color:white;
+
+  font-size:12px;
+
+  font-weight:700;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:6px;
+
+  box-shadow:
+  0 8px 18px rgba(17,107,52,.18);
+
+}
+
+.mini-detail-btn i{
+
+  font-size:11px;
+
+  opacity:.9;
 
 }
 
@@ -1169,10 +1199,9 @@ id="cashPagi">
 
 <div class="saldo-wrapper">
 
-<button class="detail-btn mini-detail-btn">
-<i class="fa-regular fa-eye"></i>
-&nbsp;
-Detail
+<button class="mini-detail-btn">
+Lihat Detail
+<i class="fa-solid fa-arrow-right"></i>
 </button>
 
 <div class="input-group">
