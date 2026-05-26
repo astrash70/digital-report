@@ -1131,8 +1131,10 @@ Total Kas + Total Saldo
 Cash Pagi
 </label>
 
-<input type="text"
-value="Rp 23.890.509">
+<input
+type="text"
+id="cashPagi"
+value="23890509">
 
 </div>
 
@@ -1677,7 +1679,76 @@ totalSaldoInput.addEventListener(
 updateTotalModal
 );
 
+<script>
+
+function parseRupiah(value){
+
+  return Number(
+    value
+    .replace(/[^0-9]/g,'')
+  ) || 0;
+
+}
+
+function formatRupiah(number){
+
+  return 'Rp ' +
+  number.toLocaleString('id-ID');
+
+}
+
+const cashPagiInput =
+document.getElementById('cashPagi');
+
+const totalSaldoInput =
+document.querySelectorAll('.input-group input')[1];
+
+const totalModal =
+document.getElementById('totalModal');
+
+function updateTotalModal(){
+
+  const cashPagi =
+  parseRupiah(cashPagiInput.value);
+
+  const totalSaldo =
+  parseRupiah(totalSaldoInput.value);
+
+  const hasil =
+  cashPagi + totalSaldo;
+
+  totalModal.textContent =
+  formatRupiah(hasil);
+
+}
+
+cashPagiInput.addEventListener(
+'input',
+function(){
+
+  const angka =
+  parseRupiah(this.value);
+
+  this.value =
+  formatRupiah(angka);
+
+  updateTotalModal();
+
+});
+
+totalSaldoInput.addEventListener(
+'input',
+updateTotalModal
+);
+
+cashPagiInput.value =
+formatRupiah(
+parseRupiah(cashPagiInput.value)
+);
+
 updateTotalModal();
+
+</script>
 
 </script>
 
