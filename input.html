@@ -573,7 +573,7 @@ OPENING
 
   position:absolute;
 
-  top:-4px;
+  top:2px;
 
   right:0;
 
@@ -611,15 +611,7 @@ OPENING
 
 .mini-detail-btn i{
 
-  font-size:11px;
-
-  opacity:.9;
-
-}
-
-.mini-detail-btn i{
-
-  font-size:12px;
+  font-size:10px;
 
 }
 
@@ -974,6 +966,200 @@ MOBILE
 
 }
 
+  /* =========================
+POPUP
+========================= */
+
+.popup-overlay{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+  rgba(0,0,0,.35);
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  z-index:9999;
+
+}
+
+.popup-overlay.active{
+
+  display:flex;
+
+}
+
+.saldo-popup,
+.tambah-popup{
+
+  width:700px;
+
+  background:white;
+
+  border-radius:22px;
+
+  padding:24px;
+
+  box-shadow:
+  0 20px 60px rgba(0,0,0,.15);
+
+}
+
+.tambah-popup{
+
+  width:340px;
+
+}
+
+.popup-header{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:20px;
+
+}
+
+.popup-header h3{
+
+  color:#116b34;
+
+  font-size:18px;
+
+}
+
+.close-popup{
+
+  border:none;
+
+  background:none;
+
+  font-size:20px;
+
+  cursor:pointer;
+
+}
+
+.add-saldo-btn{
+
+  height:42px;
+
+  padding:0 18px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #178a43,
+    #116b34
+  );
+
+  color:white;
+
+  font-weight:700;
+
+  margin-bottom:18px;
+
+  cursor:pointer;
+
+}
+
+.saldo-table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+}
+
+.saldo-table th,
+.saldo-table td{
+
+  border:
+  1px solid #edf1f3;
+
+  padding:14px;
+
+  font-size:14px;
+
+}
+
+.saldo-table th{
+
+  background:#f7faf8;
+
+  text-align:left;
+
+}
+
+.popup-form{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+
+}
+
+.popup-form label{
+
+  font-size:14px;
+
+  font-weight:600;
+
+}
+
+.popup-form input{
+
+  height:48px;
+
+  border:
+  1px solid #dfe5e8;
+
+  border-radius:12px;
+
+  padding:0 14px;
+
+  outline:none;
+
+}
+
+.save-btn{
+
+  height:48px;
+
+  border:none;
+
+  border-radius:12px;
+
+  background:
+  linear-gradient(
+    135deg,
+    #178a43,
+    #116b34
+  );
+
+  color:white;
+
+  font-weight:700;
+
+  cursor:pointer;
+
+}
+
 </style>
 
 </head>
@@ -1199,9 +1385,13 @@ id="cashPagi">
 
 <div class="saldo-wrapper">
 
-<button class="mini-detail-btn">
+<button
+class="mini-detail-btn"
+onclick="openSaldoPopup()">
+
 Lihat Detail
 <i class="fa-solid fa-arrow-right"></i>
+
 </button>
 
 <div class="input-group">
@@ -1687,6 +1877,110 @@ BALANCE
 
 </div>
 
+  
+<!-- =========================
+POPUP DETAIL SALDO
+========================= -->
+
+<div class="popup-overlay" id="saldoPopup">
+
+  <div class="saldo-popup">
+
+    <div class="popup-header">
+
+      <h3>Detail Penempatan Saldo</h3>
+
+      <button class="close-popup"
+      onclick="closeSaldoPopup()">
+      ✕
+      </button>
+
+    </div>
+
+    <button class="add-saldo-btn"
+    onclick="openTambahPopup()">
+
+      <i class="fa-solid fa-plus"></i>
+      Tambah Sumber Saldo
+
+    </button>
+
+    <table class="saldo-table">
+
+      <thead>
+        <tr>
+          <th>Sumber</th>
+          <th>Nominal</th>
+          <th>Keterangan</th>
+        </tr>
+      </thead>
+
+      <tbody id="saldoTableBody">
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+<!-- =========================
+POPUP TAMBAH SALDO
+========================= -->
+
+<div class="popup-overlay"
+id="tambahPopup">
+
+  <div class="tambah-popup">
+
+    <div class="popup-header">
+
+      <h3>Tambah Sumber Saldo</h3>
+
+      <button class="close-popup"
+      onclick="closeTambahPopup()">
+      ✕
+      </button>
+
+    </div>
+
+    <div class="popup-form">
+
+      <label>Nama Sumber</label>
+
+      <input
+      type="text"
+      id="namaSumber"
+      placeholder="Contoh: ATM 3">
+
+      <label>Nominal</label>
+
+      <input
+      type="text"
+      id="nominalSumber"
+      placeholder="Rp 0">
+
+      <label>Keterangan</label>
+
+      <input
+      type="text"
+      id="keteranganSumber"
+      placeholder="Contoh: Saldo ATM 3">
+
+      <button class="save-btn"
+      onclick="simpanSaldo()">
+
+      Simpan
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+  
 <script>
 
 /* =========================
@@ -1811,6 +2105,177 @@ AUTO LOAD TOTAL
 
 updateTotalModal();
 
+
+  /* =========================
+POPUP
+========================= */
+
+function openSaldoPopup(){
+
+  document
+  .getElementById('saldoPopup')
+  .classList.add('active');
+
+}
+
+function closeSaldoPopup(){
+
+  document
+  .getElementById('saldoPopup')
+  .classList.remove('active');
+
+}
+
+function openTambahPopup(){
+
+  document
+  .getElementById('tambahPopup')
+  .classList.add('active');
+
+}
+
+function closeTambahPopup(){
+
+  document
+  .getElementById('tambahPopup')
+  .classList.remove('active');
+
+}
+
+/* =========================
+DATA SALDO
+========================= */
+
+let saldoData =
+JSON.parse(
+  localStorage.getItem('saldoData')
+) || [
+
+  {
+    nama:'Cash Pagi',
+    nominal:'Rp 23.890.509',
+    ket:'Kas fisik di tangan'
+  },
+
+  {
+    nama:'ATM 1',
+    nominal:'Rp 26.874.764',
+    ket:'Saldo ATM 1'
+  }
+
+];
+
+/* =========================
+RENDER TABLE
+========================= */
+
+function renderSaldoTable(){
+
+  const table =
+  document.getElementById(
+    'saldoTableBody'
+  );
+
+  table.innerHTML = '';
+
+  saldoData.forEach(item => {
+
+    table.innerHTML += `
+
+      <tr>
+
+        <td>${item.nama}</td>
+
+        <td>${item.nominal}</td>
+
+        <td>${item.ket}</td>
+
+      </tr>
+
+    `;
+
+  });
+
+}
+
+/* =========================
+SIMPAN SALDO
+========================= */
+
+function simpanSaldo(){
+
+  const nama =
+  document.getElementById(
+    'namaSumber'
+  ).value;
+
+  const nominal =
+  document.getElementById(
+    'nominalSumber'
+  ).value;
+
+  const ket =
+  document.getElementById(
+    'keteranganSumber'
+  ).value;
+
+  saldoData.push({
+
+    nama:nama,
+
+    nominal:nominal,
+
+    ket:ket
+
+  });
+
+  localStorage.setItem(
+    'saldoData',
+    JSON.stringify(saldoData)
+  );
+
+  renderSaldoTable();
+
+document.getElementById(
+'namaSumber'
+).value = '';
+
+document.getElementById(
+'nominalSumber'
+).value = '';
+
+document.getElementById(
+'keteranganSumber'
+).value = '';
+  
+
+  closeTambahPopup();
+
+}
+
+/* =========================
+LOAD
+========================= */
+
+renderSaldoTable();
+
+const nominalInput =
+document.getElementById(
+  'nominalSumber'
+);
+
+nominalInput.addEventListener(
+'blur',
+function(){
+
+  const angka =
+  parseRupiah(this.value);
+
+  this.value =
+  formatRupiah(angka);
+
+});
+    
 </script>
 
 </body>
