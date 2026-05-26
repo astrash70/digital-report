@@ -693,14 +693,14 @@ td{
 
 .transaction-icon{
 
-  width:34px;
-  height:34px;
+  width:38px;
+  height:38px;
 
-  border-radius:10px;
+  border-radius:12px;
 
-  background:#eef8f1;
+  background:white;
 
-  color:#15803d;
+  border:1px solid #edf1f3;
 
   display:flex;
 
@@ -708,9 +708,20 @@ td{
 
   justify-content:center;
 
-  font-size:14px;
+  overflow:hidden;
 
   flex-shrink:0;
+}
+
+.transaction-icon img{
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:contain;
+
+  padding:5px;
 }
 
 .expand-btn{
@@ -1827,9 +1838,168 @@ function getTransactionIcon(jenis){
   const text =
   jenis.toLowerCase();
 
-  /* TARIK TUNAI */
+  /* DANA */
 
-  if(text.includes("tarik")){
+  if(text.includes("dana")){
+
+    return `
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg">
+    `;
+
+  }
+
+  /* GOPAY */
+
+  else if(
+    text.includes("gopay")
+  ){
+
+    return `
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg">
+    `;
+
+  }
+
+  /* OVO */
+
+  else if(
+    text.includes("ovo")
+  ){
+
+    return `
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo_purple.svg">
+    `;
+
+  }
+
+  /* SHOPEEPAY */
+
+  else if(
+    text.includes("shopeepay")
+    || text.includes("shopee")
+  ){
+
+    return `
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg">
+    `;
+
+  }
+
+  /* BRI */
+
+  else if(
+    text.includes("bri")
+    || text.includes("brizzi")
+    || text.includes("briva")
+  ){
+
+    return `
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/BANK_BRI_logo.svg">
+    `;
+
+  }
+
+  /* MANDIRI */
+
+  else if(
+    text.includes("mandiri")
+  ){
+
+    return `
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg">
+    `;
+
+  }
+
+  /* LINK AJA */
+
+  else if(
+    text.includes("link aja")
+    || text.includes("linkaja")
+  ){
+
+    return `
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/85/LinkAja.svg">
+    `;
+
+  }
+
+  /* PLN */
+
+  else if(text.includes("pln")){
+
+    return `
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/97/Logo_PLN.png">
+    `;
+
+  }
+
+  /* PULSA */
+
+  else if(text.includes("pulsa")){
+
+    return `
+      <i class="fa-solid fa-mobile-screen"></i>
+    `;
+
+  }
+
+  /* BPJS */
+
+  else if(text.includes("bpjs")){
+
+    return `
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/BPJS_Kesehatan_logo.svg">
+    `;
+
+  }
+
+  /* FIF */
+
+  else if(text.includes("fif")){
+
+    return `
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/FIFGROUP_Logo.png">
+    `;
+
+  }
+
+  /* OTO / MULTIFINANCE */
+
+  else if(
+
+    text.includes("oto")
+    || text.includes("multifinance")
+    || text.includes("kredit")
+    || text.includes("angsuran")
+
+  ){
+
+    return `
+      <i class="fa-solid fa-car-side"></i>
+    `;
+
+  }
+
+  /* SETOR / TABUNGAN */
+
+  else if(
+
+    text.includes("setor")
+    || text.includes("tabungan")
+    || text.includes("simpanan")
+
+  ){
+
+    return `
+      <i class="fa-solid fa-piggy-bank"></i>
+    `;
+
+  }
+
+  /* TARIK */
+
+  else if(text.includes("tarik")){
 
     return `
       <i class="fa-solid fa-wallet"></i>
@@ -1846,71 +2016,6 @@ function getTransactionIcon(jenis){
 
     return `
       <i class="fa-solid fa-right-left"></i>
-    `;
-
-  }
-
-  /* BANK */
-
-  else if(text.includes("bank")){
-
-    return `
-      <i class="fa-solid fa-building-columns"></i>
-    `;
-
-  }
-
-/* ANGSURAN */
-
-else if(
-
-  text.includes("fif")
-  || text.includes("mandala")
-  || text.includes("oto")
-  || text.includes("angsuran")
-  || text.includes("kredit")
-
-){
-
-  return `
-    <i class="fa-solid fa-car-side"></i>
-  `;
-
-}
-
-/* TABUNGAN / SETOR */
-
-else if(
-
-  text.includes("setor")
-  || text.includes("tabungan")
-  || text.includes("simpanan")
-
-){
-
-  return `
-    <i class="fa-solid fa-piggy-bank"></i>
-  `;
-
-}
-    
-
-  /* PLN */
-
-  else if(text.includes("pln")){
-
-    return `
-      <i class="fa-solid fa-bolt"></i>
-    `;
-
-  }
-
-  /* PULSA */
-
-  else if(text.includes("pulsa")){
-
-    return `
-      <i class="fa-solid fa-mobile-screen"></i>
     `;
 
   }
