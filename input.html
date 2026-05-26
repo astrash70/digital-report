@@ -1133,8 +1133,7 @@ Cash Pagi
 
 <input
 type="text"
-id="cashPagi"
-value="23890509">
+id="cashPagi">
 
 </div>
 
@@ -1627,59 +1626,9 @@ BALANCE
 
 <script>
 
-function parseRupiah(value){
-
-  return Number(
-    value
-    .replace(/Rp/g,'')
-    .replace(/\./g,'')
-    .replace(/\s/g,'')
-  ) || 0;
-
-}
-
-function formatRupiah(number){
-
-  return 'Rp ' + number.toLocaleString('id-ID');
-
-}
-
-const cashPagiInput =
-document.querySelectorAll('.input-group input')[0];
-
-const totalSaldoInput =
-document.querySelectorAll('.input-group input')[1];
-
-const totalModal =
-document.getElementById('totalModal');
-
-function updateTotalModal(){
-
-  const cashPagi =
-  parseRupiah(cashPagiInput.value);
-
-  const totalSaldo =
-  parseRupiah(totalSaldoInput.value);
-
-  const hasil =
-  cashPagi + totalSaldo;
-
-  totalModal.textContent =
-  formatRupiah(hasil);
-
-}
-
-cashPagiInput.addEventListener(
-'input',
-updateTotalModal
-);
-
-totalSaldoInput.addEventListener(
-'input',
-updateTotalModal
-);
-
-<script>
+/* =========================
+FORMAT
+========================= */
 
 function parseRupiah(value){
 
@@ -1696,6 +1645,10 @@ function formatRupiah(number){
 
 }
 
+/* =========================
+ELEMENT
+========================= */
+
 const cashPagiInput =
 document.getElementById('cashPagi');
 
@@ -1706,7 +1659,7 @@ const totalModal =
 document.getElementById('totalModal');
 
 /* =========================
-LOAD DATA
+LOAD DATA LOCAL STORAGE
 ========================= */
 
 const savedCash =
@@ -1725,31 +1678,35 @@ if(savedCash){
 }
 
 /* =========================
-UPDATE TOTAL
+UPDATE TOTAL MODAL
 ========================= */
 
 function updateTotalModal(){
 
   const cashPagi =
-  parseRupiah(cashPagiInput.value);
+  parseRupiah(
+    cashPagiInput.value
+  );
 
   const totalSaldo =
-  parseRupiah(totalSaldoInput.value);
+  parseRupiah(
+    totalSaldoInput.value
+  );
 
-  const hasil =
+  const total =
   cashPagi + totalSaldo;
 
   totalModal.textContent =
-  formatRupiah(hasil);
+  formatRupiah(total);
 
 }
 
 /* =========================
-INPUT CASH PAGI
+FORMAT SAAT ENTER / KELUAR INPUT
 ========================= */
 
 cashPagiInput.addEventListener(
-'input',
+'blur',
 function(){
 
   const angka =
@@ -1766,6 +1723,28 @@ function(){
   updateTotalModal();
 
 });
+
+/* =========================
+FORMAT SAAT TEKAN ENTER
+========================= */
+
+cashPagiInput.addEventListener(
+'keydown',
+function(e){
+
+  if(e.key === 'Enter'){
+
+    e.preventDefault();
+
+    this.blur();
+
+  }
+
+});
+
+/* =========================
+AUTO LOAD TOTAL
+========================= */
 
 updateTotalModal();
 
