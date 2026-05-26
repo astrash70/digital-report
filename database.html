@@ -3298,7 +3298,7 @@ resetFilterBtn.addEventListener("click", () => {
 updateDataInfo();
 });
 
-  /* =========================
+ /* =========================
 UPDATE INFO DATA
 ========================= */
 
@@ -3316,30 +3316,39 @@ function updateDataInfo(){
 
   });
 
-  const total =
+  const visibleTotal =
   visibleRows.length;
+
+  const allTotal =
+  allRows.length;
 
   const info =
   document.getElementById("dataInfo");
 
-  if(total === 0){
+  /* TIDAK ADA DATA */
+
+  if(allTotal === 0){
 
     info.innerText =
     "Tidak ada transaksi";
 
   }
 
-  else if(total === 1){
+  /* SEARCH / FILTER */
+
+  else if(visibleTotal !== allTotal){
 
     info.innerText =
-    "1 transaksi ditemukan";
+    `${visibleTotal} dari ${allTotal} transaksi ditemukan`;
 
   }
+
+  /* NORMAL */
 
   else{
 
     info.innerText =
-    `${total} transaksi ditemukan`;
+    `${allTotal} transaksi ditemukan`;
 
   }
 
