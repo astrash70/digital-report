@@ -1176,6 +1176,100 @@ POPUP
 
 }
 
+  .aksi-btn{
+
+  width:34px;
+  height:34px;
+
+  border:none;
+
+  background:white;
+
+  border-radius:10px;
+
+  cursor:pointer;
+
+  color:#667085;
+
+}
+
+.aksi-btn:hover{
+
+  background:#f3f4f6;
+
+}
+
+.aksi-menu{
+
+  position:absolute;
+
+  right:20px;
+
+  margin-top:8px;
+
+  background:white;
+
+  border:1px solid #edf1f3;
+
+  border-radius:14px;
+
+  padding:8px;
+
+  display:none;
+
+  flex-direction:column;
+
+  gap:4px;
+
+  min-width:120px;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.aksi-menu.active{
+
+  display:flex;
+
+}
+
+.aksi-menu button{
+
+  height:38px;
+
+  border:none;
+
+  background:white;
+
+  border-radius:10px;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  padding:0 12px;
+
+  cursor:pointer;
+
+  font-size:14px;
+
+}
+
+.aksi-menu button:hover{
+
+  background:#f5f7f9;
+
+}
+
+.hapus-btn{
+
+  color:#dc2626;
+
+}
+
 </style>
 
 </head>
@@ -1928,10 +2022,13 @@ POPUP DETAIL SALDO
 
       <thead>
         <tr>
-          <th>Sumber</th>
-          <th>Nominal</th>
-          <th>Keterangan</th>
-        </tr>
+  <th>Sumber</th>
+  <th>Nominal</th>
+  <th>Keterangan</th>
+  <th style="width:70px;text-align:center;">
+    Aksi
+  </th>
+</tr>
       </thead>
 
       <tbody id="saldoTableBody">
@@ -2192,25 +2289,60 @@ function renderSaldoTable(){
 
   let total = 0;
 
-  saldoData.forEach(item => {
+  saldoData.forEach((item,index) => {
 
     total += parseRupiah(
       item.nominal
     );
 
-    table.innerHTML += `
+   table.innerHTML += `
 
-      <tr>
+  <tr>
 
-        <td>${item.nama}</td>
+    <td>${item.nama}</td>
 
-        <td>${item.nominal}</td>
+    <td>${item.nominal}</td>
 
-        <td>${item.ket}</td>
+    <td>${item.ket}</td>
 
-      </tr>
+    <td style="text-align:center;">
 
-    `;
+      <button
+      class="aksi-btn"
+      onclick="toggleMenu(${index})">
+
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+
+      </button>
+
+      <div
+      class="aksi-menu"
+      id="menu-${index}">
+
+        <button
+        onclick="editSaldo(${index})">
+
+          <i class="fa-solid fa-pen"></i>
+          Edit
+
+        </button>
+
+        <button
+        onclick="hapusSaldo(${index})"
+        class="hapus-btn">
+
+          <i class="fa-solid fa-trash"></i>
+          Hapus
+
+        </button>
+
+      </div>
+
+    </td>
+
+  </tr>
+
+`;
 
   });
 
@@ -2318,6 +2450,60 @@ function(){
   formatRupiah(angka);
 
 });
+
+  function toggleMenu(index){
+
+  const menu =
+  document.getElementById(
+    `menu-${index}`
+  );
+
+  menu.classList.toggle('active');
+
+}
+
+function hapusSaldo(index){
+
+  saldoData.splice(index,1);
+
+  localStorage.setItem(
+    'saldoData',
+    JSON.stringify(saldoData)
+  );
+
+  renderSaldoTable();
+
+}
+
+function editSaldo(index){
+
+  const data =
+  saldoData[index];
+
+  document.getElementById(
+    'namaSumber'
+  ).value = data.nama;
+
+  document.getElementById(
+    'nominalSumber'
+  ).value = data.nominal;
+
+  document.getElementById(
+    'keteranganSumber'
+  ).value = data.ket;
+
+  saldoData.splice(index,1);
+
+  localStorage.setItem(
+    'saldoData',
+    JSON.stringify(saldoData)
+  );
+
+  renderSaldoTable();
+
+  openTambahPopup();
+
+}
     
 </script>
 
