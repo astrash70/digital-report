@@ -2283,6 +2283,8 @@ DATA SALDO
 
 let saldoData = [];
 
+let editIndex = null;
+
 const savedSaldo =
 localStorage.getItem('saldoData');
 
@@ -2417,15 +2419,28 @@ function simpanSaldo(){
     'keteranganSumber'
   ).value;
 
-  saldoData.push({
+ const dataBaru = {
 
-    nama:nama,
+  nama:nama,
 
-    nominal:nominal,
+  nominal:nominal,
 
-    ket:ket
+  ket:ket
 
-  });
+};
+
+if(editIndex !== null){
+
+  saldoData[editIndex] =
+  dataBaru;
+
+  editIndex = null;
+
+}else{
+
+  saldoData.push(dataBaru);
+
+}
 
   localStorage.setItem(
     'saldoData',
@@ -2515,14 +2530,7 @@ function editSaldo(index){
     'keteranganSumber'
   ).value = data.ket;
 
-  saldoData.splice(index,1);
-
-  localStorage.setItem(
-    'saldoData',
-    JSON.stringify(saldoData)
-  );
-
-  renderSaldoTable();
+  editIndex = index;
 
   openTambahPopup();
 
