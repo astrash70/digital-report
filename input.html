@@ -1623,5 +1623,63 @@ BALANCE
 
 </div>
 
+<script>
+
+function parseRupiah(value){
+
+  return Number(
+    value
+    .replace(/Rp/g,'')
+    .replace(/\./g,'')
+    .replace(/\s/g,'')
+  ) || 0;
+
+}
+
+function formatRupiah(number){
+
+  return 'Rp ' + number.toLocaleString('id-ID');
+
+}
+
+const cashPagiInput =
+document.querySelectorAll('.input-group input')[0];
+
+const totalSaldoInput =
+document.querySelectorAll('.input-group input')[1];
+
+const totalModal =
+document.getElementById('totalModal');
+
+function updateTotalModal(){
+
+  const cashPagi =
+  parseRupiah(cashPagiInput.value);
+
+  const totalSaldo =
+  parseRupiah(totalSaldoInput.value);
+
+  const hasil =
+  cashPagi + totalSaldo;
+
+  totalModal.textContent =
+  formatRupiah(hasil);
+
+}
+
+cashPagiInput.addEventListener(
+'input',
+updateTotalModal
+);
+
+totalSaldoInput.addEventListener(
+'input',
+updateTotalModal
+);
+
+updateTotalModal();
+
+</script>
+
 </body>
 </html>
