@@ -1055,24 +1055,40 @@ POPUP
 
   padding:0 18px;
 
-  border:none;
+  border:
+  1.5px solid #86c89c;
 
   border-radius:12px;
 
-  background:
-  linear-gradient(
-    135deg,
-    #178a43,
-    #116b34
-  );
+  background:white;
 
-  color:white;
+  color:#15803d;
 
   font-weight:700;
 
-  margin-bottom:18px;
-
   cursor:pointer;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+.add-saldo-btn i{
+
+  font-size:13px;
+
+}
+
+  .popup-actions{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:14px;
 
 }
 
@@ -1888,17 +1904,26 @@ POPUP DETAIL SALDO
 
     <div class="popup-header">
 
-      <h3>Detail Penempatan Saldo</h3>
+  <h3>Detail Penempatan Saldo</h3>
 
-      <button class="close-popup"
-      onclick="closeSaldoPopup()">
-      ✕
-      </button>
-
-    </div>
+  <div class="popup-actions">
 
     <button class="add-saldo-btn"
     onclick="openTambahPopup()">
+
+      <i class="fa-solid fa-plus"></i>
+      Tambah Sumber Saldo
+
+    </button>
+
+    <button class="close-popup"
+    onclick="closeSaldoPopup()">
+    ✕
+    </button>
+
+  </div>
+
+</div>
 
       <i class="fa-solid fa-plus"></i>
       Tambah Sumber Saldo
@@ -2149,7 +2174,7 @@ DATA SALDO
 let saldoData =
 JSON.parse(
   localStorage.getItem('saldoData')
-) || [
+) || [];
 
   {
     nama:'Cash Pagi',
@@ -2178,7 +2203,13 @@ function renderSaldoTable(){
 
   table.innerHTML = '';
 
+  let total = 0;
+
   saldoData.forEach(item => {
+
+    total += parseRupiah(
+      item.nominal
+    );
 
     table.innerHTML += `
 
@@ -2195,6 +2226,31 @@ function renderSaldoTable(){
     `;
 
   });
+
+  table.innerHTML += `
+
+    <tr>
+
+      <td
+      style="
+      font-weight:800;
+      color:#15803d;
+      ">
+      TOTAL SALDO
+      </td>
+
+      <td
+      colspan="2"
+      style="
+      font-weight:800;
+      color:#15803d;
+      ">
+      ${formatRupiah(total)}
+      </td>
+
+    </tr>
+
+  `;
 
 }
 
