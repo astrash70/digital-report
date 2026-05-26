@@ -1307,8 +1307,8 @@ POPUP MODAL
 
 <div class="topbar-right">
 
-<div class="date-box">
-22 Mei 2026
+<div class="date-box" id="currentDate">
+-
 </div>
 
 </div>
@@ -3353,6 +3353,30 @@ function updateDataInfo(){
   }
 
 }
+
+  /* =========================
+AUTO DATE
+========================= */
+
+const currentDate =
+document.getElementById("currentDate");
+
+const today =
+new Date();
+
+const options = {
+
+  day:"numeric",
+  month:"long",
+  year:"numeric"
+
+};
+
+currentDate.innerText =
+today.toLocaleDateString(
+  "id-ID",
+  options
+);
 
 </script>
 
