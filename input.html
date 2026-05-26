@@ -2491,12 +2491,36 @@ function(){
 
   function toggleMenu(index){
 
-  const menu =
+  const menuDipilih =
   document.getElementById(
     `menu-${index}`
   );
 
-  menu.classList.toggle('active');
+  const sudahAktif =
+  menuDipilih.classList.contains(
+    'active'
+  );
+
+  const semuaMenu =
+  document.querySelectorAll(
+    '.aksi-menu'
+  );
+
+  semuaMenu.forEach(menu => {
+
+    menu.classList.remove(
+      'active'
+    );
+
+  });
+
+  if(!sudahAktif){
+
+    menuDipilih.classList.add(
+      'active'
+    );
+
+  }
 
 }
 
