@@ -2165,10 +2165,17 @@ function closeTambahPopup(){
 DATA SALDO
 ========================= */
 
-let saldoData =
-JSON.parse(
-  localStorage.getItem('saldoData')
-) || [];
+let saldoData = [];
+
+const savedSaldo =
+localStorage.getItem('saldoData');
+
+if(savedSaldo){
+
+  saldoData =
+  JSON.parse(savedSaldo);
+
+}
 
 /* =========================
 RENDER TABLE
