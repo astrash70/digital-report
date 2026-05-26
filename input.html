@@ -2539,6 +2539,19 @@ function hapusSaldo(index){
 
 function editSaldo(index){
 
+  const semuaMenu =
+  document.querySelectorAll(
+    '.aksi-menu'
+  );
+
+  semuaMenu.forEach(menu => {
+
+    menu.classList.remove(
+      'active'
+    );
+
+  });
+
   const data =
   saldoData[index];
 
