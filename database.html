@@ -523,7 +523,25 @@ FILTER
   margin-bottom:18px;
 }
 
-.filter-input,
+.filter-input{
+
+  height:50px;
+
+  border:
+  1px solid #e8edf0;
+
+  border-radius:14px;
+
+  padding:0 16px;
+
+  background:white;
+
+  outline:none;
+
+  font-family:inherit;
+
+  flex:1;
+}
 .filter-select{
 
   height:50px;
@@ -544,17 +562,35 @@ FILTER
 
 .filter-btn{
 
+  height:50px;
+
+  min-width:170px;
+
   border:none;
 
-  background:#f4f7f5;
+  background:
+  linear-gradient(
+    135deg,
+    #0a6b2d,
+    #169344
+  );
 
-  padding:0 18px;
+  color:white;
 
   border-radius:14px;
 
-  font-weight:600;
+  font-weight:700;
 
   cursor:pointer;
+
+  transition:.2s;
+}
+
+.filter-btn:hover{
+
+  transform:translateY(-2px);
+
+  opacity:.95;
 }
 
 /* =========================
@@ -3071,6 +3107,42 @@ searchInput.addEventListener("input", () => {
         "none";
 
       }
+
+    }
+
+  });
+
+});
+
+  /* =========================
+RESET FILTER
+========================= */
+
+const resetFilterBtn =
+document.querySelector(".filter-btn");
+
+resetFilterBtn.addEventListener("click", () => {
+
+  searchInput.value = "";
+
+  const parentRows =
+  document.querySelectorAll(
+    '#transactionTable tr[data-jenis]'
+  );
+
+  parentRows.forEach((row) => {
+
+    row.style.display = "";
+
+    const detailRow =
+    row.nextElementSibling;
+
+    if(detailRow){
+
+      detailRow.style.display =
+      detailRow.dataset.open === "true"
+      ? "table-row"
+      : "none";
 
     }
 
