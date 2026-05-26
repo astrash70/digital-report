@@ -1684,8 +1684,7 @@ updateTotalModal
 function parseRupiah(value){
 
   return Number(
-    value
-    .replace(/[^0-9]/g,'')
+    value.replace(/[^0-9]/g,'')
   ) || 0;
 
 }
@@ -1706,6 +1705,29 @@ document.querySelectorAll('.input-group input')[1];
 const totalModal =
 document.getElementById('totalModal');
 
+/* =========================
+LOAD DATA
+========================= */
+
+const savedCash =
+localStorage.getItem('cashPagi');
+
+if(savedCash){
+
+  cashPagiInput.value =
+  savedCash;
+
+}else{
+
+  cashPagiInput.value =
+  'Rp 23.890.509';
+
+}
+
+/* =========================
+UPDATE TOTAL
+========================= */
+
 function updateTotalModal(){
 
   const cashPagi =
@@ -1722,6 +1744,10 @@ function updateTotalModal(){
 
 }
 
+/* =========================
+INPUT CASH PAGI
+========================= */
+
 cashPagiInput.addEventListener(
 'input',
 function(){
@@ -1732,23 +1758,16 @@ function(){
   this.value =
   formatRupiah(angka);
 
+  localStorage.setItem(
+    'cashPagi',
+    this.value
+  );
+
   updateTotalModal();
 
 });
 
-totalSaldoInput.addEventListener(
-'input',
-updateTotalModal
-);
-
-cashPagiInput.value =
-formatRupiah(
-parseRupiah(cashPagiInput.value)
-);
-
 updateTotalModal();
-
-</script>
 
 </script>
 
