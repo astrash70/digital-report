@@ -973,10 +973,6 @@ MOBILE
     grid-template-columns:1fr 1fr;
   }
 
-  .filter-bar{
-    grid-template-columns:1fr;
-  }
-
 }
 
 @media(max-width:768px){
@@ -1576,8 +1572,8 @@ placeholder="Cari jenis transaksi..."
 
 <div class="table-footer">
 
-<div>
-Menampilkan 1 - 5 dari 5 data
+<div id="dataInfo">
+0 transaksi ditemukan
 </div>
 
 <div class="pagination">
@@ -2169,6 +2165,7 @@ newRange
 
   saveData();
   updateSummary();
+  updateDataInfo();
 
 });                         
   
@@ -2378,6 +2375,7 @@ sortTransactionAZ();
 
 saveData();
 updateSummary();
+updateDataInfo();  
 
 loadEditButtons();
 loadDeleteButtons();
@@ -2432,6 +2430,7 @@ detailRow
 
   saveData();
   updateSummary();
+  updateDataInfo();
 
 });
   
@@ -2637,6 +2636,7 @@ if(savedData){
   savedData;
 
   updateSummary();
+  updateDataInfo();
 
   loadExpandButton();
   loadActionMenu();
@@ -2706,6 +2706,7 @@ resetAllBtn.addEventListener("click", () => {
       "databaseContent"
     );
     updateSummary();
+    updateDataInfo();
 
   }
 
@@ -2767,6 +2768,7 @@ function loadDeleteButtons(){
 
       saveData();
 updateSummary();
+  updateDataInfo();    
 
     };
 
@@ -3087,9 +3089,7 @@ sortTransactionAZ();
 
 saveData();
 updateSummary();
-
-  saveData();
-  updateSummary();
+updateDataInfo();
 
   popup.classList.remove("show");
 
@@ -3256,7 +3256,9 @@ searchInput.addEventListener("input", () => {
 
     }
 
-  });
+    });
+
+  updateDataInfo();
 
 });
 
@@ -3293,8 +3295,55 @@ resetFilterBtn.addEventListener("click", () => {
     }
 
   });
-
+updateDataInfo();
 });
+
+  /* =========================
+UPDATE INFO DATA
+========================= */
+
+function updateDataInfo(){
+
+  const allRows =
+  document.querySelectorAll(
+    '#transactionTable tr[data-jenis]'
+  );
+
+  const visibleRows =
+  Array.from(allRows).filter((row) => {
+
+    return row.style.display !== "none";
+
+  });
+
+  const total =
+  visibleRows.length;
+
+  const info =
+  document.getElementById("dataInfo");
+
+  if(total === 0){
+
+    info.innerText =
+    "Tidak ada transaksi";
+
+  }
+
+  else if(total === 1){
+
+    info.innerText =
+    "1 transaksi ditemukan";
+
+  }
+
+  else{
+
+    info.innerText =
+    `${total} transaksi ditemukan`;
+
+  }
+
+}
 
 </script>
 
