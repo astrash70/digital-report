@@ -1525,8 +1525,10 @@ Lihat Detail
 Total Saldo
 </label>
 
-<input type="text"
-value="Rp 64.403.971">
+<input
+type="text"
+id="totalSaldoInput"
+readonly>
 
 </div>
 
@@ -2141,7 +2143,9 @@ const cashPagiInput =
 document.getElementById('cashPagi');
 
 const totalSaldoInput =
-document.querySelectorAll('.input-group input')[1];
+document.getElementById(
+  'totalSaldoInput'
+);
 
 const totalModal =
 document.getElementById('totalModal');
@@ -2305,8 +2309,7 @@ function renderSaldoTable(){
   let total = 0;
 
   saldoData.forEach((item,index) => {
-
-    total += parseRupiah(
+   total += parseRupiah(
       item.nominal
     );
 
@@ -2360,6 +2363,11 @@ function renderSaldoTable(){
 `;
 
   });
+
+  totalSaldoInput.value =
+formatRupiah(total);
+
+updateTotalModal();
 
   table.innerHTML += `
 
