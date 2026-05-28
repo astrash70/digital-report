@@ -2775,8 +2775,10 @@ function loadDeleteButtons(){
       }
 
       saveData();
-updateSummary();
-  updateDataInfo();    
+      updateSummary();
+      updateDataInfo();
+
+      syncJenisTransaksi();
 
     };
 
@@ -3098,6 +3100,8 @@ sortTransactionAZ();
 saveData();
 updateSummary();
 updateDataInfo();
+
+syncJenisTransaksi();
 
   popup.classList.remove("show");
 
