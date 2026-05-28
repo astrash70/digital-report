@@ -3420,6 +3420,41 @@ function syncJenisTransaksi(){
   );
 
 }
+
+  /* =========================
+SYNC JENIS TRANSAKSI
+========================= */
+
+function syncJenisTransaksi(){
+
+  const semuaTransaksi = [];
+
+  document
+  .querySelectorAll("tr[data-jenis]")
+  .forEach(row => {
+
+    semuaTransaksi.push({
+
+      nama:
+      row.getAttribute(
+        "data-jenis"
+      )
+
+    });
+
+  });
+
+  localStorage.setItem(
+
+    "jenisTransaksiData",
+
+    JSON.stringify(
+      semuaTransaksi
+    )
+
+  );
+
+}
   
 </script>
 
