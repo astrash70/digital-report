@@ -1573,10 +1573,14 @@ Catat semua transaksi yang berasal dari nasabah
 
 </div>
 
-<button class="action-btn">
+<button
+class="action-btn"
+onclick="openTransaksiPopup()">
+
 <i class="fa-solid fa-plus"></i>
 &nbsp;
 Tambah Transaksi
+
 </button>
 
 </div>
@@ -1603,90 +1607,22 @@ Tambah Transaksi
 
 </thead>
 
-<tbody>
+<tbody id="transaksiTableBody">
 
-<tr>
-<td>1</td>
-<td>TARIK TUNAI</td>
-<td>2.000.000</td>
-<td>6.000</td>
-<td>-</td>
-<td class="green">↓</td>
-<td class="red">↑</td>
-<td>Budi Santoso</td>
-<td>⋮</td>
-</tr>
+<tr id="emptyTransaksi">
 
-<tr>
-<td>2</td>
-<td>PLN</td>
-<td>50.000</td>
-<td>3.000</td>
-<td>3.000</td>
-<td class="red">↑</td>
-<td class="green">↓</td>
-<td>Siti Aminah</td>
-<td>⋮</td>
-</tr>
+<td colspan="9"
+style="
+text-align:center;
+padding:40px;
+color:#94a3b8;
+font-size:14px;
+">
 
-<tr>
-<td>3</td>
-<td>TARIK TUNAI</td>
-<td>150.000</td>
-<td>3.000</td>
-<td>-</td>
-<td class="green">↓</td>
-<td class="red">↑</td>
-<td>Andi Pratama</td>
-<td>⋮</td>
-</tr>
+Belum ada transaksi
 
-<tr>
-<td>4</td>
-<td>DANA</td>
-<td>2.000.000</td>
-<td>6.000</td>
-<td>1.500</td>
-<td class="red">↑</td>
-<td class="green">↓</td>
-<td>Rina Marlina</td>
-<td>⋮</td>
-</tr>
+</td>
 
-<tr>
-<td>5</td>
-<td>DANA</td>
-<td>1.200.000</td>
-<td>6.000</td>
-<td>1.500</td>
-<td class="red">↑</td>
-<td class="green">↓</td>
-<td>Joko Widodo</td>
-<td>⋮</td>
-</tr>
-
-<tr>
-<td>6</td>
-<td>TARIK TUNAI</td>
-<td>280.000</td>
-<td>3.000</td>
-<td>-</td>
-<td class="green">↓</td>
-<td class="red">↑</td>
-<td>Mira Handayani</td>
-<td>⋮</td>
-</tr>
-
-<tr>
-<td>7</td>
-<td>TARIK TUNAI</td>
-<td>2.000.000</td>
-<td>6.000</td>
-<td>-</td>
-<td class="green">↓</td>
-<td class="red">↑</td>
-<td>Agus Setiawan</td>
-<td>⋮</td>
 </tr>
 
 </tbody>
@@ -2121,6 +2057,94 @@ id="tambahPopup">
 
 </div>
 
+
+  <!-- =========================
+POPUP TRANSAKSI
+========================= -->
+
+<div
+class="popup-overlay"
+id="transaksiPopup">
+
+<div class="saldo-popup"
+style="width:500px;">
+
+<div class="popup-header">
+
+<h3>Tambah Transaksi</h3>
+
+<button
+class="close-popup"
+onclick="closeTransaksiPopup()">
+✕
+</button>
+
+</div>
+
+<div class="popup-form">
+
+<label>Jenis Transaksi</label>
+
+<input
+type="text"
+id="jenisTransaksi"
+placeholder="Contoh: DANA">
+
+<label>Nominal</label>
+
+<input
+type="text"
+id="nominalTransaksi"
+placeholder="Rp 0">
+
+<label>Admin</label>
+
+<input
+type="text"
+id="adminTransaksi"
+placeholder="Rp 0">
+
+<label>Admin Bank</label>
+
+<input
+type="text"
+id="adminBankTransaksi"
+placeholder="Rp 0">
+
+<label>Arah</label>
+
+<input
+type="text"
+id="arahTransaksi"
+placeholder="↑ atau ↓">
+
+<label>Cash</label>
+
+<input
+type="text"
+id="cashTransaksi"
+placeholder="↑ atau ↓">
+
+<label>Keterangan</label>
+
+<input
+type="text"
+id="keteranganTransaksi"
+placeholder="Nama Nasabah">
+
+<button
+class="save-btn"
+onclick="simpanTransaksi()">
+
+Simpan
+
+</button>
+
+</div>
+
+</div>
+
+</div>
   
 <script>
 
@@ -2587,6 +2611,241 @@ function editSaldo(index){
   openTambahPopup();
 
 }
+
+  /* =========================
+TRANSAKSI NASABAH
+========================= */
+
+let transaksiData = [];
+
+/* =========================
+POPUP
+========================= */
+
+function openTransaksiPopup(){
+
+  document
+  .getElementById('transaksiPopup')
+  .classList.add('active');
+
+}
+
+function closeTransaksiPopup(){
+
+  document
+  .getElementById('transaksiPopup')
+  .classList.remove('active');
+
+}
+
+/* =========================
+RENDER TABLE
+========================= */
+
+function renderTransaksi(){
+
+  const table =
+  document.getElementById(
+    'transaksiTableBody'
+  );
+
+  table.innerHTML = '';
+
+  if(transaksiData.length === 0){
+
+    table.innerHTML = `
+
+    <tr id="emptyTransaksi">
+
+    <td colspan="9"
+    style="
+    text-align:center;
+    padding:40px;
+    color:#94a3b8;
+    font-size:14px;
+    ">
+
+    Belum ada transaksi
+
+    </td>
+
+    </tr>
+
+    `;
+
+    return;
+
+  }
+
+  transaksiData.forEach((item,index)=>{
+
+    table.innerHTML += `
+
+    <tr>
+
+    <td>${index + 1}</td>
+
+    <td>${item.jenis}</td>
+
+    <td>${item.nominal}</td>
+
+    <td>${item.admin}</td>
+
+    <td>${item.adminBank}</td>
+
+    <td class="${
+      item.arah === '↓'
+      ? 'green'
+      : 'red'
+    }">
+
+    ${item.arah}
+
+    </td>
+
+    <td class="${
+      item.cash === '↓'
+      ? 'green'
+      : 'red'
+    }">
+
+    ${item.cash}
+
+    </td>
+
+    <td>${item.keterangan}</td>
+
+    <td>⋮</td>
+
+    </tr>
+
+    `;
+
+  });
+
+}
+
+/* =========================
+SIMPAN TRANSAKSI
+========================= */
+
+function simpanTransaksi(){
+
+  const jenis =
+  document.getElementById(
+    'jenisTransaksi'
+  ).value;
+
+  const nominal =
+  document.getElementById(
+    'nominalTransaksi'
+  ).value;
+
+  const admin =
+  document.getElementById(
+    'adminTransaksi'
+  ).value;
+
+  const adminBank =
+  document.getElementById(
+    'adminBankTransaksi'
+  ).value;
+
+  const arah =
+  document.getElementById(
+    'arahTransaksi'
+  ).value;
+
+  const cash =
+  document.getElementById(
+    'cashTransaksi'
+  ).value;
+
+  const keterangan =
+  document.getElementById(
+    'keteranganTransaksi'
+  ).value;
+
+  transaksiData.push({
+
+    jenis,
+    nominal,
+    admin,
+    adminBank,
+    arah,
+    cash,
+    keterangan
+
+  });
+
+  renderTransaksi();
+
+  /* kosongin form */
+
+  document.getElementById(
+    'jenisTransaksi'
+  ).value = '';
+
+  document.getElementById(
+    'nominalTransaksi'
+  ).value = '';
+
+  document.getElementById(
+    'adminTransaksi'
+  ).value = '';
+
+  document.getElementById(
+    'adminBankTransaksi'
+  ).value = '';
+
+  document.getElementById(
+    'arahTransaksi'
+  ).value = '';
+
+  document.getElementById(
+    'cashTransaksi'
+  ).value = '';
+
+  document.getElementById(
+    'keteranganTransaksi'
+  ).value = '';
+
+  closeTransaksiPopup();
+
+}
+
+/* =========================
+FORMAT RUPIAH
+========================= */
+
+[
+'nominalTransaksi',
+'adminTransaksi',
+'adminBankTransaksi'
+].forEach(id=>{
+
+  document
+  .getElementById(id)
+  .addEventListener(
+    'blur',
+    function(){
+
+      const angka =
+      parseRupiah(this.value);
+
+      this.value =
+      formatRupiah(angka);
+
+    }
+  );
+
+});
+
+/* =========================
+LOAD
+========================= */
+
+renderTransaksi();
   
 </script>
 
