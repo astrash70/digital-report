@@ -2740,7 +2740,38 @@ document
   .toLowerCase()
   .includes(keyword)
 
+  ||
+
+  item.nominal
+  .toLowerCase()
+  .includes(keyword)
+
+  ||
+
+  item.admin
+  .toLowerCase()
+  .includes(keyword)
+
+  ||
+
+  item.adminBank
+  .toLowerCase()
+  .includes(keyword)
+
+  ||
+
+  item.arah
+  .toLowerCase()
+  .includes(keyword)
+
+  ||
+
+  item.cash
+  .toLowerCase()
+  .includes(keyword)
+
 )
+    
 .forEach((item,index)=>{
 
     table.innerHTML += `
@@ -2786,6 +2817,30 @@ document
     `;
 
   });
+
+}
+
+  if(table.innerHTML === ''){
+
+  table.innerHTML = `
+
+  <tr>
+
+  <td colspan="9"
+  style="
+  text-align:center;
+  padding:40px;
+  color:#94a3b8;
+  font-size:14px;
+  ">
+
+  Transaksi tidak ditemukan
+
+  </td>
+
+  </tr>
+
+  `;
 
 }
 
