@@ -2145,6 +2145,8 @@ loadEditButtons();
 loadDeleteButtons();
 loadAddRangeButtons();
 
+
+
  /* DELETE BUTTON */
 
 newRange
@@ -2166,6 +2168,8 @@ newRange
   saveData();
   updateSummary();
   updateDataInfo();
+
+  syncJenisTransaksi();
 
 });                         
   
@@ -2375,7 +2379,9 @@ sortTransactionAZ();
 
 saveData();
 updateSummary();
-updateDataInfo();  
+updateDataInfo(); 
+
+syncJenisTransaksi();
 
 loadEditButtons();
 loadDeleteButtons();
@@ -2431,6 +2437,8 @@ detailRow
   saveData();
   updateSummary();
   updateDataInfo();
+
+  syncJenisTransaksi();
 
 });
   
@@ -3378,6 +3386,41 @@ today.toLocaleDateString(
   options
 );
 
+/* =========================
+SYNC MASTER TRANSAKSI
+========================= */
+
+function syncJenisTransaksi(){
+
+  const semuaTransaksi = [];
+
+  document
+  .querySelectorAll('[data-jenis]')
+  .forEach(row => {
+
+    semuaTransaksi.push({
+
+      nama:
+      row.getAttribute(
+        'data-jenis'
+      )
+
+    });
+
+  });
+
+  localStorage.setItem(
+
+    'jenisTransaksiData',
+
+    JSON.stringify(
+      semuaTransaksi
+    )
+
+  );
+
+}
+  
 </script>
 
 </body>
