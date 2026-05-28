@@ -1285,6 +1285,14 @@ POPUP
 
 }
 
+  .aksi-menu{
+  z-index:999;
+}
+
+.aksi-menu button{
+  pointer-events:auto;
+}
+
 </style>
 
 </head>
@@ -2325,40 +2333,47 @@ function renderSaldoTable(){
 
     <td>${item.ket}</td>
 
-    <td style="text-align:center;">
+    <td
+style="
+text-align:center;
+position:relative;
+">
 
-      <button
-      class="aksi-btn"
-      onclick="toggleMenu(${index})">
+  <button
+  type="button"
+  class="aksi-btn"
+  onclick="toggleMenu(${index})">
 
-        <i class="fa-solid fa-ellipsis-vertical"></i>
+    <i class="fa-solid fa-ellipsis-vertical"></i>
 
-      </button>
+  </button>
 
-      <div
-      class="aksi-menu"
-      id="menu-${index}">
+  <div
+  class="aksi-menu"
+  id="menu-${index}">
 
-        <button
-        onclick="editSaldo(${index})">
+    <button
+    type="button"
+    onclick="editSaldo(${index})">
 
-          <i class="fa-solid fa-pen"></i>
-          Edit
+      <i class="fa-solid fa-pen"></i>
+      Edit
 
-        </button>
+    </button>
 
-        <button
-        onclick="hapusSaldo(${index})"
-        class="hapus-btn">
+    <button
+    type="button"
+    class="hapus-btn"
+    onclick="hapusSaldo(${index})">
 
-          <i class="fa-solid fa-trash"></i>
-          Hapus
+      <i class="fa-solid fa-trash"></i>
+      Hapus
 
-        </button>
+    </button>
 
-      </div>
+  </div>
 
-    </td>
+</td>
 
   </tr>
 
