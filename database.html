@@ -3455,6 +3455,54 @@ function syncJenisTransaksi(){
   );
 
 }
+
+  /* =========================
+LOAD DROPDOWN TRANSAKSI
+========================= */
+
+function loadJenisTransaksi(){
+
+  const select =
+  document.getElementById(
+    "jenisTransaksi"
+  );
+
+  if(!select) return;
+
+  const data =
+  JSON.parse(
+    localStorage.getItem(
+      "jenisTransaksiData"
+    )
+  ) || [];
+
+  /* RESET OPTION */
+
+  select.innerHTML = `
+    <option value="">
+      Pilih Transaksi
+    </option>
+  `;
+
+  /* TAMBAH DATA */
+
+  data.forEach(item => {
+
+    select.innerHTML += `
+
+      <option value="${item.nama}">
+        ${item.nama}
+      </option>
+
+    `;
+
+  });
+
+}
+
+/* JALANKAN */
+
+loadJenisTransaksi();
   
 </script>
 
