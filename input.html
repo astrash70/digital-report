@@ -2129,10 +2129,23 @@ onclick="closeTransaksiPopup()">
 
 <label>Jenis Transaksi</label>
 
-<input
-type="text"
+<select
 id="jenisTransaksi"
-placeholder="Contoh: DANA">
+style="
+height:48px;
+border:1px solid #dfe5e8;
+border-radius:12px;
+padding:0 14px;
+outline:none;
+font-size:14px;
+background:white;
+">
+
+<option value="">
+Pilih Transaksi
+</option>
+
+</select>
 
 <label>Nominal</label>
 
@@ -2967,6 +2980,50 @@ FORMAT RUPIAH
 renderTransaksi
 );
 
+/* =========================
+LOAD JENIS TRANSAKSI
+========================= */
+
+function loadJenisTransaksi(){
+
+  const select =
+  document.getElementById(
+    'jenisTransaksi'
+  );
+
+  const data =
+  JSON.parse(
+    localStorage.getItem(
+      'jenisTransaksiData'
+    )
+  ) || [];
+
+  select.innerHTML = `
+
+  <option value="">
+  Pilih Transaksi
+  </option>
+
+  `;
+
+  data.forEach(item => {
+
+    select.innerHTML += `
+
+    <option value="${item.nama}">
+
+    ${item.nama.toUpperCase()}
+
+    </option>
+
+    `;
+
+  });
+
+}
+
+loadJenisTransaksi();
+  
 /* =========================
 LOAD
 ========================= */
