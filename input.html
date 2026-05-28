@@ -1585,6 +1585,50 @@ Tambah Transaksi
 
 </div>
 
+  <div
+style="
+display:flex;
+justify-content:flex-end;
+margin-bottom:14px;
+">
+
+<div
+style="
+position:relative;
+width:260px;
+">
+
+<i
+class="fa-solid fa-magnifying-glass"
+style="
+position:absolute;
+left:14px;
+top:50%;
+transform:translateY(-50%);
+color:#94a3b8;
+font-size:13px;
+">
+</i>
+
+<input
+type="text"
+id="searchTransaksi"
+placeholder="Cari transaksi..."
+style="
+width:100%;
+height:46px;
+padding:0 16px 0 40px;
+border:1px solid #dfe5e8;
+border-radius:14px;
+outline:none;
+font-size:14px;
+background:white;
+">
+
+</div>
+
+</div>
+
 <div class="table-box">
 
 <table>
@@ -2644,6 +2688,12 @@ RENDER TABLE
 
 function renderTransaksi(){
 
+  const keyword =
+document
+.getElementById('searchTransaksi')
+.value
+.toLowerCase();
+
   const table =
   document.getElementById(
     'transaksiTableBody'
@@ -2677,7 +2727,21 @@ function renderTransaksi(){
 
   }
 
-  transaksiData.forEach((item,index)=>{
+  transaksiData
+.filter(item =>
+
+  item.jenis
+  .toLowerCase()
+  .includes(keyword)
+
+  ||
+
+  item.keterangan
+  .toLowerCase()
+  .includes(keyword)
+
+)
+.forEach((item,index)=>{
 
     table.innerHTML += `
 
@@ -2840,6 +2904,13 @@ FORMAT RUPIAH
   );
 
 });
+
+  document
+.getElementById('searchTransaksi')
+.addEventListener(
+'input',
+renderTransaksi
+);
 
 /* =========================
 LOAD
