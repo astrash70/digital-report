@@ -621,12 +621,13 @@ TABLE
 
 .table-box{
 
-  border:
-  1px solid #edf1f3;
+  border:1px solid #edf1f3;
 
   border-radius:20px;
 
   overflow:hidden;
+
+  max-height:520px;
 }
 
 table{
@@ -1292,6 +1293,14 @@ POPUP
   pointer-events:auto;
 }
 
+  .table-scroll{
+
+  max-height:420px;
+
+  overflow-y:auto;
+
+}
+
 </style>
 
 </head>
@@ -1630,6 +1639,8 @@ background:white;
 
 <div class="table-box">
 
+<div class="table-scroll">
+
 <table>
 
 <thead>
@@ -1671,6 +1682,8 @@ Belum ada transaksi
 </tbody>
 
 </table>
+
+</div>
 
 <div class="table-footer">
 
@@ -1729,6 +1742,8 @@ Tambah Mutasi
 
 <div class="table-box">
 
+<div class="table-scroll">
+
 <table>
 
 <thead>
@@ -1775,6 +1790,8 @@ Tambah Mutasi
 </tbody>
 
 </table>
+
+</div>
 
 <div class="table-footer">
 
