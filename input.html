@@ -1733,14 +1733,10 @@ Catat mutasi saldo antar tempat, setoran, pengeluaran, tambahan saldo, dll (buka
 
 </div>
 
-<button
-class="detail-btn"
-onclick="openMutasiPopup()">
-
+<button class="detail-btn">
 <i class="fa-solid fa-plus"></i>
 &nbsp;
 Tambah Mutasi
-
 </button>
 
 </div>
@@ -1768,22 +1764,28 @@ Tambah Mutasi
 
 </thead>
 
-<tbody id="mutasiTableBody">
+<tbody>
 
-<tr id="emptyMutasi">
+<tr>
+<td>1</td>
+<td>TRANSFER BRI</td>
+<td>-</td>
+<td>BANK</td>
+<td>30.000.000</td>
+<td>5.000</td>
+<td>Setoran bulanan ke BRI</td>
+<td>⋮</td>
+</tr>
 
-<td colspan="8"
-style="
-text-align:center;
-padding:40px;
-color:#94a3b8;
-font-size:14px;
-">
-
-Belum ada mutasi
-
-</td>
-
+<tr>
+<td>2</td>
+<td>ATM KE MESIN</td>
+<td>ATM 1</td>
+<td>MESIN EDC</td>
+<td>30.004.000</td>
+<td>4.000</td>
+<td>Pindah saldo untuk mesin</td>
+<td>⋮</td>
 </tr>
 
 </tbody>
@@ -1794,13 +1796,22 @@ Belum ada mutasi
 
 <div class="table-footer">
 
-<div id="totalMutasiText">
-Total 0 mutasi
+<div>
+Total 2 mutasi
+</div>
+
+<div>
+Total Mutasi
+</div>
+
+<div class="green">
+Rp 60.004.000
 </div>
 
 </div>
 
 </div>
+
 </div>
 
 <!-- BUTTON -->
@@ -2210,61 +2221,6 @@ Simpan
 </div>
 
 
-<!-- POPUP MUTASI -->
-  <div
-class="popup-overlay"
-id="mutasiPopup">
-
-<div class="saldo-popup"
-style="width:500px;">
-
-<div class="popup-header">
-
-<h3>Tambah Mutasi</h3>
-
-<button
-class="close-popup"
-onclick="closeMutasiPopup()">
-✕
-</button>
-
-</div>
-
-<div class="popup-form">
-
-<label>Jenis Mutasi</label>
-<input type="text" id="jenisMutasi">
-
-<label>Nominal</label>
-<input type="text" id="nominalMutasi">
-
-<label>Admin Bank</label>
-<input type="text" id="adminBankMutasi">
-
-<label>Kategori</label>
-<input type="text" id="arahMutasi">
-
-<label>Efek</label>
-<input type="text" id="cashMutasi">
-
-<label>Keterangan</label>
-<input type="text" id="keteranganMutasi">
-
-<button
-class="save-btn"
-onclick="simpanMutasi()">
-
-Simpan
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
   
 <script>
 
@@ -2629,7 +2585,7 @@ document.getElementById(
 LOAD
 ========================= */
 
-renderTransaksi();
+renderSaldoTable();
 
 const nominalInput =
 document.getElementById(
@@ -2742,15 +2698,6 @@ JSON.parse(
     'transaksiData'
   )
 ) || [];
-
-  let mutasiData =
-JSON.parse(
-localStorage.getItem(
-'mutasiData'
-)
-) || [];
-
-let editMutasiIndex = null;
 
     let editTransaksiIndex = null;
 
@@ -3451,321 +3398,6 @@ document
   .toLocaleString('id-ID');
 
 });
-
-  function openMutasiPopup(){
-
-document
-.getElementById(
-'mutasiPopup'
-)
-.classList.add(
-'active'
-);
-
-}
-
-function closeMutasiPopup(){
-
-document
-.getElementById(
-'mutasiPopup'
-)
-.classList.remove(
-'active'
-);
-
-}
-
-  function toggleMutasiMenu(index){
-
-document
-.querySelectorAll(
-'[id^="mutasi-menu-"]'
-)
-.forEach(menu=>{
-
-menu.classList.remove(
-'active'
-);
-
-});
-
-document
-.getElementById(
-`mutasi-menu-${index}`
-)
-.classList.toggle(
-'active'
-);
-
-}
-
-function hapusMutasi(index){
-
-mutasiData.splice(
-index,
-1
-);
-
-localStorage.setItem(
-'mutasiData',
-JSON.stringify(
-mutasiData
-)
-);
-
-renderMutasi();
-
-}
-
-function duplicateMutasi(index){
-
-mutasiData.splice(
-
-index + 1,
-
-0,
-
-{
-...mutasiData[index]
-}
-
-);
-
-localStorage.setItem(
-'mutasiData',
-JSON.stringify(
-mutasiData
-)
-);
-
-renderMutasi();
-
-}
-
-function editMutasi(index){
-
-const data =
-mutasiData[index];
-
-document.getElementById(
-'jenisMutasi'
-).value =
-data.jenis;
-
-document.getElementById(
-'nominalMutasi'
-).value =
-data.nominal;
-
-document.getElementById(
-'adminBankMutasi'
-).value =
-data.adminBank;
-
-document.getElementById(
-'arahMutasi'
-).value =
-data.arah;
-
-document.getElementById(
-'cashMutasi'
-).value =
-data.cash;
-
-document.getElementById(
-'keteranganMutasi'
-).value =
-data.keterangan;
-
-editMutasiIndex =
-index;
-
-openMutasiPopup();
-
-}
-
-  function renderMutasi(){
-
-const table =
-document.getElementById(
-'mutasiTableBody'
-);
-
-table.innerHTML = '';
-
-if(mutasiData.length === 0){
-
-table.innerHTML = `
-<tr>
-<td colspan="8"
-style="
-text-align:center;
-padding:40px;
-color:#94a3b8;
-">
-Belum ada mutasi
-</td>
-</tr>
-`;
-
-return;
-}
-
-mutasiData.forEach(
-(item,index)=>{
-
-table.innerHTML += `
-
-<tr>
-
-<td>${index+1}</td>
-
-<td>${item.jenis}</td>
-
-<td>${item.nominal}</td>
-
-<td>${item.adminBank}</td>
-
-<td>${item.arah}</td>
-
-<td>${item.cash}</td>
-
-<td>${item.keterangan}</td>
-
-<td
-style="
-position:relative;
-text-align:center;
-">
-
-<button
-class="aksi-btn"
-onclick="toggleMutasiMenu(${index})">
-
-<i class="fa-solid fa-ellipsis-vertical"></i>
-
-</button>
-
-<div
-class="aksi-menu"
-id="mutasi-menu-${index}">
-
-<button
-onclick="editMutasi(${index})">
-
-<i class="fa-solid fa-pen"></i>
-Edit
-
-</button>
-
-<button
-onclick="duplicateMutasi(${index})">
-
-<i class="fa-solid fa-copy"></i>
-Duplicate
-
-</button>
-
-<button
-class="hapus-btn"
-onclick="hapusMutasi(${index})">
-
-<i class="fa-solid fa-trash"></i>
-Hapus
-
-</button>
-
-</div>
-
-</td>
-
-</tr>
-
-`;
-
-});
-
-document
-.getElementById(
-'totalMutasiText'
-)
-.textContent =
-
-`Total ${mutasiData.length} mutasi`;
-
-}
-
-  function simpanMutasi(){
-
-const dataBaru = {
-
-jenis:
-document.getElementById(
-'jenisMutasi'
-).value,
-
-nominal:
-document.getElementById(
-'nominalMutasi'
-).value,
-
-adminBank:
-document.getElementById(
-'adminBankMutasi'
-).value,
-
-arah:
-document.getElementById(
-'arahMutasi'
-).value,
-
-cash:
-document.getElementById(
-'cashMutasi'
-).value,
-
-keterangan:
-document.getElementById(
-'keteranganMutasi'
-).value
-
-};
-
-if(
-editMutasiIndex !== null
-){
-
-mutasiData[
-editMutasiIndex
-] = dataBaru;
-
-editMutasiIndex =
-null;
-
-}else{
-
-mutasiData.push(
-dataBaru
-);
-
-}
-
-localStorage.setItem(
-'mutasiData',
-JSON.stringify(
-mutasiData
-)
-);
-
-renderMutasi();
-
-closeMutasiPopup();
-
-}
-
-renderTransaksi();
-renderMutasi();
   
 </script>
 
