@@ -3079,12 +3079,19 @@ document
   ) || [];
 
   const transaksi =
-  data.find(item =>
+data.find(item =>
 
-    item.nama.toLowerCase() ===
-    jenis
+  item.nama
+  .toLowerCase()
+  .trim() ===
 
-  );
+  jenis
+  .toLowerCase()
+  .trim()
+
+);
+
+console.log(transaksi);
 
   if(!transaksi) return;
 
