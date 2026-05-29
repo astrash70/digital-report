@@ -2166,21 +2166,21 @@ placeholder="Rp 0">
 <input
 type="text"
 id="adminBankTransaksi"
-placeholder="Rp 0">
+readonly>
 
 <label>Kategori</label>
 
 <input
 type="text"
 id="arahTransaksi"
-placeholder="↑ atau ↓">
+readonly>
 
 <label>Efek</label>
 
 <input
 type="text"
 id="cashTransaksi"
-placeholder="↑ atau ↓">
+readonly>
 
 <label>Keterangan</label>
 
@@ -2202,6 +2202,8 @@ Simpan
 </div>
 
 </div>
+
+
   
 <script>
 
@@ -3055,6 +3057,121 @@ formFields.forEach((field,index)=>{
 
     }
   );
+
+});
+
+  /* =========================
+AUTO DATA TRANSAKSI
+========================= */
+
+document
+.getElementById('jenisTransaksi')
+.addEventListener('change', function(){
+
+  const jenis =
+  this.value.toLowerCase();
+
+  const data =
+  JSON.parse(
+    localStorage.getItem(
+      'jenisTransaksiData'
+    )
+  ) || [];
+
+  const transaksi =
+  data.find(item =>
+
+    item.nama.toLowerCase() ===
+    jenis
+
+  );
+
+  if(!transaksi) return;
+
+  /* KATEGORI */
+
+  document.getElementById(
+    'arahTransaksi'
+  ).value =
+  transaksi.kategori;
+
+  /* EFEK */
+
+  document.getElementById(
+    'cashTransaksi'
+  ).value =
+  transaksi.efek;
+
+  /* ADMIN BANK */
+
+  if(
+    transaksi.ranges &&
+    transaksi.ranges.length > 0
+  ){
+
+    document.getElementById(
+      'adminBankTransaksi'
+    ).value =
+    transaksi.ranges[0].charge
+    .toLocaleString('id-ID');
+
+  }
+
+});
+
+  /* =========================
+AUTO ADMIN DARI RANGE
+========================= */
+
+document
+.getElementById('nominalTransaksi')
+.addEventListener('input', function(){
+
+  const nominal =
+  Number(
+    this.value.replace(/[^\d]/g,'')
+  );
+
+  const jenis =
+  document
+  .getElementById(
+    'jenisTransaksi'
+  )
+  .value
+  .toLowerCase();
+
+  const data =
+  JSON.parse(
+    localStorage.getItem(
+      'jenisTransaksiData'
+    )
+  ) || [];
+
+  const transaksi =
+  data.find(item =>
+
+    item.nama.toLowerCase() ===
+    jenis
+
+  );
+
+  if(!transaksi) return;
+
+  const range =
+  transaksi.ranges.find(r =>
+
+    nominal >= r.min &&
+    nominal <= r.max
+
+  );
+
+  if(!range) return;
+
+  document.getElementById(
+    'adminTransaksi'
+  ).value =
+  range.admin
+  .toLocaleString('id-ID');
 
 });
   
