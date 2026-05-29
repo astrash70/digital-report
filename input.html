@@ -3111,18 +3111,27 @@ console.log(transaksi);
 
   /* ADMIN BANK */
 
-  if(
-    transaksi.ranges &&
-    transaksi.ranges.length > 0
-  ){
+if(
+  transaksi.ranges &&
+  transaksi.ranges.length > 0
+){
+
+  const firstValidRange =
+  transaksi.ranges.find(
+    r => r.charge > 0
+  );
+
+  if(firstValidRange){
 
     document.getElementById(
       'adminBankTransaksi'
     ).value =
-    transaksi.ranges[0].charge
+    firstValidRange.charge
     .toLocaleString('id-ID');
 
   }
+
+}
 
 });
 
