@@ -1687,8 +1687,8 @@ Belum ada transaksi
 
 <div class="table-footer">
 
-<div>
-Total 7 transaksi
+<div id="totalTransaksiText">
+Total 0 transaksi
 </div>
 
 <div>
@@ -2877,6 +2877,8 @@ function renderTransaksi(){
     `;
 
     return;
+
+    
   }
 
   transaksiData
@@ -3021,6 +3023,11 @@ Hapus
     `;
 
   }
+
+  document.getElementById(
+  'totalTransaksiText'
+).textContent =
+`Total ${transaksiData.length} transaksi`;
 
 }
 
