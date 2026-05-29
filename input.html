@@ -2675,7 +2675,12 @@ function editSaldo(index){
 TRANSAKSI NASABAH
 ========================= */
 
-let transaksiData = [];
+let transaksiData =
+JSON.parse(
+  localStorage.getItem(
+    'transaksiData'
+  )
+) || [];
 
 /* =========================
 POPUP
@@ -2896,15 +2901,20 @@ function simpanTransaksi(){
 
   transaksiData.push({
 
-    jenis,
-    nominal,
-    admin,
-    adminBank,
-    arah,
-    cash,
-    keterangan
+  jenis,
+  nominal,
+  admin,
+  adminBank,
+  arah,
+  cash,
+  keterangan
 
-  });
+});
+
+localStorage.setItem(
+  'transaksiData',
+  JSON.stringify(transaksiData)
+);
 
   renderTransaksi();
 
