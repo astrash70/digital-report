@@ -3403,27 +3403,65 @@ function syncJenisTransaksi(){
 
   document
   .querySelectorAll("tr[data-jenis]")
-  .forEach(row => {
+  .forEach(parentRow => {
+
+    const detailRow =
+    parentRow.nextElementSibling;
+
+    const ranges = [];
+
+    detailRow
+    .querySelectorAll("tbody tr")
+    .forEach(rangeRow => {
+
+      ranges.push({
+
+        min:Number(
+          rangeRow.children[1]
+          .innerText.replace(/[^\d]/g,'')
+        ),
+
+        max:Number(
+          rangeRow.children[2]
+          .innerText.replace(/[^\d]/g,'')
+        ),
+
+        admin:Number(
+          rangeRow.children[3]
+          .innerText.replace(/[^\d]/g,'')
+        ),
+
+        charge:Number(
+          rangeRow.children[4]
+          .innerText.replace(/[^\d]/g,'')
+        )
+
+      });
+
+    });
 
     semuaTransaksi.push({
 
       nama:
-      row.getAttribute(
-        "data-jenis"
-      )
+      parentRow.getAttribute("data-jenis"),
+
+      kategori:
+      parentRow.children[1]
+      .innerText.trim(),
+
+      efek:
+      parentRow.children[2]
+      .innerText.trim(),
+
+      ranges:ranges
 
     });
 
   });
 
   localStorage.setItem(
-
     "jenisTransaksiData",
-
-    JSON.stringify(
-      semuaTransaksi
-    )
-
+    JSON.stringify(semuaTransaksi)
   );
 
 }
