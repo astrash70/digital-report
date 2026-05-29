@@ -2682,6 +2682,8 @@ JSON.parse(
   )
 ) || [];
 
+    let editTransaksiIndex = null;
+
 /* =========================
 POPUP
 ========================= */
@@ -2707,6 +2709,113 @@ function closeTransaksiPopup(){
   document
   .getElementById('transaksiPopup')
   .classList.remove('active');
+
+}
+
+
+  function toggleTransaksiMenu(index){
+
+  document
+  .querySelectorAll(
+    '[id^="transaksi-menu-"]'
+  )
+  .forEach(menu=>{
+
+    menu.classList.remove(
+      'active'
+    );
+
+  });
+
+  document
+  .getElementById(
+    `transaksi-menu-${index}`
+  )
+  .classList.toggle(
+    'active'
+  );
+
+}
+
+  function hapusTransaksi(index){
+
+  transaksiData.splice(
+    index,
+    1
+  );
+
+  localStorage.setItem(
+    'transaksiData',
+    JSON.stringify(transaksiData)
+  );
+
+  renderTransaksi();
+
+}
+
+  function duplicateTransaksi(index){
+
+  transaksiData.splice(
+    index + 1,
+    0,
+    {
+      ...transaksiData[index]
+    }
+  );
+
+  localStorage.setItem(
+    'transaksiData',
+    JSON.stringify(transaksiData)
+  );
+
+  renderTransaksi();
+
+}
+
+  function editTransaksi(index){
+
+  const data =
+  transaksiData[index];
+
+  document.getElementById(
+    'jenisTransaksi'
+  ).value =
+  data.jenis;
+
+  document.getElementById(
+    'nominalTransaksi'
+  ).value =
+  data.nominal;
+
+  document.getElementById(
+    'adminTransaksi'
+  ).value =
+  data.admin;
+
+  document.getElementById(
+    'adminBankTransaksi'
+  ).value =
+  data.adminBank;
+
+  document.getElementById(
+    'arahTransaksi'
+  ).value =
+  data.arah;
+
+  document.getElementById(
+    'cashTransaksi'
+  ).value =
+  data.cash;
+
+  document.getElementById(
+    'keteranganTransaksi'
+  ).value =
+  data.keterangan;
+
+  editTransaksiIndex =
+  index;
+
+  openTransaksiPopup();
 
 }
 
@@ -2820,7 +2929,52 @@ function renderTransaksi(){
 
       <td>${item.keterangan}</td>
 
-      <td>⋮</td>
+      <td
+style="
+position:relative;
+text-align:center;
+">
+
+<button
+class="aksi-btn"
+onclick="toggleTransaksiMenu(${index})">
+
+<i class="fa-solid fa-ellipsis-vertical"></i>
+
+</button>
+
+<div
+class="aksi-menu"
+id="transaksi-menu-${index}">
+
+<button
+onclick="editTransaksi(${index})">
+
+<i class="fa-solid fa-pen"></i>
+Edit
+
+</button>
+
+<button
+onclick="duplicateTransaksi(${index})">
+
+<i class="fa-solid fa-copy"></i>
+Duplicate
+
+</button>
+
+<button
+class="hapus-btn"
+onclick="hapusTransaksi(${index})">
+
+<i class="fa-solid fa-trash"></i>
+Hapus
+
+</button>
+
+</div>
+
+</td>
 
     </tr>
 
@@ -2895,7 +3049,7 @@ function simpanTransaksi(){
     'keteranganTransaksi'
   ).value;
 
-  transaksiData.push({
+ const dataBaru = {
 
   jenis,
   nominal,
@@ -2905,7 +3059,26 @@ function simpanTransaksi(){
   cash,
   keterangan
 
-});
+};
+
+if(
+  editTransaksiIndex !== null
+){
+
+  transaksiData[
+    editTransaksiIndex
+  ] = dataBaru;
+
+  editTransaksiIndex =
+  null;
+
+}else{
+
+  transaksiData.push(
+    dataBaru
+  );
+
+}
 
 localStorage.setItem(
   'transaksiData',
