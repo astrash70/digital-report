@@ -2881,39 +2881,39 @@ function renderTransaksi(){
     
   }
 
-  transaksiData
+  const filteredData =
 
-  .filter(item =>
+transaksiData.filter(item =>
 
-    item.jenis.toLowerCase().includes(keyword)
+  item.jenis.toLowerCase().includes(keyword)
 
-    ||
+  ||
 
-    item.keterangan.toLowerCase().includes(keyword)
+  item.keterangan.toLowerCase().includes(keyword)
 
-    ||
+  ||
 
-    item.nominal.toLowerCase().includes(keyword)
+  item.nominal.toLowerCase().includes(keyword)
 
-    ||
+  ||
 
-    item.admin.toLowerCase().includes(keyword)
+  item.admin.toLowerCase().includes(keyword)
 
-    ||
+  ||
 
-    item.adminBank.toLowerCase().includes(keyword)
+  item.adminBank.toLowerCase().includes(keyword)
 
-    ||
+  ||
 
-    item.arah.toLowerCase().includes(keyword)
+  item.arah.toLowerCase().includes(keyword)
 
-    ||
+  ||
 
-    item.cash.toLowerCase().includes(keyword)
+  item.cash.toLowerCase().includes(keyword)
 
-  )
+);
 
-  .forEach((item,index)=>{
+filteredData.forEach((item,index)=>{
 
     table.innerHTML += `
 
@@ -3027,7 +3027,12 @@ Hapus
   document.getElementById(
   'totalTransaksiText'
 ).textContent =
-`Total ${transaksiData.length} transaksi`;
+
+keyword
+
+? `${filteredData.length} dari ${transaksiData.length} transaksi`
+
+: `Total ${transaksiData.length} transaksi`;
 
 }
 
