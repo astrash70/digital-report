@@ -2685,6 +2685,14 @@ function openTransaksiPopup(){
   .getElementById('transaksiPopup')
   .classList.add('active');
 
+  setTimeout(() => {
+
+    document
+    .getElementById('jenisTransaksi')
+    .focus();
+
+  },100);
+
 }
 
 function closeTransaksiPopup(){
@@ -3003,6 +3011,52 @@ LOAD
 ========================= */
 
 renderTransaksi();
+
+  /* =========================
+ENTER KE FIELD BERIKUTNYA
+========================= */
+
+const formFields = [
+
+  document.getElementById('jenisTransaksi'),
+  document.getElementById('nominalTransaksi'),
+  document.getElementById('adminTransaksi'),
+  document.getElementById('adminBankTransaksi'),
+  document.getElementById('arahTransaksi'),
+  document.getElementById('cashTransaksi'),
+  document.getElementById('keteranganTransaksi')
+
+];
+
+formFields.forEach((field,index)=>{
+
+  field.addEventListener(
+    'keydown',
+    function(e){
+
+      if(e.key === 'Enter'){
+
+        e.preventDefault();
+
+        const nextField =
+        formFields[index + 1];
+
+        if(nextField){
+
+          nextField.focus();
+
+        }else{
+
+          simpanTransaksi();
+
+        }
+
+      }
+
+    }
+  );
+
+});
   
 </script>
 
