@@ -2129,8 +2129,11 @@ onclick="closeTransaksiPopup()">
 
 <label>Jenis Transaksi</label>
 
-<select
+<input
+type="text"
 id="jenisTransaksi"
+list="jenisTransaksiList"
+placeholder="Pilih atau ketik transaksi"
 style="
 height:48px;
 border:1px solid #dfe5e8;
@@ -2139,13 +2142,10 @@ padding:0 14px;
 outline:none;
 font-size:14px;
 background:white;
+width:100%;
 ">
 
-<option value="">
-Pilih Transaksi
-</option>
-
-</select>
+<datalist id="jenisTransaksiList"></datalist>
 
 <label>Nominal</label>
 
@@ -2972,9 +2972,9 @@ LOAD JENIS TRANSAKSI
 
 function loadJenisTransaksi(){
 
-  const select =
+  const list =
   document.getElementById(
-    'jenisTransaksi'
+    'jenisTransaksiList'
   );
 
   const data =
@@ -2984,24 +2984,12 @@ function loadJenisTransaksi(){
     )
   ) || [];
 
-  select.innerHTML = `
-
-  <option value="">
-  Pilih Transaksi
-  </option>
-
-  `;
+  list.innerHTML = '';
 
   data.forEach(item => {
 
-    select.innerHTML += `
-
-    <option value="${item.nama}">
-
-    ${item.nama.toUpperCase()}
-
-    </option>
-
+    list.innerHTML += `
+      <option value="${item.nama}">
     `;
 
   });
