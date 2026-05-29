@@ -2702,10 +2702,10 @@ RENDER TABLE
 function renderTransaksi(){
 
   const keyword =
-document
-.getElementById('searchTransaksi')
-.value
-.toLowerCase();
+  document
+  .getElementById('searchTransaksi')
+  .value
+  .toLowerCase();
 
   const table =
   document.getElementById(
@@ -2720,110 +2720,96 @@ document
 
     <tr id="emptyTransaksi">
 
-    <td colspan="9"
-    style="
-    text-align:center;
-    padding:40px;
-    color:#94a3b8;
-    font-size:14px;
-    ">
+      <td colspan="9"
+      style="
+      text-align:center;
+      padding:40px;
+      color:#94a3b8;
+      font-size:14px;
+      ">
 
-    Belum ada transaksi
+      Belum ada transaksi
 
-    </td>
+      </td>
 
     </tr>
 
     `;
 
     return;
-
   }
 
   transaksiData
-.filter(item =>
 
-  item.jenis
-  .toLowerCase()
-  .includes(keyword)
+  .filter(item =>
 
-  ||
+    item.jenis.toLowerCase().includes(keyword)
 
-  item.keterangan
-  .toLowerCase()
-  .includes(keyword)
+    ||
 
-  ||
+    item.keterangan.toLowerCase().includes(keyword)
 
-  item.nominal
-  .toLowerCase()
-  .includes(keyword)
+    ||
 
-  ||
+    item.nominal.toLowerCase().includes(keyword)
 
-  item.admin
-  .toLowerCase()
-  .includes(keyword)
+    ||
 
-  ||
+    item.admin.toLowerCase().includes(keyword)
 
-  item.adminBank
-  .toLowerCase()
-  .includes(keyword)
+    ||
 
-  ||
+    item.adminBank.toLowerCase().includes(keyword)
 
-  item.arah
-  .toLowerCase()
-  .includes(keyword)
+    ||
 
-  ||
+    item.arah.toLowerCase().includes(keyword)
 
-  item.cash
-  .toLowerCase()
-  .includes(keyword)
+    ||
 
-)
-    
-.forEach((item,index)=>{
+    item.cash.toLowerCase().includes(keyword)
+
+  )
+
+  .forEach((item,index)=>{
 
     table.innerHTML += `
 
     <tr>
 
-    <td>${index + 1}</td>
+      <td>${index + 1}</td>
 
-    <td>${item.jenis}</td>
+      <td>${item.jenis}</td>
 
-    <td>${item.nominal}</td>
+      <td>${item.nominal}</td>
 
-    <td>${item.admin}</td>
+      <td>${item.admin}</td>
 
-    <td>${item.adminBank}</td>
+      <td>${item.adminBank}</td>
 
-    <td class="${
-      item.arah === '↓'
-      ? 'green'
-      : 'red'
-    }">
+      <td class="${
+        item.arah === '↓'
+        ? 'green'
+        : 'red'
+      }">
 
-    ${item.arah}
+        ${item.arah}
 
-    </td>
+      </td>
 
-    <td class="${
-      item.cash === '↓'
-      ? 'green'
-      : 'red'
-    }">
+      <td class="${
+        item.cash === '↓'
+        ? 'green'
+        : 'red'
+      }">
 
-    ${item.cash}
+        ${item.cash}
 
-    </td>
+      </td>
 
-    <td>${item.keterangan}</td>
+      <td>${item.keterangan}</td>
 
-    <td>⋮</td>
+      <td>⋮</td>
 
     </tr>
 
@@ -2831,29 +2817,29 @@ document
 
   });
 
-}
-
   if(table.innerHTML === ''){
 
-  table.innerHTML = `
+    table.innerHTML = `
 
-  <tr>
+    <tr>
 
-  <td colspan="9"
-  style="
-  text-align:center;
-  padding:40px;
-  color:#94a3b8;
-  font-size:14px;
-  ">
+      <td colspan="9"
+      style="
+      text-align:center;
+      padding:40px;
+      color:#94a3b8;
+      font-size:14px;
+      ">
 
-  Transaksi tidak ditemukan
+      Transaksi tidak ditemukan
 
-  </td>
+      </td>
 
-  </tr>
+    </tr>
 
-  `;
+    `;
+
+  }
 
 }
 
