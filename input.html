@@ -2803,24 +2803,20 @@ function renderTransaksi(){
       <td>${item.adminBank}</td>
 
       <td class="${
-        item.arah === '↓'
-        ? 'green'
-        : 'red'
-      }">
-
-        ${item.arah}
-
-      </td>
+  item.arah.includes('Saldo In')
+  ? 'green'
+  : 'red'
+}">
+  ${item.arah}
+</td>
 
       <td class="${
-        item.cash === '↓'
-        ? 'green'
-        : 'red'
-      }">
-
-        ${item.cash}
-
-      </td>
+  item.cash.includes('Cash In')
+  ? 'green'
+  : 'red'
+}">
+  ${item.cash}
+</td>
 
       <td>${item.keterangan}</td>
 
