@@ -2082,10 +2082,11 @@ id="tambahPopup">
 
       <label>Nama Sumber</label>
 
-      <input
-      type="text"
-      id="namaSumber"
-      placeholder="Contoh: ATM 3">
+     <input
+type="text"
+id="namaSumber"
+list="listSumberSaldo"
+placeholder="Pilih sumber saldo">
 
       <label>Nominal</label>
 
@@ -2370,6 +2371,56 @@ function closeSaldoPopup(){
 
 function openTambahPopup(){
 
+  const akunBankData =
+  JSON.parse(
+    localStorage.getItem(
+      "akunBankData"
+    ) || "[]"
+  );
+
+  const inputNama =
+  document.getElementById(
+    "namaSumber"
+  );
+
+  const listId =
+  "listSumberSaldo";
+
+  let datalist =
+  document.getElementById(
+    listId
+  );
+
+  if(!datalist){
+
+    datalist =
+    document.createElement(
+      "datalist"
+    );
+
+    datalist.id = listId;
+
+    document.body.appendChild(
+      datalist
+    );
+
+  }
+
+  datalist.innerHTML = "";
+
+  akunBankData.forEach(item=>{
+
+    datalist.innerHTML += `
+      <option value="${item.nama}">
+    `;
+
+  });
+
+  inputNama.setAttribute(
+    "list",
+    listId
+  );
+
   document
   .getElementById('tambahPopup')
   .classList.add('active');
@@ -2402,6 +2453,13 @@ if(savedSaldo){
 
 }
 
+const akunBankData =
+JSON.parse(
+localStorage.getItem(
+"akunBankData"
+) || "[]"
+);
+  
 /* =========================
 RENDER TABLE
 ========================= */
