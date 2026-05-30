@@ -1793,22 +1793,6 @@ Belum ada mutasi
 
 <div class="table-footer">
 
-<div id="totalMutasiText">
-Total 0 mutasi
-</div>
-
-<div>
-Total Mutasi
-</div>
-
-<div
-class="green"
-id="totalMutasiNominal">
-
-Rp 0
-
-</div>
-
 </div>
 
 </div>
@@ -3114,6 +3098,36 @@ mutasiData
 );
 
 renderMutasi();
+
+/* kosongkan form */
+
+document.getElementById(
+'jenisTransaksi'
+).value = '';
+
+document.getElementById(
+'nominalTransaksi'
+).value = '';
+
+document.getElementById(
+'adminTransaksi'
+).value = '';
+
+document.getElementById(
+'adminBankTransaksi'
+).value = '';
+
+document.getElementById(
+'arahTransaksi'
+).value = '';
+
+document.getElementById(
+'cashTransaksi'
+).value = '';
+
+document.getElementById(
+'keteranganTransaksi'
+).value = '';
 
 closeTransaksiPopup();
 
