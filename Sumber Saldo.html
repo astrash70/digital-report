@@ -23,15 +23,21 @@ font-family:'Inter',sans-serif;
 
 body{
 background:#f5f7f9;
-padding:24px;
 }
 
 .page{
 
 background:white;
-border-radius:24px;
-padding:28px;
+
+border-radius:28px;
+
+padding:26px;
+
 border:1px solid #edf1f3;
+
+box-shadow:
+0 2px 10px rgba(0,0,0,.03);
+
 }
 
 .topbar{
@@ -238,10 +244,252 @@ font-weight:700;
 cursor:pointer;
 }
 
+.dashboard-layout{
+display:flex;
+min-height:100vh;
+}
+
+.sidebar{
+
+width:260px;
+position:fixed;
+overflow:hidden;
+  
+background:
+linear-gradient(
+180deg,
+#052e1b,
+#06351f,
+#041f14
+);
+
+padding:24px 16px;
+
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+
+position:fixed;
+
+top:0;
+left:0;
+
+height:100vh;
+}
+
+.main-content{
+
+flex:1;
+margin-left:260px;
+padding:24px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:14px;
+color:white;
+font-weight:700;
+margin-bottom:40px;
+}
+
+.sidebar-menu{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.sidebar-item{
+
+display:flex;
+align-items:center;
+gap:14px;
+
+padding:16px 18px;
+
+border-radius:18px;
+
+color:rgba(255,255,255,.82);
+
+text-decoration:none;
+}
+
+  .sidebar-item:hover{
+
+background:
+rgba(255,255,255,.08);
+
+color:white;
+
+}
+
+.sidebar-item.active{
+
+background:
+linear-gradient(
+135deg,
+#0a6b2d,
+#11853c
+);
+
+color:white;
+}
+
+.sidebar-title{
+
+color:rgba(255,255,255,.45);
+
+font-size:12px;
+
+font-weight:600;
+
+margin:24px 14px 8px;
+}
+
+  .sidebar::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+radial-gradient(
+circle at top right,
+rgba(32,201,111,.16),
+transparent 45%
+);
+
+pointer-events:none;
+
+}
+
+.sidebar-profile{
+
+background:
+rgba(255,255,255,.06);
+
+border-radius:22px;
+
+padding:16px;
+
+color:white;
+}
+
+.profile-top{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.profile-avatar{
+
+width:46px;
+height:46px;
+
+border-radius:50%;
+
+background:#1ec45d;
+
+display:flex;
+align-items:center;
+justify-content:center;
+}
+  
 </style>
 </head>
 
 <body>
+
+<div class="dashboard-layout">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+  <div>
+
+    <div class="logo">
+
+      <div class="logo-icon">
+        <i class="fa-solid fa-chart-line"></i>
+      </div>
+
+      <span>Digital Report</span>
+
+    </div>
+
+    <div class="sidebar-menu">
+
+      <a href="dashboard.html" class="sidebar-item">
+        <i class="fa-solid fa-house"></i>
+        Dashboard
+      </a>
+
+      <a href="input.html" class="sidebar-item">
+        <i class="fa-solid fa-circle-plus"></i>
+        Input Laporan
+      </a>
+
+      <a href="database.html" class="sidebar-item">
+        <i class="fa-solid fa-database"></i>
+        Database
+      </a>
+
+      <a href="report.html" class="sidebar-item">
+        <i class="fa-regular fa-clipboard"></i>
+        Report
+      </a>
+
+      <a href="rekap.html" class="sidebar-item">
+        <i class="fa-regular fa-calendar"></i>
+        Rekap Bulanan
+      </a>
+
+      <div class="sidebar-title">
+        MASTER DATA
+      </div>
+
+      <a href="database.html" class="sidebar-item">
+        <i class="fa-solid fa-right-left"></i>
+        Jenis Transaksi
+      </a>
+
+      <a href="Sumber Saldo.html"
+         class="sidebar-item active">
+        <i class="fa-solid fa-building-columns"></i>
+        Sumber Saldo
+      </a>
+
+    </div>
+
+  </div>
+
+  <div class="sidebar-profile">
+
+    <div class="profile-top">
+
+      <div class="profile-avatar">
+        T
+      </div>
+
+      <div>
+        <h4>Tokosayyida</h4>
+        <p style="opacity:.7;font-size:13px;">
+          Admin
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
 
 <div class="page">
 
@@ -321,6 +569,8 @@ Simpan
 
 </div>
 
+</div>
+</div>
 </div>
 
 <script>
