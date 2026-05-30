@@ -1211,6 +1211,18 @@ POPUP MODAL
 
 }
 
+  .sidebar-submenu{
+  margin-left:12px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.sidebar-submenu .sidebar-item{
+  padding:12px 16px;
+  font-size:14px;
+}
+
 </style>
 </head>
 
@@ -1246,10 +1258,19 @@ POPUP MODAL
         Input Laporan
       </a>
 
-      <a href="database.html" class="sidebar-item active">
-        <i class="fa-solid fa-database"></i>
-        Database
-      </a>
+      <div class="sidebar-title">
+  MASTER DATA
+</div>
+
+<a href="database.html" class="sidebar-item active">
+  <i class="fa-solid fa-right-left"></i>
+  Jenis Transaksi
+</a>
+
+<a href="akun-bank.html" class="sidebar-item">
+  <i class="fa-solid fa-building-columns"></i>
+  Akun Bank / ATM
+</a>
 
       <a href="report.html" class="sidebar-item">
         <i class="fa-regular fa-clipboard"></i>
