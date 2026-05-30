@@ -1906,33 +1906,18 @@ RINCIAN
 
 <div class="summary-card">
 
-<h3>
-SALDO AKHIR
-</h3>
+<h3>SALDO AKHIR</h3>
 
-<div class="balance-row">
-<span>SALDO ATM</span>
-<strong>Rp 3.680.143</strong>
-</div>
-
-<div class="balance-row">
-<span>SALDO MESIN</span>
-<strong>Rp 6.986.414</strong>
-</div>
-
-<div class="balance-row">
-<span>BRI ATM 1</span>
-<strong>Rp 17.924.764</strong>
-</div>
-
-<div class="balance-row">
-<span>BRI ATM 2</span>
-<strong>Rp 1.802.300</strong>
-</div>
+<div id="saldoAkhirList"></div>
 
 <div class="balance-total">
+
 <span>TOTAL SALDO AKHIR</span>
-<span>Rp 30.393.621</span>
+
+<span id="totalSaldoAkhir">
+Rp 0
+</span>
+
 </div>
 
 </div>
@@ -2466,10 +2451,12 @@ position:relative;
 
   });
 
-  totalSaldoInput.value =
+ totalSaldoInput.value =
 formatRupiah(total);
 
 updateTotalModal();
+
+renderSaldoAkhir();
 
   table.innerHTML += `
 
@@ -2497,6 +2484,56 @@ updateTotalModal();
   `;
 
 }
+
+
+  function renderSaldoAkhir(){
+
+  const list =
+  document.getElementById(
+    'saldoAkhirList'
+  );
+
+  const totalEl =
+  document.getElementById(
+    'totalSaldoAkhir'
+  );
+
+  if(!list) return;
+
+  list.innerHTML = '';
+
+  let total = 0;
+
+  saldoData.forEach(item => {
+
+    const nominal =
+    parseRupiah(
+      item.nominal
+    );
+
+    total += nominal;
+
+    list.innerHTML += `
+
+    <div class="balance-row">
+
+      <span>${item.nama}</span>
+
+      <strong>
+        ${item.nominal}
+      </strong>
+
+    </div>
+
+    `;
+
+  });
+
+  totalEl.textContent =
+  formatRupiah(total);
+
+}
+  
 
 /* =========================
 SIMPAN SALDO
@@ -2571,6 +2608,7 @@ LOAD
 ========================= */
 
 renderSaldoTable();
+renderSaldoAkhir();
 
 const nominalInput =
 document.getElementById(
