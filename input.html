@@ -3520,7 +3520,7 @@ document.getElementById(
 if(totalText){
 
 totalText.textContent =
-`Total ${mutasiData.length} mutasi`;
+"Total 0 mutasi";
 
 }
 
@@ -3532,7 +3532,7 @@ document.getElementById(
 if(totalNominal){
 
 totalNominal.textContent =
-formatRupiah(total);
+"Rp 0";
 
 }
 
@@ -3573,18 +3573,31 @@ onclick="hapusMutasi(${index})">
 
 });
 
+const totalText =
 document.getElementById(
 "totalMutasiText"
-).textContent =
+);
+
+if(totalText){
+
+totalText.textContent =
 `Total ${mutasiData.length} mutasi`;
 
+}
+
+const totalNominal =
 document.getElementById(
 "totalMutasiNominal"
-).textContent =
+);
+
+if(totalNominal){
+
+totalNominal.textContent =
 formatRupiah(total);
 
 }
 
+}
 function hapusMutasi(index){
 
 mutasiData.splice(
