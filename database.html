@@ -1550,6 +1550,7 @@ placeholder="Cari jenis transaksi..."
 <th>Jenis Transaksi</th>
 <th>Kategori</th>
 <th>Efek</th>
+<th>Target Saldo</th>
 <th></th>
 
   
@@ -1713,6 +1714,16 @@ placeholder="Masukkan nominal"
   </option>
 
 </select>
+
+</div>
+
+      <div class="form-group">
+
+  <label>Target Saldo</label>
+
+  <select id="targetSaldoSelect">
+    <option value="">Pilih Target Saldo</option>
+  </select>
 
 </div>
 
@@ -2056,6 +2067,11 @@ saveBtn.addEventListener("click", () => {
   .options[
     document.getElementById("efekSelect").selectedIndex
   ].text;
+
+  const targetSaldo =
+document.getElementById(
+  "targetSaldoSelect"
+).value;
 
   const nominalMin =
   document.getElementById("minInput").value;
@@ -3453,6 +3469,10 @@ function syncJenisTransaksi(){
       parentRow.children[2]
       .innerText.trim(),
 
+      targetSaldo:
+      parentRow.children[3]
+      .innerText.trim(),
+
       ranges:ranges
 
     });
@@ -3465,6 +3485,41 @@ function syncJenisTransaksi(){
   );
 
 }
+
+  function loadTargetSaldo(){
+
+  const select =
+  document.getElementById("targetSaldoSelect");
+
+  if(!select) return;
+
+  const akunList =
+  JSON.parse(
+    localStorage.getItem("akunBankData")
+    || "[]"
+  );
+
+  select.innerHTML =
+  '<option value="">Pilih Target Saldo</option>';
+
+  akunList.forEach(item => {
+
+    const option =
+    document.createElement("option");
+
+    option.value =
+    item.nama;
+
+    option.textContent =
+    item.nama;
+
+    select.appendChild(option);
+
+  });
+
+}
+
+loadTargetSaldo();
   
 </script>
 
