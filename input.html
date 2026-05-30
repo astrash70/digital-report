@@ -1954,7 +1954,9 @@ TOTAL CASH AKHIR</h3>
 
 <div class="balance-row"
 style="border:none;">
-<strong>Rp 58.247.509</strong>
+<strong id="totalCashAkhir">
+Rp 0
+</strong>
 </div>
 
 </div>
@@ -2316,6 +2318,8 @@ function(){
 
   updateTotalModal();
 
+  updateCashAkhir();
+
 });
 
 /* =========================
@@ -2332,8 +2336,9 @@ function(e){
 
     this.blur();
 
-  }
+    updateCashAkhir();
 
+  }
 });
 
 /* =========================
@@ -3093,6 +3098,7 @@ keyword
 
 
   updateRingkasanPendapatan();
+  updateCashAkhir();
 }
 
 
@@ -3136,6 +3142,78 @@ keyword
   ).textContent =
   transaksiData.length +
   ' Transaksi';
+
+}
+
+
+  /* =========================
+TOTAL CASH AKHIR
+========================= */
+
+function updateCashAkhir(){
+
+  let cashAkhir =
+  parseRupiah(
+    cashPagiInput.value || '0'
+  );
+
+  /* TRANSAKSI NASABAH */
+
+  transaksiData.forEach(item => {
+
+    const nominal =
+    parseRupiah(
+      item.nominal || '0'
+    );
+
+    const admin =
+    parseRupiah(
+      item.admin || '0'
+    );
+
+    if(item.efek === 'Cash In'){
+
+      cashAkhir += nominal;
+
+    }
+
+    if(item.efek === 'Cash Out'){
+
+      cashAkhir -= nominal;
+
+    }
+
+    cashAkhir += admin;
+
+  });
+
+  /* MUTASI */
+
+  mutasiData.forEach(item => {
+
+    const nominal =
+    parseRupiah(
+      item.nominal || '0'
+    );
+
+    if(item.efek === 'Cash In'){
+
+      cashAkhir += nominal;
+
+    }
+
+    if(item.efek === 'Cash Out'){
+
+      cashAkhir -= nominal;
+
+    }
+
+  });
+
+  document.getElementById(
+    'totalCashAkhir'
+  ).textContent =
+  formatRupiah(cashAkhir);
 
 }
 
@@ -3703,6 +3781,7 @@ formatRupiah(total);
 }
 
   updateRingkasanPendapatan();
+  updateCashAkhir();
 
 }
 function hapusMutasi(index){
@@ -3851,6 +3930,8 @@ renderMutasi();
 renderTransaksi();
 
 updateRingkasanPendapatan();
+
+updateCashAkhir();
   
 </script>
 
