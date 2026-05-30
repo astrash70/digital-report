@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sumber Saldo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:#f5f7f9;
+padding:24px;
+}
+
+.page{
+
+background:white;
+border-radius:24px;
+padding:28px;
+border:1px solid #edf1f3;
+}
+
+.topbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+
+.breadcrumb{
+
+display:flex;
+gap:10px;
+font-size:14px;
+color:#888;
+}
+
+.breadcrumb strong{
+color:#15803d;
+}
+
+.date-box{
+
+padding:10px 16px;
+border:1px solid #e5e7eb;
+border-radius:12px;
+font-weight:600;
+font-size:14px;
+}
+
+.page h1{
+
+font-size:42px;
+margin-bottom:8px;
+}
+
+.page p{
+
+color:#6b7280;
+margin-bottom:40px;
+}
+
+.toolbar{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.search{
+
+width:280px;
+height:48px;
+padding:0 16px;
+border:1px solid #e5e7eb;
+border-radius:14px;
+outline:none;
+}
+
+.add-btn{
+
+border:none;
+padding:14px 22px;
+border-radius:14px;
+
+background:
+linear-gradient(
+135deg,
+#0f8c3f,
+#16a34a
+);
+
+color:white;
+font-weight:700;
+cursor:pointer;
+}
+
+.table-wrap{
+
+border:1px solid #edf1f3;
+border-radius:18px;
+overflow:hidden;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+thead{
+
+background:#f8faf9;
+}
+
+th{
+
+padding:16px;
+text-align:left;
+font-size:14px;
+}
+
+td{
+
+padding:16px;
+border-top:1px solid #edf1f3;
+font-size:14px;
+}
+
+.delete-btn{
+
+width:36px;
+height:36px;
+
+border:none;
+
+background:#fef2f2;
+
+color:#ef4444;
+
+border-radius:10px;
+
+cursor:pointer;
+}
+
+.footer{
+
+margin-top:14px;
+font-size:14px;
+color:#6b7280;
+}
+
+/* POPUP */
+
+.modal{
+
+position:fixed;
+inset:0;
+
+background:rgba(0,0,0,.3);
+
+display:none;
+align-items:center;
+justify-content:center;
+
+z-index:999;
+}
+
+.modal.show{
+display:flex;
+}
+
+.modal-box{
+
+width:420px;
+
+background:white;
+
+padding:28px;
+
+border-radius:24px;
+}
+
+.modal-box h2{
+
+margin-bottom:20px;
+}
+
+.input{
+
+width:100%;
+height:52px;
+
+border:none;
+background:#f3f4f6;
+
+padding:0 16px;
+
+border-radius:14px;
+outline:none;
+}
+
+.save-btn{
+
+margin-top:20px;
+
+width:100%;
+height:54px;
+
+border:none;
+
+border-radius:16px;
+
+background:
+linear-gradient(
+135deg,
+#0f8c3f,
+#16a34a
+);
+
+color:white;
+font-weight:700;
+cursor:pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<div class="topbar">
+
+<div class="breadcrumb">
+<strong>Database</strong>
+<span>/</span>
+<span>Sumber Saldo</span>
+</div>
+
+<div class="date-box" id="tanggal"></div>
+
+</div>
+
+<h1>Sumber Saldo</h1>
+
+<p>
+Kelola semua tempat penyimpanan saldo yang digunakan untuk transaksi.
+</p>
+
+<div class="toolbar">
+
+<input
+type="text"
+class="search"
+id="searchInput"
+placeholder="Cari sumber saldo..."
+>
+
+<button class="add-btn" id="openPopup">
++ Tambah Sumber
+</button>
+
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+<tr>
+<th width="80">No</th>
+<th>Nama Sumber</th>
+<th width="80">Aksi</th>
+</tr>
+</thead>
+
+<tbody id="tableBody"></tbody>
+
+</table>
+
+</div>
+
+<div class="footer" id="infoData">
+Menampilkan 0 data
+</div>
+
+</div>
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<h2>Tambah Sumber</h2>
+
+<input
+type="text"
+id="namaSumber"
+class="input"
+placeholder="Masukkan nama sumber"
+>
+
+<button class="save-btn" id="saveBtn">
+Simpan
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+const modal =
+document.getElementById("modal");
+
+const openPopup =
+document.getElementById("openPopup");
+
+const saveBtn =
+document.getElementById("saveBtn");
+
+const namaInput =
+document.getElementById("namaSumber");
+
+const tableBody =
+document.getElementById("tableBody");
+
+let sumberData =
+JSON.parse(
+localStorage.getItem("akunBankData")
+|| "[]"
+);
+
+openPopup.onclick = () => {
+
+modal.classList.add("show");
+
+namaInput.focus();
+
+};
+
+function saveStorage(){
+
+localStorage.setItem(
+"akunBankData",
+JSON.stringify(sumberData)
+);
+
+}
+
+function renderTable(){
+
+tableBody.innerHTML = "";
+
+sumberData.forEach((item,index)=>{
+
+tableBody.innerHTML += `
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>
+<strong>${item.nama}</strong>
+</td>
+
+<td>
+
+<button
+class="delete-btn"
+onclick="hapusData(${index})">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+});
+
+document.getElementById("infoData").innerText =
+`Menampilkan ${sumberData.length} data`;
+
+}
+
+function hapusData(index){
+
+if(!confirm("Hapus sumber saldo?"))
+return;
+
+sumberData.splice(index,1);
+
+saveStorage();
+
+renderTable();
+
+}
+
+saveBtn.onclick = ()=>{
+
+const nama =
+namaInput.value.trim();
+
+if(!nama) return;
+
+sumberData.push({
+nama:nama
+});
+
+saveStorage();
+
+renderTable();
+
+namaInput.value="";
+
+modal.classList.remove("show");
+
+};
+
+document
+.getElementById("searchInput")
+.addEventListener("input",(e)=>{
+
+const keyword =
+e.target.value.toLowerCase();
+
+const rows =
+tableBody.querySelectorAll("tr");
+
+rows.forEach(row=>{
+
+row.style.display =
+row.innerText.toLowerCase().includes(keyword)
+? ""
+: "none";
+
+});
+
+});
+
+document
+.getElementById("tanggal")
+.innerText =
+new Date().toLocaleDateString(
+"id-ID",
+{
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+);
+
+renderTable();
+
+</script>
+
+</body>
+</html>
