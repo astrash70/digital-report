@@ -3161,54 +3161,54 @@ function updateCashAkhir(){
 
   transaksiData.forEach(item => {
 
-    const nominal =
-    parseRupiah(
-      item.nominal || '0'
-    );
+  const nominal =
+  parseRupiah(
+    item.nominal || '0'
+  );
 
-    const admin =
-    parseRupiah(
-      item.admin || '0'
-    );
+  const admin =
+  parseRupiah(
+    item.admin || '0'
+  );
 
-    if(item.cash === 'Cash In'){
+  if(item.cash && item.cash.includes('Cash In')){
 
-      cashAkhir += nominal;
+    cashAkhir += nominal;
 
-    }
+  }
 
-    if(item.cash === 'Cash Out'){
+  if(item.cash && item.cash.includes('Cash Out')){
 
-      cashAkhir -= nominal;
+    cashAkhir -= nominal;
 
-    }
+  }
 
-    cashAkhir += admin;
+  cashAkhir += admin;
 
-  });
+});
 
   /* MUTASI */
 
   (mutasiData || []).forEach(item => {
 
-    const nominal =
-    parseRupiah(
-      item.nominal || '0'
-    );
+  const nominal =
+  parseRupiah(
+    item.nominal || '0'
+  );
 
-    if(item.cash === 'Cash In'){
+  if(item.cash && item.cash.includes('Cash In')){
 
-      cashAkhir += nominal;
+    cashAkhir += nominal;
 
-    }
+  }
 
-    if(item.cash === 'Cash Out'){
+  if(item.cash && item.cash.includes('Cash Out')){
 
-      cashAkhir -= nominal;
+    cashAkhir -= nominal;
 
-    }
+  }
 
-  });
+});
 
   document.getElementById(
     'totalCashAkhir'
