@@ -3470,20 +3470,19 @@ localStorage.getItem(
 
 function openMutasiPopup(){
 
-document
-.getElementById(
-"transaksiPopup"
-)
-.dataset.mode =
-"mutasi";
+document.getElementById("transaksiPopup")
+.dataset.mode = "mutasi";
 
-document
-.getElementById(
-"transaksiPopup"
-)
-.classList.add(
-"active"
-);
+document.getElementById('jenisTransaksi').value = '';
+document.getElementById('nominalTransaksi').value = '';
+document.getElementById('adminTransaksi').value = '';
+document.getElementById('adminBankTransaksi').value = '';
+document.getElementById('arahTransaksi').value = '';
+document.getElementById('cashTransaksi').value = '';
+document.getElementById('keteranganTransaksi').value = '';
+
+document.getElementById("transaksiPopup")
+.classList.add("active");
 
 }
 
