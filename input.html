@@ -1867,7 +1867,7 @@ Cash + Saldo Akhir
 
 <div class="summary-card">
 
-<h3>
+<h3 style="margin-bottom:18px;">
 RINCIAN PENDAPATAN
 </h3>
 
@@ -1875,12 +1875,16 @@ RINCIAN PENDAPATAN
 
 <div class="summary-row">
 <span>TOTAL ADMIN</span>
-<strong>Rp 369.000</strong>
+<strong id="totalAdmin">
+Rp 0
+</strong>
 </div>
 
 <div class="summary-row">
 <span>ADMIN BANK</span>
-<strong>Rp 83.000</strong>
+<strong id="totalAdminBank">
+Rp 0
+</strong>
 </div>
 
 <div class="summary-row">
@@ -1892,12 +1896,9 @@ RINCIAN PENDAPATAN
 
 <div class="summary-row">
 <span>TOTAL TRANSAKSI NASABAH</span>
-<strong>7 Transaksi</strong>
-</div>
-
-<div class="summary-row">
-<span>TOTAL MUTASI INTERNAL</span>
-<strong>2 Mutasi</strong>
+<strong id="jumlahTransaksi">
+0 Transaksi
+</strong>
 </div>
 
 </div>
@@ -3065,6 +3066,44 @@ keyword
 
 : `Total ${transaksiData.length} transaksi`;
 
+
+  updateRingkasanPendapatan();
+}
+
+
+  function updateRingkasanPendapatan(){
+
+  let totalAdmin = 0;
+  let totalAdminBank = 0;
+
+  transaksiData.forEach(item => {
+
+    totalAdmin += parseRupiah(
+      item.admin || '0'
+    );
+
+    totalAdminBank += parseRupiah(
+      item.adminBank || '0'
+    );
+
+  });
+
+  document.getElementById(
+    'totalAdmin'
+  ).textContent =
+  formatRupiah(totalAdmin);
+
+  document.getElementById(
+    'totalAdminBank'
+  ).textContent =
+  formatRupiah(totalAdminBank);
+
+  document.getElementById(
+    'jumlahTransaksi'
+  ).textContent =
+  transaksiData.length +
+  ' Transaksi';
+
 }
 
 /* =========================
@@ -3316,6 +3355,7 @@ LOAD
 ========================= */
 
 renderTransaksi();
+updateRingkasanPendapatan();
 
   /* =========================
 ENTER KE FIELD BERIKUTNYA
