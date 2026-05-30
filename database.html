@@ -2303,16 +2303,19 @@ else{
 
       </div>
 
-    </td>
+   <td>
 
-    <td>
+  ${targetSaldo || "-"}
 
-      <button class="expand-btn">
-        ⌄
-      </button>
+</td>
 
-    </td>
+<td>
 
+  <button class="expand-btn">
+    ⌄
+  </button>
+
+</td>
   `;
 
   /* DETAIL */
@@ -2325,7 +2328,7 @@ else{
 
   detailRow.innerHTML = `
 
-    <td colspan="4" class="child-wrapper">
+    <td colspan="5" class="child-wrapper">
 
       <div class="child-table">
 
@@ -2519,7 +2522,11 @@ document.getElementById("minInput").value = "";
 document.getElementById("maxInput").value = "";
 document.getElementById("adminInput").value = "";
 document.getElementById("chargeInput").value = "";
-  
+
+document.getElementById(
+"targetSaldoSelect"
+).value = "";
+
 kategoriSelect.value = "none";
 efekSelect.value = "none";
 
@@ -3127,6 +3134,14 @@ parentRow.children[2].innerHTML = `
   </div>
 
 `;
+
+  const targetSaldo =
+document.getElementById(
+"targetSaldoSelect"
+).value;
+
+parentRow.children[3].innerHTML =
+targetSaldo || "-";
 
   /* SORT ULANG */
 
