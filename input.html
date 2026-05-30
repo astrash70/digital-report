@@ -3111,6 +3111,14 @@ keyword
 
   });
 
+    mutasiData.forEach(item => {
+
+  totalAdminBank += parseRupiah(
+    item.adminBank || '0'
+  );
+
+});
+
   document.getElementById(
     'totalAdmin'
   ).textContent =
@@ -3697,6 +3705,8 @@ totalNominal.textContent =
 formatRupiah(total);
 
 }
+
+  updateRingkasanPendapatan();
 
 }
 function hapusMutasi(index){
