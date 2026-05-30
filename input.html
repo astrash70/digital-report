@@ -1591,12 +1591,12 @@ Catat semua transaksi yang berasal dari nasabah
 </div>
 
 <button
-class="action-btn"
-onclick="openTransaksiPopup()">
+class="detail-btn"
+onclick="openMutasiPopup()">
 
 <i class="fa-solid fa-plus"></i>
 &nbsp;
-Tambah Transaksi
+Tambah Mutasi
 
 </button>
 
@@ -1764,48 +1764,45 @@ Tambah Mutasi
 
 </thead>
 
-<tbody>
+<tbody id="mutasiTableBody">
 
-<tr>
-<td>1</td>
-<td>TRANSFER BRI</td>
-<td>-</td>
-<td>BANK</td>
-<td>30.000.000</td>
-<td>5.000</td>
-<td>Setoran bulanan ke BRI</td>
-<td>⋮</td>
-</tr>
+<tr id="emptyMutasi">
 
-<tr>
-<td>2</td>
-<td>ATM KE MESIN</td>
-<td>ATM 1</td>
-<td>MESIN EDC</td>
-<td>30.004.000</td>
-<td>4.000</td>
-<td>Pindah saldo untuk mesin</td>
-<td>⋮</td>
+<td colspan="8"
+style="
+text-align:center;
+padding:40px;
+color:#94a3b8;
+font-size:14px;
+">
+
+Belum ada mutasi
+
+</td>
+
 </tr>
 
 </tbody>
-
 </table>
 
 </div>
 
 <div class="table-footer">
 
-<div>
-Total 2 mutasi
+<div id="totalMutasiText">
+Total 0 mutasi
 </div>
 
 <div>
 Total Mutasi
 </div>
 
-<div class="green">
-Rp 60.004.000
+<div
+class="green"
+id="totalMutasiNominal">
+
+Rp 0
+
 </div>
 
 </div>
@@ -2719,6 +2716,13 @@ function openTransaksiPopup(){
 
   },100);
 
+  document
+.getElementById(
+"transaksiPopup"
+)
+.dataset.mode =
+"transaksi";
+
 }
 
 function closeTransaksiPopup(){
@@ -3078,6 +3082,41 @@ function simpanTransaksi(){
     'keteranganTransaksi'
   ).value;
 
+  if(
+document
+.getElementById(
+"transaksiPopup"
+)
+.dataset.mode ===
+"mutasi"
+){
+
+mutasiData.push({
+
+jenis,
+nominal,
+adminBank,
+arah,
+cash,
+keterangan
+
+});
+
+localStorage.setItem(
+"mutasiData",
+JSON.stringify(
+mutasiData
+)
+);
+
+renderMutasi();
+
+closeTransaksiPopup();
+
+return;
+
+}
+
  const dataBaru = {
 
   jenis,
@@ -3398,6 +3437,142 @@ document
   .toLocaleString('id-ID');
 
 });
+
+
+  /* =========================
+MUTASI
+========================= */
+
+let mutasiData =
+JSON.parse(
+localStorage.getItem(
+"mutasiData"
+)
+) || [];
+
+function openMutasiPopup(){
+
+document
+.getElementById(
+"transaksiPopup"
+)
+.dataset.mode =
+"mutasi";
+
+document
+.getElementById(
+"transaksiPopup"
+)
+.classList.add(
+"active"
+);
+
+}
+
+function renderMutasi(){
+
+const table =
+document.getElementById(
+"mutasiTableBody"
+);
+
+table.innerHTML = "";
+
+let total = 0;
+
+if(mutasiData.length === 0){
+
+table.innerHTML = `
+<tr id="emptyMutasi">
+<td colspan="8"
+style="
+text-align:center;
+padding:40px;
+color:#94a3b8;
+">
+Belum ada mutasi
+</td>
+</tr>
+`;
+
+document.getElementById(
+"totalMutasiText"
+).textContent =
+"Total 0 mutasi";
+
+document.getElementById(
+"totalMutasiNominal"
+).textContent =
+"Rp 0";
+
+return;
+
+}
+
+mutasiData.forEach(
+(item,index)=>{
+
+total += parseRupiah(
+item.nominal
+);
+
+table.innerHTML += `
+<tr>
+
+<td>${index+1}</td>
+<td>${item.jenis}</td>
+<td>${item.nominal}</td>
+<td>${item.adminBank}</td>
+<td>${item.arah}</td>
+<td>${item.cash}</td>
+<td>${item.keterangan}</td>
+
+<td>
+<button
+class="aksi-btn"
+onclick="hapusMutasi(${index})">
+
+<i class="fa-solid fa-trash"></i>
+
+</button>
+</td>
+
+</tr>
+`;
+
+});
+
+document.getElementById(
+"totalMutasiText"
+).textContent =
+`Total ${mutasiData.length} mutasi`;
+
+document.getElementById(
+"totalMutasiNominal"
+).textContent =
+formatRupiah(total);
+
+}
+
+function hapusMutasi(index){
+
+mutasiData.splice(
+index,
+1
+);
+
+localStorage.setItem(
+"mutasiData",
+JSON.stringify(
+mutasiData
+)
+);
+
+renderMutasi();
+
+}
+
+renderMutasi();
   
 </script>
 
