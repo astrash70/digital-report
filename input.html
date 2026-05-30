@@ -3111,7 +3111,7 @@ keyword
 
   });
 
-    mutasiData.forEach(item => {
+   (mutasiData || []).forEach(item => {
 
   totalAdminBank += parseRupiah(
     item.adminBank || '0'
@@ -3386,7 +3386,6 @@ LOAD
 ========================= */
 
 renderTransaksi();
-updateRingkasanPendapatan();
 
   /* =========================
 ENTER KE FIELD BERIKUTNYA
@@ -3851,6 +3850,8 @@ simpanFee
 renderFee();
 
 renderMutasi();
+
+updateRingkasanPendapatan();
   
 </script>
 
