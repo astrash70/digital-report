@@ -2937,8 +2937,8 @@ function renderTransaksi(){
     `;
 
     updateRingkasanPendapatan();
-
-    return;
+updateCashAkhir();
+return;
 
     
   }
@@ -3171,13 +3171,13 @@ function updateCashAkhir(){
       item.admin || '0'
     );
 
-    if(item.efek === 'Cash In'){
+    if(item.cash === 'Cash In'){
 
       cashAkhir += nominal;
 
     }
 
-    if(item.efek === 'Cash Out'){
+    if(item.cash === 'Cash Out'){
 
       cashAkhir -= nominal;
 
@@ -3189,20 +3189,20 @@ function updateCashAkhir(){
 
   /* MUTASI */
 
-  mutasiData.forEach(item => {
+  (mutasiData || []).forEach(item => {
 
     const nominal =
     parseRupiah(
       item.nominal || '0'
     );
 
-    if(item.efek === 'Cash In'){
+    if(item.cash === 'Cash In'){
 
       cashAkhir += nominal;
 
     }
 
-    if(item.efek === 'Cash Out'){
+    if(item.cash === 'Cash Out'){
 
       cashAkhir -= nominal;
 
