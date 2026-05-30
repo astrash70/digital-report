@@ -3810,13 +3810,14 @@ function simpanFee(){
     feeDisplay.style.display =
     'block';
 
-  }catch{
+ }catch{
 
-    alert(
-      'Rumus tidak valid'
-    );
+  feeInput.style.border =
+  '1px solid red';
 
-  }
+  return;
+
+}
 
 }
 
