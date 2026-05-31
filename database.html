@@ -1571,7 +1571,7 @@ placeholder="Cari jenis transaksi..."
 <th>Jenis Transaksi</th>
 <th>Kategori</th>
 <th>Efek</th>
-<th>Target Saldo</th>
+<th>Sumber Saldo</th>
 <th></th>
 
   
@@ -1740,10 +1740,10 @@ placeholder="Masukkan nominal"
 
       <div class="form-group">
 
-  <label>Target Saldo</label>
+  <label>Sumber Saldo</label>
 
-  <select id="targetSaldoSelect">
-    <option value="">Pilih Target Saldo</option>
+  <select id="SumberSaldoSelect">
+    <option value="">Pilih Sumber Saldo</option>
   </select>
 
 </div>
@@ -2089,9 +2089,9 @@ saveBtn.addEventListener("click", () => {
     document.getElementById("efekSelect").selectedIndex
   ].text;
 
-  const targetSaldo =
+  const SumberSaldo =
 document.getElementById(
-  "targetSaldoSelect"
+  "SumberSaldoSelect"
 ).value;
 
   const nominalMin =
@@ -2305,7 +2305,7 @@ else{
 
    <td>
 
-  ${targetSaldo || "-"}
+  ${SumberSaldo || "-"}
 
 </td>
 
@@ -2524,7 +2524,7 @@ document.getElementById("adminInput").value = "";
 document.getElementById("chargeInput").value = "";
 
 document.getElementById(
-"targetSaldoSelect"
+"SumberSaldoSelect"
 ).value = "";
 
 kategoriSelect.value = "none";
@@ -3135,13 +3135,13 @@ parentRow.children[2].innerHTML = `
 
 `;
 
-  const targetSaldo =
+  const SumberSaldo =
 document.getElementById(
-"targetSaldoSelect"
+"SumberSaldoSelect"
 ).value;
 
 parentRow.children[3].innerHTML =
-targetSaldo || "-";
+SumberSaldo || "-";
 
   /* SORT ULANG */
 
@@ -3505,7 +3505,7 @@ function syncJenisTransaksi(){
       parentRow.children[2]
       .innerText.trim(),
 
-      targetSaldo:
+      SumberSaldo:
       parentRow.children[3]
       .innerText.trim(),
 
@@ -3522,10 +3522,10 @@ function syncJenisTransaksi(){
 
 }
 
-  function loadTargetSaldo(){
+  function loadSumberSaldo(){
 
   const select =
-  document.getElementById("targetSaldoSelect");
+  document.getElementById("SumberSaldoSelect");
 
   if(!select) return;
 
@@ -3536,7 +3536,7 @@ function syncJenisTransaksi(){
   );
 
   select.innerHTML =
-  '<option value="">Pilih Target Saldo</option>';
+  '<option value="">Pilih Sumber Saldo</option>';
 
   akunList.forEach(item => {
 
@@ -3555,7 +3555,7 @@ function syncJenisTransaksi(){
 
 }
 
-loadTargetSaldo();
+loadSumberSaldo();
   
 </script>
 
