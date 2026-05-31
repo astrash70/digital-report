@@ -2322,7 +2322,9 @@ if(existingRow){
 
  if(duplicateFound){
 
-  alert("Data sudah ada!");
+  document
+  .getElementById("duplicateModal")
+  .classList.add("show");
 
   return;
 
@@ -3946,6 +3948,44 @@ document.getElementById("adminInput")
 }
 
 setupEnterNavigation();
+
+  const duplicateModal =
+document.getElementById(
+  "duplicateModal"
+);
+
+const duplicateNo =
+document.getElementById(
+  "duplicateNo"
+);
+
+duplicateNo.addEventListener(
+  "click",
+  () => {
+
+    duplicateModal
+    .classList
+    .remove("show");
+
+  }
+);
+
+duplicateModal.addEventListener(
+  "click",
+  (e) => {
+
+    if(
+      e.target === duplicateModal
+    ){
+
+      duplicateModal
+      .classList
+      .remove("show");
+
+    }
+
+  }
+);
   
 </script>
 
