@@ -3645,6 +3645,42 @@ function syncJenisTransaksi(){
 }
 
 loadSumberSaldo();
+
+  document.getElementById("minInput")
+.addEventListener("keydown",(e)=>{
+
+  if(e.key==="Enter"){
+
+    e.preventDefault();
+    document.getElementById("maxInput").focus();
+
+  }
+
+});
+
+document.getElementById("maxInput")
+.addEventListener("keydown",(e)=>{
+
+  if(e.key==="Enter"){
+
+    e.preventDefault();
+    document.getElementById("adminInput").focus();
+
+  }
+
+});
+
+document.getElementById("adminInput")
+.addEventListener("keydown",(e)=>{
+
+  if(e.key==="Enter"){
+
+    e.preventDefault();
+    document.getElementById("saveBtn").click();
+
+  }
+
+});
   
 </script>
 
