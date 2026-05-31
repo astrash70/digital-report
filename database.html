@@ -2865,24 +2865,19 @@ function loadAddRangeButtons(){
       parentRow.children[0]
       .innerText;
 
-      /* RESET FORM */
+     /* RESET FORM */
 
-     document.getElementById("minInput").value = "";
+document.getElementById("minInput").value = "";
 document.getElementById("maxInput").value = "";
 document.getElementById("adminInput").value = "";
+document.getElementById("chargeInput").value = "";
 
-/* charge ikut mother row */
-document.getElementById("chargeInput").value =
-lastCharge;
+kategoriSelect.value = "none";
+efekSelect.value = "none";
 
-/* kategori & efek ikut mother row */
-kategoriSelect.value = kategoriValue;
-efekSelect.value = efekValue;
-
-/* sumber saldo ikut mother row */
 document.getElementById(
   "SumberSaldoSelect"
-).value = sumberSaldo;
+).value = "";
 
       /* AUTO ISI */
 
