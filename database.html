@@ -1223,6 +1223,122 @@ POPUP MODAL
   font-size:14px;
 }
 
+.confirm-overlay{
+
+  position:fixed;
+  inset:0;
+
+  background:
+  rgba(6,35,20,.18);
+
+  backdrop-filter:blur(4px);
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  z-index:99999;
+}
+
+.confirm-overlay.show{
+
+  display:flex;
+}
+
+.confirm-box{
+
+  width:420px;
+
+  background:white;
+
+  border-radius:28px;
+
+  padding:28px;
+
+  text-align:center;
+
+  box-shadow:
+  0 20px 50px rgba(0,0,0,.12);
+}
+
+.confirm-icon{
+
+  width:70px;
+  height:70px;
+
+  margin:auto;
+
+  border-radius:50%;
+
+  background:#ecfdf3;
+
+  color:#16a34a;
+
+  display:flex;
+
+  align-items:center;
+  justify-content:center;
+
+  font-size:28px;
+
+  margin-bottom:18px;
+}
+
+.confirm-box h3{
+
+  font-size:24px;
+
+  margin-bottom:10px;
+
+  color:#0f5132;
+}
+
+.confirm-box p{
+
+  color:#6b7280;
+
+  line-height:1.6;
+}
+
+.confirm-actions{
+
+  display:flex;
+
+  gap:12px;
+
+  margin-top:22px;
+}
+
+.confirm-cancel,
+.confirm-yes{
+
+  flex:1;
+
+  height:52px;
+
+  border:none;
+
+  border-radius:14px;
+
+  font-weight:700;
+
+  cursor:pointer;
+}
+
+.confirm-cancel{
+
+  background:#eef2f3;
+}
+
+.confirm-yes{
+
+  background:#15803d;
+
+  color:white;
+}
+  
+  
 </style>
 </head>
 
@@ -1758,6 +1874,43 @@ placeholder="Masukkan nominal"
 
 </div>
 
+
+
+  <div class="confirm-overlay" id="duplicateModal">
+
+  <div class="confirm-box">
+
+    <div class="confirm-icon">
+      <i class="fa-solid fa-circle-exclamation"></i>
+    </div>
+
+    <h3>Data Sudah Ada</h3>
+
+    <p>
+      Data yang sama persis sudah tersimpan.
+      Apakah ingin tetap menambahkan data?
+    </p>
+
+    <div class="confirm-actions">
+
+      <button
+      class="confirm-cancel"
+      id="duplicateNo">
+        Batal
+      </button>
+
+      <button
+      class="confirm-yes"
+      id="duplicateYes">
+        Ya, Tambahkan
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
 <!-- =========================
 SCRIPT POPUP
 ========================= -->
@@ -2113,6 +2266,68 @@ const existingRow =
 document.querySelector(
   `tr[data-jenis="${jenis.toLowerCase()}"]`
 );
+
+/* =========================
+CEK DUPLIKAT RANGE
+========================= */
+
+if(existingRow){
+
+  const detailRow =
+  existingRow.nextElementSibling;
+
+  const tbody =
+  detailRow.querySelector("tbody");
+
+  let duplicateFound = false;
+
+  tbody
+  .querySelectorAll("tr")
+  .forEach(row => {
+
+    const min =
+    row.children[1]
+    .innerText
+    .replace(/[^\d]/g,'');
+
+    const max =
+    row.children[2]
+    .innerText
+    .replace(/[^\d]/g,'');
+
+    const adm =
+    row.children[3]
+    .innerText
+    .replace(/[^\d]/g,'');
+
+    const chg =
+    row.children[4]
+    .innerText
+    .replace(/[^\d]/g,'');
+
+    if(
+
+      min == nominalMin &&
+      max == nominalMax &&
+      adm == admin &&
+      chg == charge
+
+    ){
+
+      duplicateFound = true;
+
+    }
+
+  });
+
+  if(duplicateFound){
+
+    // nanti popup custom muncul di sini
+    return;
+
+  }
+
+}
 
 /* =========================
 JIKA TRANSAKSI SUDAH ADA
