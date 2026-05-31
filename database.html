@@ -2865,6 +2865,23 @@ function loadAddRangeButtons(){
       parentRow.children[0]
       .innerText;
 
+      /* AMBIL DATA MOTHER ROW */
+
+const kategoriText =
+parentRow.children[1]
+.innerText
+.trim();
+
+const efekText =
+parentRow.children[2]
+.innerText
+.trim();
+
+const sumberSaldo =
+parentRow.children[3]
+.innerText
+.trim();
+
      /* RESET FORM */
 
 document.getElementById("minInput").value = "";
@@ -2872,12 +2889,57 @@ document.getElementById("maxInput").value = "";
 document.getElementById("adminInput").value = "";
 document.getElementById("chargeInput").value = "";
 
-kategoriSelect.value = "none";
-efekSelect.value = "none";
+/* KATEGORI */
+
+if(kategoriText.includes("Saldo In")){
+
+  kategoriSelect.value =
+  "saldo_in";
+
+}
+
+else if(kategoriText.includes("Saldo Out")){
+
+  kategoriSelect.value =
+  "saldo_out";
+
+}
+
+else{
+
+  kategoriSelect.value =
+  "none";
+
+}
+
+/* EFEK */
+
+if(efekText.includes("Cash In")){
+
+  efekSelect.value =
+  "cash_in";
+
+}
+
+else if(efekText.includes("Cash Out")){
+
+  efekSelect.value =
+  "cash_out";
+
+}
+
+else{
+
+  efekSelect.value =
+  "none";
+
+}
+
+/* SUMBER SALDO */
 
 document.getElementById(
   "SumberSaldoSelect"
-).value = "";
+).value = sumberSaldo;
 
       /* AUTO ISI */
 
