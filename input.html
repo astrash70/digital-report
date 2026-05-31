@@ -2191,6 +2191,13 @@ type="text"
 id="cashTransaksi"
 readonly>
 
+<label>Target Saldo</label>
+
+<input
+type="text"
+id="targetSaldoTransaksi"
+readonly>
+
 <label>Keterangan</label>
 
 <input
@@ -2936,6 +2943,12 @@ function closeTransaksiPopup(){
   ).value =
   data.cash;
 
+document.getElementById(
+'targetSaldoTransaksi'
+).value =
+data.targetSaldo || '';
+    
+
   document.getElementById(
     'keteranganTransaksi'
   ).value =
@@ -3306,6 +3319,11 @@ function simpanTransaksi(){
     'cashTransaksi'
   ).value;
 
+  const targetSaldo =
+document.getElementById(
+'targetSaldoTransaksi'
+).value;
+
   const keterangan =
   document.getElementById(
     'keteranganTransaksi'
@@ -3384,6 +3402,7 @@ return;
   adminBank,
   arah,
   cash,
+  targetSaldo,
   keterangan
 
 };
@@ -3439,6 +3458,10 @@ localStorage.setItem(
   document.getElementById(
     'cashTransaksi'
   ).value = '';
+
+  document.getElementById(
+'targetSaldoTransaksi'
+).value = '';
 
   document.getElementById(
     'keteranganTransaksi'
@@ -3609,6 +3632,11 @@ console.log(transaksi);
     'cashTransaksi'
   ).value =
   transaksi.efek;
+
+  document.getElementById(
+'targetSaldoTransaksi'
+).value =
+transaksi.targetSaldo || '';
 
   /* ADMIN BANK */
 
