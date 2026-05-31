@@ -3959,6 +3959,11 @@ document.getElementById(
   "duplicateNo"
 );
 
+const duplicateYes =
+document.getElementById(
+  "duplicateYes"
+);
+
 duplicateNo.addEventListener(
   "click",
   () => {
@@ -3983,6 +3988,21 @@ duplicateModal.addEventListener(
       .remove("show");
 
     }
+
+  }
+);
+
+  duplicateYes.addEventListener(
+  "click",
+  () => {
+
+    duplicateModal
+    .classList
+    .remove("show");
+
+    alert(
+      "Tombol Ya berhasil diklik"
+    );
 
   }
 );
