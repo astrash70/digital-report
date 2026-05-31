@@ -3681,6 +3681,56 @@ document.getElementById("adminInput")
   }
 
 });
+
+  function setupEnterNavigation(){
+
+  const fields = [
+
+    document.getElementById("jenisInput"),
+    document.getElementById("minInput"),
+    document.getElementById("maxInput"),
+    document.getElementById("adminInput"),
+    document.getElementById("chargeInput"),
+    document.getElementById("kategoriSelect"),
+    document.getElementById("efekSelect"),
+    document.getElementById("SumberSaldoSelect")
+
+  ];
+
+  fields.forEach((field,index)=>{
+
+    if(!field) return;
+
+    field.addEventListener("keydown",(e)=>{
+
+      if(e.key !== "Enter") return;
+
+      e.preventDefault();
+
+      const nextField =
+      fields[index + 1];
+
+      if(nextField){
+
+        nextField.focus();
+
+      }
+
+      else{
+
+        document
+        .getElementById("saveBtn")
+        .click();
+
+      }
+
+    });
+
+  });
+
+}
+
+setupEnterNavigation();
   
 </script>
 
