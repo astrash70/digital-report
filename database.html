@@ -2320,7 +2320,10 @@ if(existingRow){
 
   });
 
- if(duplicateFound){
+if(
+  duplicateFound &&
+  saveBtn.dataset.forceSave !== "true"
+){
 
   document
   .getElementById("duplicateModal")
@@ -2394,6 +2397,10 @@ if(existingRow){
 sortRanges(tbody);
 
 saveData();
+
+updateSummary();
+updateDataInfo();
+syncJenisTransaksi();
 
 loadEditButtons();
 loadDeleteButtons();
@@ -2750,6 +2757,8 @@ efekSelect.value = "none";
 /* CLOSE POPUP */
 
 popup.classList.remove("show");
+
+saveBtn.dataset.forceSave = "";
 
 });
 
@@ -3992,7 +4001,7 @@ duplicateModal.addEventListener(
   }
 );
 
-  duplicateYes.addEventListener(
+ duplicateYes.addEventListener(
   "click",
   () => {
 
@@ -4000,9 +4009,9 @@ duplicateModal.addEventListener(
     .classList
     .remove("show");
 
-    alert(
-      "Tombol Ya berhasil diklik"
-    );
+    saveBtn.dataset.forceSave = "true";
+
+    saveBtn.click();
 
   }
 );
