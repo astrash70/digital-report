@@ -2882,12 +2882,34 @@ parentRow.children[3]
 .innerText
 .trim();
 
+
+      /* AMBIL CHARGE TERAKHIR */
+
+const tbody =
+detailRow.querySelector("tbody");
+
+const lastRow =
+tbody.querySelector("tr:last-child");
+
+let lastCharge = "";
+
+if(lastRow){
+
+  lastCharge =
+  lastRow.children[4]
+  .innerText
+  .replace(/[^\d]/g,'');
+
+}
+
      /* RESET FORM */
 
 document.getElementById("minInput").value = "";
 document.getElementById("maxInput").value = "";
 document.getElementById("adminInput").value = "";
-document.getElementById("chargeInput").value = "";
+
+document.getElementById("chargeInput").value =
+lastCharge;
 
 /* KATEGORI */
 
