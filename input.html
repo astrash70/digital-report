@@ -2577,49 +2577,143 @@ renderSaldoAkhir();
 
   function renderSaldoAkhir(){
 
-  const list =
-  document.getElementById(
-    'saldoAkhirList'
-  );
+const list =
+document.getElementById(
+'saldoAkhirList'
+);
 
-  const totalEl =
-  document.getElementById(
-    'totalSaldoAkhir'
-  );
+const totalEl =
+document.getElementById(
+'totalSaldoAkhir'
+);
 
-  if(!list) return;
+if(!list) return;
 
-  list.innerHTML = '';
+let saldoAkhir = {};
 
-  let total = 0;
+/* SALDO AWAL */
 
-  saldoData.forEach(item => {
+saldoData.forEach(item=>{
 
-    const nominal =
-    parseRupiah(
-      item.nominal
-    );
+saldoAkhir[item.nama] =
+parseRupiah(
+item.nominal
+);
 
-    total += nominal;
+});
 
-    list.innerHTML += `
+/* TRANSAKSI */
 
-    <div class="balance-row">
+transaksiData.forEach(item=>{
 
-      <span>${item.nama}</span>
+const nominal =
+parseRupiah(
+item.nominal || '0'
+);
 
-      <strong>
-        ${item.nominal}
-      </strong>
+const sumber =
+item.SumberSaldo;
 
-    </div>
+if(
+!sumber ||
+saldoAkhir[sumber] === undefined
+) return;
 
-    `;
+if(
+item.arah &&
+item.arah.includes(
+'Saldo In'
+)
+){
 
-  });
+saldoAkhir[sumber] += nominal;
 
-  totalEl.textContent =
-  formatRupiah(total);
+}
+
+if(
+item.arah &&
+item.arah.includes(
+'Saldo Out'
+)
+){
+
+saldoAkhir[sumber] -= nominal;
+
+}
+
+});
+
+/* MUTASI */
+
+(mutasiData || []).forEach(item=>{
+
+const nominal =
+parseRupiah(
+item.nominal || '0'
+);
+
+const sumber =
+item.SumberSaldo;
+
+if(
+!sumber ||
+saldoAkhir[sumber] === undefined
+) return;
+
+if(
+item.arah &&
+item.arah.includes(
+'Saldo In'
+)
+){
+
+saldoAkhir[sumber] += nominal;
+
+}
+
+if(
+item.arah &&
+item.arah.includes(
+'Saldo Out'
+)
+){
+
+saldoAkhir[sumber] -= nominal;
+
+}
+
+});
+
+list.innerHTML = '';
+
+let total = 0;
+
+Object.keys(
+saldoAkhir
+).forEach(nama=>{
+
+total += saldoAkhir[nama];
+
+list.innerHTML += `
+
+<div class="balance-row">
+
+<span>${nama}</span>
+
+<strong>
+${formatRupiah(
+saldoAkhir[nama]
+)}
+</strong>
+
+</div>
+
+`;
+
+});
+
+totalEl.textContent =
+formatRupiah(total);
 
 }
   
@@ -2946,7 +3040,7 @@ function closeTransaksiPopup(){
 document.getElementById(
 'SumberSaldoTransaksi'
 ).value =
-data.SumberSaldo || '';
+transaksi.sumberSaldo || '';
     
 
   document.getElementById(
@@ -3002,8 +3096,9 @@ function renderTransaksi(){
 
     `;
 
-    updateRingkasanPendapatan();
+updateRingkasanPendapatan();
 updateCashAkhir();
+renderSaldoAkhir();
 return;
 
     
@@ -3345,6 +3440,7 @@ nominal,
 adminBank,
 arah,
 cash,
+SumberSaldo,
 keterangan
 
 });
@@ -3861,8 +3957,9 @@ formatRupiah(total);
 
 }
 
-  updateRingkasanPendapatan();
-  updateCashAkhir();
+updateRingkasanPendapatan();
+updateCashAkhir();
+renderSaldoAkhir();
 
 }
 function hapusMutasi(index){
